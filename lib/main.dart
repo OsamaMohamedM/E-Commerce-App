@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,6 +10,9 @@ const MyApp({super.key});
 
   @override
   Widget build(BuildContext context){
-    return Container();
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig:Approutes.router ,
+    );
   }
 }
