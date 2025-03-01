@@ -1,14 +1,35 @@
+import 'package:e_commerce/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../Core/utils/assetsImages.dart';
 
-class SplashViewBody extends StatelessWidget {
-const SplashViewBody({ super.key });
+class SplashViewBody extends StatefulWidget {
+  const SplashViewBody({super.key});
 
   @override
-  Widget build(BuildContext context){
-    return  Column(
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToOnBoarding();
+  }
+
+  void _navigateToOnBoarding() {
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) {
+        GoRouter.of(context).pushReplacement(Approutes.onBoardingView);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -19,7 +40,10 @@ const SplashViewBody({ super.key });
           ],
         ),
         SvgPicture.asset(Assets.assetsImagesLogo),
-        SvgPicture.asset(Assets.assetsImagesSplashBottom  , fit: BoxFit.fill,),
+        SvgPicture.asset(
+          Assets.assetsImagesSplashBottom,
+          fit: BoxFit.fill,
+        ),
       ],
     );
   }
