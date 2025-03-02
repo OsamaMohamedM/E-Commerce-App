@@ -1,5 +1,8 @@
+import 'package:e_commerce/Core/utils/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../../Core/utils/styles/textStyles.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
@@ -33,8 +36,7 @@ class PageViewItem extends StatelessWidget {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text('تخط',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      style:TextStyles.regular16),
                 ),
               )
             ],
@@ -51,7 +53,7 @@ class PageViewItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(subTitle,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18, fontFamily: 'Cairo')),
+              style:TextStyles.semiBold16),
         ),
       ],
     );

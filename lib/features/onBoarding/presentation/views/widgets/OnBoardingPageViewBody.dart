@@ -2,6 +2,8 @@ import 'package:e_commerce/features/onBoarding/presentation/views/widgets/PageVi
 import 'package:flutter/material.dart';
 
 import '../../../../../Core/utils/constants/assetsImages.dart';
+import '../../../../../Core/utils/styles/app_colors.dart';
+import '../../../../../Core/utils/styles/textStyles.dart';
 
 class OnBoardingPageViewBody extends StatelessWidget {
   const OnBoardingPageViewBody({
@@ -14,7 +16,7 @@ class OnBoardingPageViewBody extends StatelessWidget {
     return Expanded(
       child: PageView(
         controller: pageController,
-        children: const [
+        children:  [
         PageViewItem(
            visible: true,
             backGroundImage: Assets.assetsImagesBackGround1,
@@ -24,24 +26,17 @@ class OnBoardingPageViewBody extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(" مرحبًا بك في",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                const Text(" مرحبًا بك في",
+                    style:TextStyles.bold23),
                 Text(
                   " Fruit",
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
+                  style: TextStyles.bold23.copyWith(color: AppColors.primaryColor),
                 ),
                 Text("HUB",
-                    style: TextStyle(
-                        color: Colors.amber,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24)),
+                    style: TextStyles.bold23.copyWith(color: AppColors.myAmberColor)),
               ],
             )),
-        PageViewItem(
+        const PageViewItem(
           visible:false,
             backGroundImage: Assets.assetsImagesBackGround2,
             image: Assets.assetsImagesOnBoarding2,
@@ -51,8 +46,7 @@ class OnBoardingPageViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("ابحث وتسوق",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    style: TextStyles.semiBold16),
               ],
             )),
       ]),
