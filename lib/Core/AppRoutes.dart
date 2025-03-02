@@ -9,6 +9,6 @@ class Approutes {
 
   static final GoRouter router = GoRouter(routes: [
     GoRoute(path: splash , builder: (context, state) =>const SplashView() ,),
-    GoRoute(path: splash , builder: (context, state) =>const OnBoardingView() ,)
+    GoRoute(path: onBoardingView , builder: (context, state) =>const OnBoardingView() ,)
   ]);
 }
