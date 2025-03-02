@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.buttonName});
+  const CustomButton(
+      {super.key, required this.onPressed, required this.buttonName});
   final VoidCallback onPressed;
   final String buttonName;
 
@@ -20,12 +21,13 @@ class CustomButton extends StatelessWidget {
             ),
           ),
           onPressed: onPressed,
-          child:  Text(
-            buttonName,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                fontFamily: 'Cairo', fontWeight: FontWeight.w700, fontSize: 16),
-          )),
+          child: Text(buttonName,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontFamily: 'Cairo',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
+                  color: Colors.white))),
     );
   }
 }

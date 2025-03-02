@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../Core/utils/widgets/CustomButton.dart';
-import '../../../../../Core/utils/widgets/CustomDotsIndecator.dart';
+import 'CustomDotsIndecator.dart';
 import 'OnBoardingPageViewBody.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -19,6 +19,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
     pageController = PageController();
     pageController.addListener(() {
       currentPage = pageController.page!.round();
+      setState(() {});
     });
     super.initState();
   }
@@ -35,16 +36,22 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
     return SafeArea(
         child: Column(
       children: [
-        const OnBoardingPageViewBody(),
-        const CustomDotsIndicator(num: 2),
+        OnBoardingPageViewBody(pageController: pageController,),
+        CustomDotsIndicator(num: 2 ,currentPage: currentPage,),
         const SizedBox(
           height: 29,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: CustomButton(
-            onPressed: () {},
-            buttonName: "ابدأ الان",
+        Visibility(
+          maintainAnimation: true,
+          maintainState: true,
+          maintainSize: true,
+          visible: (currentPage == 1) ? true : false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: CustomButton(
+              onPressed: () {},
+              buttonName: "ابدأ الان",
+            ),
           ),
         ),
         const SizedBox(

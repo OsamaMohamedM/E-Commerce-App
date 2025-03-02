@@ -5,14 +5,18 @@ import '../../../../../Core/utils/constants/assetsImages.dart';
 
 class OnBoardingPageViewBody extends StatelessWidget {
   const OnBoardingPageViewBody({
-    super.key,
+    super.key, required this.pageController,
   });
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: PageView(children: const [
+      child: PageView(
+        controller: pageController,
+        children: const [
         PageViewItem(
+           visible: true,
             backGroundImage: Assets.assetsImagesBackGround1,
             image: Assets.assetsImagesOnBoarding1,
             subTitle:
@@ -38,6 +42,7 @@ class OnBoardingPageViewBody extends StatelessWidget {
               ],
             )),
         PageViewItem(
+          visible:false,
             backGroundImage: Assets.assetsImagesBackGround2,
             image: Assets.assetsImagesOnBoarding2,
             subTitle:
