@@ -34,7 +34,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment:
+              Localizations.localeOf(context).languageCode == 'ar'
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
           children: [
             Image.asset(Assets.assetsImagesPlant),
           ],
