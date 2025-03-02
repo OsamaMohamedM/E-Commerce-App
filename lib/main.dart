@@ -13,7 +13,10 @@ const MyApp({super.key});
   @override
   Widget build(BuildContext context){
     return MaterialApp.router(
-           localizationsDelegates: const[
+          theme:ThemeData(
+            fontFamily:'Cairo',
+          ),
+            localizationsDelegates: const[
                  S.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
