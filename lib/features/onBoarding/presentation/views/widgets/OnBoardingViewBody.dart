@@ -1,4 +1,9 @@
+import 'package:e_commerce/Core/Services/SharedPrefrences.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../Core/AppRoutes.dart';
+import '../../../../../Core/utils/constants/strings.dart';
 import '../../../../../Core/utils/widgets/CustomButton.dart';
 import 'CustomDotsIndecator.dart';
 import 'OnBoardingPageViewBody.dart';
@@ -30,14 +35,18 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Column(
       children: [
-        OnBoardingPageViewBody(pageController: pageController,),
-        CustomDotsIndicator(num: 2 ,currentPage: currentPage,),
+        OnBoardingPageViewBody(
+          pageController: pageController,
+        ),
+        CustomDotsIndicator(
+          num: 2,
+          currentPage: currentPage,
+        ),
         const SizedBox(
           height: 29,
         ),
@@ -49,7 +58,10 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                SharedPreferencesHelper.setValue(kisOnBoardingViewSeen, true);
+                GoRouter.of(context).pushReplacement(Approutes.loginView);
+              },
               buttonName: "ابدأ الان",
             ),
           ),
@@ -61,5 +73,3 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
     ));
   }
 }
-
-

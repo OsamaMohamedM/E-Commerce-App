@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../Core/Services/SharedPrefrences.dart';
 import '../../../../../Core/utils/constants/assetsImages.dart';
+import '../../../../../Core/utils/constants/strings.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -20,9 +22,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void _navigateToOnBoarding() {
+    final isOnBoardingViewSeen =
+        SharedPreferencesHelper.getValue(kisOnBoardingViewSeen);
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        GoRouter.of(context).pushReplacement(Approutes.onBoardingView);
+        if (isOnBoardingViewSeen) {
+          GoRouter.of(context).pushReplacement(Approutes.loginView);
+        } else {
+          GoRouter.of(context).pushReplacement(Approutes.onBoardingView);
+        }
       }
     });
   }

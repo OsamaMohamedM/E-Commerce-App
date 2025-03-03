@@ -1,7 +1,10 @@
-import 'package:e_commerce/Core/utils/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../Core/AppRoutes.dart';
+import '../../../../../Core/Services/SharedPrefrences.dart';
+import '../../../../../Core/utils/constants/strings.dart';
 import '../../../../../Core/utils/styles/textStyles.dart';
 
 class PageViewItem extends StatelessWidget {
@@ -10,7 +13,8 @@ class PageViewItem extends StatelessWidget {
       required this.backGroundImage,
       required this.image,
       required this.subTitle,
-      required this.title, required this.visible});
+      required this.title,
+      required this.visible});
   final String backGroundImage, image;
   final String subTitle;
   final Widget title;
@@ -33,10 +37,17 @@ class PageViewItem extends StatelessWidget {
                   bottom: 0, left: 0, right: 0, child: SvgPicture.asset(image)),
               Visibility(
                 visible: visible,
-                child: const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text('تخط',
-                      style:TextStyles.regular16),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      SharedPreferencesHelper.setValue(
+                          kisOnBoardingViewSeen, true);
+                      GoRouter.of(context)
+                          .pushReplacement(Approutes.onBoardingView);
+                    },
+                    child: const Text('تخط', style: TextStyles.regular16),
+                  ),
                 ),
               )
             ],
@@ -52,8 +63,7 @@ class PageViewItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(subTitle,
-              textAlign: TextAlign.center,
-              style:TextStyles.semiBold16),
+              textAlign: TextAlign.center, style: TextStyles.semiBold16),
         ),
       ],
     );
