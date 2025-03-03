@@ -1,6 +1,7 @@
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/Auth/Login/Presentation/views/LoginView.dart';
 import '../features/onBoarding/presentation/views/onBoardingView.dart';
 
 class Approutes {

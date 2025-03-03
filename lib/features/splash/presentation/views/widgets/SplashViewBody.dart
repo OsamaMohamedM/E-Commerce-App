@@ -23,10 +23,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void _navigateToOnBoarding() {
     final isOnBoardingViewSeen =
-        SharedPreferencesHelper.getValue(kisOnBoardingViewSeen);
+        SharedPreferencesHelper.getValue(kisOnBoardingViewSeen) ?? false;
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        if (isOnBoardingViewSeen) {
+        if (isOnBoardingViewSeen == true) {
           GoRouter.of(context).pushReplacement(Approutes.loginView);
         } else {
           GoRouter.of(context).pushReplacement(Approutes.onBoardingView);

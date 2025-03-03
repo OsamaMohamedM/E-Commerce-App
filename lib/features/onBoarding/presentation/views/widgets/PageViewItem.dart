@@ -41,7 +41,7 @@ class PageViewItem extends StatelessWidget {
                   padding: const EdgeInsets.all(12.0),
                   child: GestureDetector(
                     onTap: () {
-                      SharedPreferencesHelper.setValue(
+                      SharedPreferencesHelper.setBool(
                           kisOnBoardingViewSeen, true);
                       GoRouter.of(context)
                           .pushReplacement(Approutes.onBoardingView);

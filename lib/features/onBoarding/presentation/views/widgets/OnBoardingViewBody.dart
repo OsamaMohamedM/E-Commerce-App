@@ -59,7 +59,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: CustomButton(
               onPressed: () {
-                SharedPreferencesHelper.setValue(kisOnBoardingViewSeen, true);
+                SharedPreferencesHelper.setBool(kisOnBoardingViewSeen, true);
                 GoRouter.of(context).pushReplacement(Approutes.loginView);
               },
               buttonName: "ابدأ الان",
