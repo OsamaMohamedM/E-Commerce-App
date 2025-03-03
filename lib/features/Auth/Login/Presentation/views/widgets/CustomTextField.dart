@@ -39,12 +39,9 @@ class CustomTextField extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "نسيت كلمة المرور؟",
-                    style: TextStyles.semiBold13.copyWith(
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.primaryColor,
-                    ),
+                    style: TextStyles.semiBold13,
                   ),
                 )),
       ],
