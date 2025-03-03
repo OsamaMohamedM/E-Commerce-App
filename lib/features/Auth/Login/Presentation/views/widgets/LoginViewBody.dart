@@ -2,6 +2,7 @@ import 'package:e_commerce/Core/utils/styles/app_colors.dart';
 import 'package:e_commerce/features/Auth/Login/Presentation/views/widgets/CustomAppBar.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../Core/utils/styles/textStyles.dart';
+import 'CustomAuthButton.dart';
 import 'CustomTextField.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -15,7 +16,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isPasswordObscure = true;
-
+  final String title = "تسجيل الدخول";
   void updateState() {
     setState(() {
       print(isPasswordObscure);
@@ -35,13 +36,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               height: 24,
             ),
             CustomTextField(
-              isPasswordObscure:isPasswordObscure,
+              isPasswordObscure: isPasswordObscure,
               emailController: emailController,
               passwordController: passwordController,
               onPressed: updateState,
             ),
-            const SizedBox(height: 33,),
-            // ElevatedButton(onPressed: (){}, child: child)
+            const SizedBox(
+              height: 33,
+            ),
+            CustomAuthButton(title: title, onPressed: () {},),
             Container()
           ],
         ),
@@ -49,3 +52,4 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     );
   }
 }
+
