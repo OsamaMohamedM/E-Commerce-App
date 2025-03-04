@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../Core/utils/styles/textStyles.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
     required this.isPasswordObscure,
     required this.emailController,

@@ -59,7 +59,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             child: CustomButton(
               onPressed: () {
                 SharedPreferencesHelper.setBool(kisOnBoardingViewSeen, true);
-                GoRouter.of(context).pushReplacement(Approutes.loginView);
+                GoRouter.of(context).pushReplacement(AppRoutes.loginView);
               },
               buttonName: "ابدأ الان",
             ),

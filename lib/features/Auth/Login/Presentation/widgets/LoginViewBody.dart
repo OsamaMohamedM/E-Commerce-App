@@ -1,56 +1,22 @@
-import 'package:e_commerce/features/Auth/Login/Presentation/widgets/CustomAppBar.dart';
-import 'package:e_commerce/features/Auth/Login/Presentation/widgets/SignUpTextRow.dart';
+import 'package:e_commerce/features/Auth/Login/Presentation/widgets/SocialLoginOptionsSection.dart';
 import 'package:flutter/material.dart';
-import 'CustomAuthButton.dart';
-import 'CustomTextFormField.dart';
+import 'package:e_commerce/features/Auth/Login/Presentation/widgets/LoginFormSection.dart';
 
-class LoginViewBody extends StatefulWidget {
+class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
 
   @override
-  State<LoginViewBody> createState() => _LoginViewBodyState();
-}
-
-class _LoginViewBodyState extends State<LoginViewBody> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  bool isPasswordObscure = true;
-
-  void updateState() {
-    setState(() {
-      isPasswordObscure = !isPasswordObscure;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         child: Column(
           children: [
-            CustomAppBar(title: "تسجيل الدخول", onPress: () {}),
-            const SizedBox(
-              height: 24,
-            ),
-            CustomTextField(
-              isPasswordObscure: isPasswordObscure,
-              emailController: emailController,
-              passwordController: passwordController,
-              onPressed: updateState,
-            ),
-            const SizedBox(
-              height: 33,
-            ),
-            CustomAuthButton(title:  "تسجيل الدخول", onPressed: () {},),
-            const SizedBox(
-              height: 33,
-            ),
-            const SignUpTextRow(),
+            LoginFormSection(),
+            SocialLoginOptionsSection(),
           ],
         ),
       ),
     );
   }
 }
-

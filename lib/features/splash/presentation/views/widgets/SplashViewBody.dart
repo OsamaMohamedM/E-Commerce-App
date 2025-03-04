@@ -27,9 +27,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         if (isOnBoardingViewSeen == true) {
-          GoRouter.of(context).pushReplacement(Approutes.loginView);
+          GoRouter.of(context).pushReplacement(AppRoutes.loginView);
         } else {
-          GoRouter.of(context).pushReplacement(Approutes.onBoardingView);
+          GoRouter.of(context).pushReplacement(AppRoutes.onBoardingView);
         }
       }
     });

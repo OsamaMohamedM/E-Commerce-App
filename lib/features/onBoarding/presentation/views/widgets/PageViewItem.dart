@@ -44,7 +44,7 @@ class PageViewItem extends StatelessWidget {
                       SharedPreferencesHelper.setBool(
                           kisOnBoardingViewSeen, true);
                       GoRouter.of(context)
-                          .pushReplacement(Approutes.onBoardingView);
+                          .pushReplacement(AppRoutes.onBoardingView);
                     },
                     child: const Text('تخط', style: TextStyles.regular16),
                   ),

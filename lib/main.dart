@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
-      routerConfig: Approutes.router,
+      routerConfig: AppRoutes.router,
     );
   }
 }
