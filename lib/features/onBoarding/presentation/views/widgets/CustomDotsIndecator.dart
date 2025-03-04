@@ -6,7 +6,8 @@ import '../../../../../Core/utils/styles/app_colors.dart';
 class CustomDotsIndicator extends StatelessWidget {
   const CustomDotsIndicator({
     super.key,
-    required this.num, required this.currentPage,
+    required this.num,
+    required this.currentPage,
   });
 
   final int num;
@@ -16,10 +17,10 @@ class CustomDotsIndicator extends StatelessWidget {
     return DotsIndicator(
       dotsCount: num,
       decorator: DotsDecorator(
-        activeColor: AppColors.primaryColor,
+        activeColor: AppColors.darkPrimaryColor,
         color: (currentPage == 1
-            ? AppColors.primaryColor
-            : AppColors.primaryColor.withOpacity(0.5)),
+            ? AppColors.darkPrimaryColor
+            : AppColors.darkPrimaryColor.withOpacity(0.5)),
       ),
     );
   }

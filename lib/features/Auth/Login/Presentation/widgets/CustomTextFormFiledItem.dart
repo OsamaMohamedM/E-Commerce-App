@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../Core/utils/styles/textStyles.dart';
+import '../../../../../Core/utils/styles/app_colors.dart';
+import '../../../../../Core/utils/styles/textStyles.dart';
 
-class CustomTextFiledItem extends StatelessWidget {
-  const CustomTextFiledItem({
+class CustomTextFormFiledItem extends StatelessWidget {
+  const CustomTextFormFiledItem({
     super.key,
     required this.title,
     required this.controller,
@@ -16,10 +17,10 @@ class CustomTextFiledItem extends StatelessWidget {
   final bool isObscure;
   final bool isPassword;
   final TextEditingController controller;
-   final VoidCallback onPressed; 
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: isObscure,
       controller: controller,
       decoration: InputDecoration(
@@ -33,15 +34,16 @@ class CustomTextFiledItem extends StatelessWidget {
             : null,
         hintText: title,
         hintStyle: TextStyles.bold13,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
-          borderSide: const BorderSide(width: 1, color: Colors.black38),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
-          borderSide: const BorderSide(width: 1, color: Colors.black38),
-        ),
+        enabledBorder: buildBorder(),
+        focusedBorder:buildBorder()
       ),
     );
+  }
+
+  OutlineInputBorder buildBorder() {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: const BorderSide( width: 1, color: AppColors.customTextFieldBorder),
+      );
   }
 }

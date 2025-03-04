@@ -1,9 +1,7 @@
-import 'package:e_commerce/Core/utils/styles/app_colors.dart';
-import 'package:e_commerce/features/Auth/Login/Presentation/views/widgets/CustomAppBar.dart';
+import 'package:e_commerce/features/Auth/Login/Presentation/widgets/CustomAppBar.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../Core/utils/styles/textStyles.dart';
 import 'CustomAuthButton.dart';
-import 'CustomTextField.dart';
+import 'CustomTextFormField.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});

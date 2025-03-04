@@ -5,9 +5,9 @@ import 'package:e_commerce/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await SharedPreferencesHelper.init();
+  await SharedPreferencesHelper.init();
   runApp(const MyApp());
 }
 
@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData(
-        fontFamily: 'Cairo',
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor)   
-           ),
+          fontFamily: 'Cairo',
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme:
+              ColorScheme.fromSeed(seedColor: AppColors.darkPrimaryColor)),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

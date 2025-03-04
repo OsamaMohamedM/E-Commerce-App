@@ -7,18 +7,17 @@ import '../../../../../Core/utils/styles/textStyles.dart';
 
 class OnBoardingPageViewBody extends StatelessWidget {
   const OnBoardingPageViewBody({
-    super.key, required this.pageController,
+    super.key,
+    required this.pageController,
   });
   final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: PageView(
-        controller: pageController,
-        children:  [
+      child: PageView(controller: pageController, children: [
         PageViewItem(
-           visible: true,
+            visible: true,
             backGroundImage: Assets.assetsImagesBackGround1,
             image: Assets.assetsImagesOnBoarding1,
             subTitle:
@@ -26,18 +25,19 @@ class OnBoardingPageViewBody extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(" مرحبًا بك في",
-                    style:TextStyles.bold23),
+                const Text(" مرحبًا بك في", style: TextStyles.bold23),
                 Text(
                   " Fruit",
-                  style: TextStyles.bold23.copyWith(color: AppColors.primaryColor),
+                  style: TextStyles.bold23
+                      .copyWith(color: AppColors.darkPrimaryColor),
                 ),
                 Text("HUB",
-                    style: TextStyles.bold23.copyWith(color: AppColors.myAmberColor)),
+                    style: TextStyles.bold23
+                        .copyWith(color: AppColors.myAmberColor)),
               ],
             )),
         const PageViewItem(
-          visible:false,
+            visible: false,
             backGroundImage: Assets.assetsImagesBackGround2,
             image: Assets.assetsImagesOnBoarding2,
             subTitle:
@@ -45,8 +45,7 @@ class OnBoardingPageViewBody extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("ابحث وتسوق",
-                    style: TextStyles.semiBold16),
+                Text("ابحث وتسوق", style: TextStyles.semiBold16),
               ],
             )),
       ]),

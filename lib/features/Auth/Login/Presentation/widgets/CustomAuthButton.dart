@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../Core/utils/styles/app_colors.dart';
-import '../../../../../../Core/utils/styles/textStyles.dart';
+import '../../../../../Core/utils/styles/app_colors.dart';
+import '../../../../../Core/utils/styles/textStyles.dart';
 
 class CustomAuthButton extends StatelessWidget {
   const CustomAuthButton({
     super.key,
-    required this.title, required this.onPressed,
+    required this.title,
+    required this.onPressed,
   });
 
   final String title;
@@ -15,7 +16,7 @@ class CustomAuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryColor,
+            backgroundColor: AppColors.darkPrimaryColor,
             fixedSize: const Size(double.infinity, 65),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16))),
