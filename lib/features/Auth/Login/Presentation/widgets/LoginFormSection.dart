@@ -35,6 +35,8 @@ class _LoginFormSectionState extends State<LoginFormSection> {
         ),
         const SizedBox(height: 33),
         CustomAuthButton(title: "تسجيل الدخول", onPressed: () {}),
+        const SizedBox(height: 10),
+        
       ],
     );
   }
