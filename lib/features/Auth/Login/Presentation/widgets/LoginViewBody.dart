@@ -1,4 +1,5 @@
 import 'package:e_commerce/features/Auth/Login/Presentation/widgets/CustomAppBar.dart';
+import 'package:e_commerce/features/Auth/Login/Presentation/widgets/SignUpTextRow.dart';
 import 'package:flutter/material.dart';
 import 'CustomAuthButton.dart';
 import 'CustomTextFormField.dart';
@@ -14,10 +15,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isPasswordObscure = true;
-  final String title = "تسجيل الدخول";
+
   void updateState() {
     setState(() {
-      print(isPasswordObscure);
       isPasswordObscure = !isPasswordObscure;
     });
   }
@@ -42,8 +42,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             const SizedBox(
               height: 33,
             ),
-            CustomAuthButton(title: title, onPressed: () {},),
-            Container()
+            CustomAuthButton(title:  "تسجيل الدخول", onPressed: () {},),
+            const SizedBox(
+              height: 33,
+            ),
+            const SignUpTextRow(),
           ],
         ),
       ),
