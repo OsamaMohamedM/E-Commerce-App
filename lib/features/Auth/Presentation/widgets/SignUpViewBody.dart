@@ -24,7 +24,7 @@ class SignUpViewBody extends StatelessWidget {
             ),
             CustomAuthButton(title: "إنشاء حساب جديد", onPressed: () {}),
             const SizedBox(
-              height: 10,
+              height: 14,
             ),
              Center(
               child: CustomTermsAndConditionsText(
