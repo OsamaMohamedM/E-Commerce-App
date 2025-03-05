@@ -35,15 +35,7 @@ class CustomTextFormField extends StatelessWidget {
             controller: passwordController,
             isPassword: true,
             title: "كلمة المرور"),
-        Align(
-            alignment: Alignment.topLeft,
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                "نسيت كلمة المرور؟",
-                style: TextStyles.semiBold13,
-              ),
-            )),
+
       ],
     );
   }

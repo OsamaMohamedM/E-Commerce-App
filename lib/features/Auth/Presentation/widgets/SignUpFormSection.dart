@@ -32,17 +32,14 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
   @override
   Widget build(BuildContext context){
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric( horizontal:16.0),
-        child: Column(
-          children: [
-            CustomAppBar(title:"حساب جديد",onPress:() {} ,),
-            const SizedBox(height: 24),
-            CustomTextFormFiledItem(title: title, controller: nameController, onPressed: onPressed),
-            const SizedBox(height: 16),
-            CustomTextFormField(isPasswordObscure: isPasswordObscure, emailController: emailController, passwordController: passwordController, onPressed: onPressed)
-          ],
-        ),
+      child: Column(
+        children: [
+          CustomAppBar(title:"حساب جديد",onPress:() {} ,),
+          const SizedBox(height: 24),
+          CustomTextFormFiledItem(title: title, controller: nameController, onPressed: onPressed),
+          const SizedBox(height: 16),
+          CustomTextFormField(isPasswordObscure: isPasswordObscure, emailController: emailController, passwordController: passwordController, onPressed: onPressed)
+        ],
       ),
     );
   }

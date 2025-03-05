@@ -33,7 +33,7 @@ class CustomTextFormFiledItem extends StatelessWidget {
               )
             : null,
         hintText: title,
-        hintStyle: TextStyles.bold13,
+        hintStyle: TextStyles.bold13.copyWith(color: const Color(0xff949D9E)),
         enabledBorder: buildBorder(),
         focusedBorder:buildBorder()
       ),

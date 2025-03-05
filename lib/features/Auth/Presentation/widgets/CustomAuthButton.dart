@@ -17,7 +17,7 @@ class CustomAuthButton extends StatelessWidget {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.darkPrimaryColor,
-            fixedSize: const Size(double.infinity, 65),
+            fixedSize: const Size(double.infinity, 54),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16))),
         onPressed: onPressed,

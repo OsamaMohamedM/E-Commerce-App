@@ -2,18 +2,29 @@ import 'package:e_commerce/features/Auth/Presentation/widgets/SocialLoginOptions
 import 'package:flutter/material.dart';
 import 'package:e_commerce/features/Auth/Presentation/widgets/LoginFormSection.dart';
 
+import '../../../../Core/utils/styles/textStyles.dart';
+
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return  SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         child: Column(
           children: [
-            LoginFormSection(),
-            SocialLoginOptionsSection(),
+           const LoginFormSection(),
+            Align(
+            alignment: Alignment.topLeft,
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                "نسيت كلمة المرور؟",
+                style: TextStyles.semiBold13,
+              ),
+            )),
+            const SocialLoginOptionsSection(),
           ],
         ),
       ),
