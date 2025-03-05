@@ -12,20 +12,22 @@ class LoginViewBody extends StatelessWidget {
     return  SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-        child: Column(
-          children: [
-           const LoginFormSection(),
-            Align(
-            alignment: Alignment.topLeft,
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                "نسيت كلمة المرور؟",
-                style: TextStyles.semiBold13,
-              ),
-            )),
-            const SocialLoginOptionsSection(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+             const LoginFormSection(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+              children:[ TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "نسيت كلمة المرور؟",
+                  style: TextStyles.semiBold13,
+                ),
+              )]),
+              const SocialLoginOptionsSection(),
+            ],
+          ),
         ),
       ),
     );
