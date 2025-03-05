@@ -1,7 +1,7 @@
-import 'package:e_commerce/Core/utils/styles/app_colors.dart';
+import 'package:e_commerce/Core/AppRoutes.dart';
 import 'package:e_commerce/features/Auth/Presentation/widgets/CustomAuthButton.dart';
 import 'package:flutter/material.dart';
-import '../../../../Core/utils/styles/textStyles.dart';
+import 'package:go_router/go_router.dart';
 import 'CustomTermsAndConditionsRow.dart';
 import 'CustomTermsAndConditionsText.dart';
 import 'SignUpFormSection.dart';
@@ -26,9 +26,11 @@ class SignUpViewBody extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Center(
+             Center(
               child: CustomTermsAndConditionsText(
-                  title: "لديك حساب بالفعل؟ ", subtitle: "تسجيل الدخول"),
+                  title: "لديك حساب بالفعل؟ ", subtitle: "تسجيل الدخول" , onTap:(){
+                    GoRouter.of(context).go(AppRoutes.loginView);
+                  }),
             )
           ],
         ),

@@ -28,10 +28,11 @@ class _CustomTermsAndConditionsRowState
           onChanged: onChanged,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         ),
-       const Expanded(
+       const Flexible(
           child:  CustomTermsAndConditionsText(
             title: "من خلال إنشاء حساب ، فإنك توافق علي ",
             subtitle: "الشروط والأحكام الخاصة بنا",
+            
           ),
         )
       ],
