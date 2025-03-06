@@ -10,7 +10,7 @@ class CustomTextFormFiledItem extends StatelessWidget {
     required this.controller,
     this.isObscure = false,
     this.isPassword = false,
-    required this.onPressed,
+    required this.onPressed, 
   });
 
   final String title;
@@ -18,9 +18,12 @@ class CustomTextFormFiledItem extends StatelessWidget {
   final bool isPassword;
   final TextEditingController controller;
   final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+     
+      validator: (value) => value==null||value.isEmpty ? 'الحقل مطلوب' : null,
       obscureText: isObscure,
       controller: controller,
       decoration: InputDecoration(
