@@ -65,6 +65,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 checkboxValue = value;
               }),
               const SizedBox(height: 24),
+              
               CustomAuthButton(
                 title: "إنشاء حساب جديد",
                 onPressed: () {
