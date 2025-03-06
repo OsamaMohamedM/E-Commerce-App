@@ -1,0 +1,22 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class CustomBlocObserver extends BlocObserver {
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    if(kDebugMode) {
+      log('${bloc.runtimeType} $change');
+    }
+    super.onChange(bloc, change);
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    if(kDebugMode) {
+      log('Error in ${bloc.runtimeType} $error');
+    }
+    super.onError(bloc, error, stackTrace);
+  }
+}
