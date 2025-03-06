@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/Core/errors/Exceptions.dart';
-import 'package:e_commerce/Core/errors/Faluir.dart';
+import 'package:e_commerce/Core/errors/Failure.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

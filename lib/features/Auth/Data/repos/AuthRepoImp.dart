@@ -1,15 +1,16 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce/Core/Services/AuthService.dart';
 import 'package:e_commerce/Core/Services/FireBaseAuthService.dart';
-import 'package:e_commerce/Core/errors/Faluir.dart';
+import 'package:e_commerce/Core/errors/Failure.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
 import 'package:e_commerce/features/Auth/domain/repos/authRepo.dart';
 
 class AuthRepoImp extends AuthRepo {
-  final FireBaseAuthService fireBaseAuthService;
+  final AuthService fireBaseAuthService;
 
   AuthRepoImp({required this.fireBaseAuthService});
   @override
-  Future<Either<UserData, Exceptions>> createUserWithEmailPassword(
+  Future<Either<UserData, Failure>> createUserWithEmailPassword(
       {required String email, required String password}) {
     var reponse = fireBaseAuthService.createUserWithEmailAndPassword(
         email: email, password: password);
