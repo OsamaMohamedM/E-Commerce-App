@@ -23,16 +23,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isPasswordObscure = true;
+  late bool checkboxValue = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String title = "اسم المستخدم";
 
   void onPressed() {
     setState(() {
       isPasswordObscure = !isPasswordObscure;
     });
   }
-
   @override
   void dispose() {
     nameController.dispose();
@@ -52,7 +51,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               CustomAppBar(title: "حساب جديد", onPress: () {}),
               const SizedBox(height: 24),
               CustomTextFormFiledItem(
-                  title: title, controller: nameController, onPressed: onPressed),
+                  title: 'اسم المستخدم',
+                  controller: nameController,
+                  onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTextFormField(
                   isPasswordObscure: isPasswordObscure,
@@ -60,18 +61,29 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   passwordController: passwordController,
                   onPressed: onPressed),
               const SizedBox(height: 16),
-              const CustomTermsAndConditionsRow(),
+              CustomTermsAndConditionsRow(onChanged: (value) {
+                checkboxValue = value;
+              }),
               const SizedBox(height: 24),
               CustomAuthButton(
                 title: "إنشاء حساب جديد",
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<SignUpCubit>().createUserWithEmailPassword(
-                        name: nameController.text,
-                        email: emailController.text,
-                        password: passwordController.text);
-                  }else{
+
+                    if (checkboxValue) {
+                      context.read<SignUpCubit>().createUserWithEmailPassword(
+                          name: nameController.text,
+                          email: emailController.text,
+                          password: passwordController.text);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("يجب الموافقة على الشروط والأحكام"),
+                        ),
+                      );
+                    }
+                  } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
                     });
