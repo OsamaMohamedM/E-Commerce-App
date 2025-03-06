@@ -19,13 +19,13 @@ class FireBaseAuthService extends AuthService {
       return left(UserData.fromFirebase(credential.user!));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        right(CustomException('The password provided is too weak.'));
+        right(CustomException('لقد ادخلت كلمة مرور ضعيفة'));
       } else if (e.code == 'email-already-in-use') {
-        right(CustomException('The account already exists for that email.'));
+        right(CustomException('البريد الالكتروني مستخدم بالفعل'));
       }
     } catch (e) {
-      return right(CustomException(e.toString()));
+      return right(CustomException('لقد حدث خطأ ما'));
     }
-    return right(CustomException('An unknown error occurred.'));
+    return right(CustomException('حدث خطأ ما'));
   }
 }
