@@ -6,11 +6,13 @@ import 'package:e_commerce/features/Auth/domain/repos/authRepo.dart';
 
 class AuthRepoImp extends AuthRepo {
   final FireBaseAuthService fireBaseAuthService;
-   
+
   AuthRepoImp({required this.fireBaseAuthService});
   @override
-  Future<Either<User, Failure>> createUserWithEmailPassword({required String email, required String password}) {
-    var reponse =  fireBaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
-    //return reponse;
+  Future<Either<UserData, Exceptions>> createUserWithEmailPassword(
+      {required String email, required String password}) {
+    var reponse = fireBaseAuthService.createUserWithEmailAndPassword(
+        email: email, password: password);
+    //TODO implement the logic
   }
 }
