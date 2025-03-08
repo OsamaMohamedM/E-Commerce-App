@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
-import 'package:e_commerce/features/Auth/domain/repos/authRepo.dart';
+import 'package:e_commerce/features/Auth/Data/repos/authRepo.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {

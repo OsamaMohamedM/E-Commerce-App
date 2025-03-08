@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/Core/Services/AuthService.dart';
-import 'package:e_commerce/Core/Services/FireBaseAuthService.dart';
-import 'package:e_commerce/Core/errors/Exceptions.dart';
 import 'package:e_commerce/Core/errors/Failure.dart';
 import 'package:e_commerce/Core/errors/ServerFailure.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
-import 'package:e_commerce/features/Auth/domain/repos/authRepo.dart';
+import 'package:e_commerce/features/Auth/Data/repos/authRepo.dart';
 
 class AuthRepoImp extends AuthRepo {
   final AuthService authService;
