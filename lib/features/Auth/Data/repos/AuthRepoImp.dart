@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/Core/Services/AuthService.dart';
 import 'package:e_commerce/Core/errors/Failure.dart';
@@ -20,11 +22,27 @@ class AuthRepoImp extends AuthRepo {
           email: email, password: password);
 
       return result.fold(
-        (user) => left(user), 
-        (exception) => right(
-            Serverfailure(exception.message)), 
+        (user) => left(user),
+        (exception) => right(Serverfailure(exception.message)),
       );
     } catch (e) {
+      return right(Serverfailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<UserData, Failure>> signInUserWithEmailPassword(
+      {required String email, required String password}) async {
+    try {
+      var result = await authService.signInUserWithEmailPassword(
+          email: email, password: password);
+
+      return result.fold(
+        (user) => left(user),
+        (exception) => right(Serverfailure(exception.message)),
+      );
+    } catch (e) {
+      log('message: ${e.toString()}');
       return right(Serverfailure(e.toString()));
     }
   }
