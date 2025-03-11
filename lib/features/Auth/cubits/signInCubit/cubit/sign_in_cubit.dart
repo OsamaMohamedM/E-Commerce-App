@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
 
@@ -8,12 +10,23 @@ class SignInCubit extends Cubit<SignInState> {
   final AuthRepo _authRepo;
   SignInCubit(this._authRepo) : super(SignInInitial());
 
-  Future<void> signInUser({required String email , required password}) async {
+  Future<void> signInUserWithEmailAndPassword({required String email , required password}) async {
     emit(SignInLoading());
     try {
       final user = await _authRepo.signInUserWithEmailPassword(email: email, password: password);
       emit(user.fold((user) => SignInSuccess(user), (failure) => SignInFailure(failure.message)));
     } catch (e) {
+      emit(SignInFailure(e.toString()));
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    emit(SignInLoading());
+    try {
+      final user = await _authRepo.signInWithGoogle();
+      emit(user.fold((user) => SignInSuccess(user), (failure) => SignInFailure(failure.message)));
+    } catch (e) {
+      log('message from signInWithGoogle Cubit : ${e.toString()}');
       emit(SignInFailure(e.toString()));
     }
   }

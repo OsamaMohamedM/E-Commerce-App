@@ -26,6 +26,7 @@ class AuthRepoImp extends AuthRepo {
         (exception) => right(Serverfailure(exception.message)),
       );
     } catch (e) {
+      log('message from RepoAuth  ${e.toString()}');
       return right(Serverfailure(e.toString()));
     }
   }
@@ -42,7 +43,7 @@ class AuthRepoImp extends AuthRepo {
         (exception) => right(Serverfailure(exception.message)),
       );
     } catch (e) {
-      log('message: ${e.toString()}');
+      log('message from RepoAuth  ${e.toString()}');
       return right(Serverfailure(e.toString()));
     }
   }
@@ -57,7 +58,7 @@ class AuthRepoImp extends AuthRepo {
         (exception) => right(Serverfailure(exception.message)),
       );
     } catch (e) {
-      log('message: ${e.toString()}');
+      log('message from RepoAuth   ${e.toString()}');
       return right(Serverfailure(e.toString()));
     }
   }
