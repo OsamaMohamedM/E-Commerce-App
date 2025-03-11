@@ -62,4 +62,35 @@ class AuthRepoImp extends AuthRepo {
       return right(Serverfailure(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<UserData, Failure>> signInWithApple() async{
+    try {
+      var result = await authService.signInWithApple();
+
+      return result.fold(
+        (user) => left(user),
+        (exception) => right(Serverfailure(exception.message)),
+      );
+    } catch (e) {
+      log('message from RepoAuth   ${e.toString()}');
+      return right(Serverfailure(e.toString()));
+    }
+    
+  }
+  
+  @override
+  Future<Either<UserData, Failure>> signInWithFacebook() async{
+    try {
+      var result = await authService.signInWithFacebook();
+
+      return result.fold(
+        (user) => left(user),
+        (exception) => right(Serverfailure(exception.message)),
+      );
+    } catch (e) {
+      log('message from RepoAuth   ${e.toString()}');
+      return right(Serverfailure(e.toString()));
+    }
+  }
 }

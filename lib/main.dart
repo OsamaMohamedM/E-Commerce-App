@@ -2,7 +2,6 @@ import 'package:e_commerce/Core/AppRoutes.dart';
 import 'package:e_commerce/Core/Services/SharedPrefrences.dart';
 import 'package:e_commerce/Core/helpers/BlocObserver.dart';
 import 'package:e_commerce/Core/utils/styles/app_colors.dart';
-import '../firebase_options.dart';
 import 'package:e_commerce/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
