@@ -46,4 +46,19 @@ class AuthRepoImp extends AuthRepo {
       return right(Serverfailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<UserData, Failure>> signInWithGoogle() async {
+    try {
+      var result = await authService.signInWithGoogle();
+
+      return result.fold(
+        (user) => left(user),
+        (exception) => right(Serverfailure(exception.message)),
+      );
+    } catch (e) {
+      log('message: ${e.toString()}');
+      return right(Serverfailure(e.toString()));
+    }
+  }
 }

@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce/Core/errors/Exceptions.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'AuthService.dart';
 
@@ -62,4 +63,39 @@ class FireBaseAuthService extends AuthService {
     }
     return right(CustomException('لقد حدث خطأ ما'));
   }
+  
+  @override
+  Future<Either<UserData, CustomException>> signInWithGoogle() async{
+    
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      return left(UserData.fromFirebase(userCredential.user!));
+    } on FirebaseAuthException catch (e) { 
+      log('on FirebaseAuthException Sign In with Google catch (e) ${e.toString()}');    
+      if (e.code == 'account-exists-with-different-credential') {
+        return right(CustomException('حساب موجود بالفعل'));
+      } else if (e.code == 'invalid-credential') {
+        return right(CustomException('المعلومات المدخلة غير صحيحة'));
+      } else if (e.code == 'operation-not-allowed') {
+        return right(CustomException('تسجيل الدخول بالبريد الإلكتروني غير مفعل'));
+      } else if (e.code == 'user-disabled') {
+        return right(CustomException('تم تعطيل حساب المستخدم'));
+      } else if (e.code == 'user-not-found') {
+        return right(CustomException('البريد الالكتروني أو كلمة المرور غير صحيحة'));
+      } else if (e.code == 'wrong-password') {
+        return right(CustomException('البريد الالكتروني أو كلمة المرور غير صحيحة'));
+      }
+    } catch (e) {
+      log( 'on FirebaseAuthException Sign In with Google catch2 (e) ${e.toString()}');    
+      return right(CustomException('لقد حدث خطأ ما'));
+    }
+    return right(CustomException('لقد حدث خطأ ما'));
+    }
+  
 }
