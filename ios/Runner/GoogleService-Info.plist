@@ -1,0 +1,35 @@
+./gradlew signingReport
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>120051000244-682lmlnsun0tqj7n8ao8ags91m6d3nnu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.120051000244-682lmlnsun0tqj7n8ao8ags91m6d3nnu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBWIkZzBGEflt7ibt-u4hChFO1I0P9QrFU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>120051000244</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.eCommerce</string>
+	<key>PROJECT_ID</key>
+	<string>ecommerce-6cd39</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ecommerce-6cd39.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:120051000244:ios:6368fe684f277be87dc8e1</string>
+</dict>
+</plist>
