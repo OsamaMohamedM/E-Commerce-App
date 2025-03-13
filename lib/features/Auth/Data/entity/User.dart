@@ -18,9 +18,10 @@ class UserData {
       password: '',
       id: user.uid
     );
-  }  
-  get getName => this.name;
-  get getPassword => this.password;
-  get getEmail => this.email;
-  get getId => this.id;
+  }
+  toMap() => {'name': name, 'password': password, 'email': email, 'id': id};  
+  get getName => name;
+  get getPassword => password;
+  get getEmail => email;
+  get getId => id;
 }

@@ -7,17 +7,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'Core/errors/get_it.dart';
+import 'Core/Services/get_it.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
   Bloc.observer = CustomBlocObserver();
   
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
   await SharedPreferencesHelper.init();
   
   runApp(const MyApp());

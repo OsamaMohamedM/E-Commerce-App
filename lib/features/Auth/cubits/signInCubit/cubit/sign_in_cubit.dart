@@ -1,7 +1,6 @@
 import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Data/repos/authRepo.dart';
 part 'sign_in_state.dart';

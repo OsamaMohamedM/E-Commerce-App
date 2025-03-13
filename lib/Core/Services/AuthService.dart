@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
-
-import '../../features/Auth/Data/entity/User.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../errors/Exceptions.dart';
 
 abstract class AuthService {
-  Future<Either<UserData, CustomException>> createUserWithEmailPassword(
+  Future<Either<User, CustomException>> createUserWithEmailPassword(
       {required String email, required String password});
-  Future<Either<UserData, CustomException>> signInUserWithEmailPassword(
+  Future<Either<User, CustomException>> signInUserWithEmailPassword(
       {required String email, required String password});
 
-  Future<Either<UserData , CustomException>> signInWithGoogle(); 
-  Future<Either<UserData , CustomException>> signInWithFacebook();
-  Future<Either<UserData , CustomException>> signInWithApple();
+  Future<Either<User, CustomException>> signInWithGoogle();
+  Future<Either<User, CustomException>> signInWithFacebook();
+  Future<Either<User, CustomException>> signInWithApple();
+  Future deleteUser();
 }
