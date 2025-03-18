@@ -42,6 +42,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.17
+  flutter_svg_provider: ^1.0.7
   get_it: ^8.0.3
   go_router: ^14.8.1
   google_sign_in: ^6.3.0
@@ -76,6 +77,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: 'Cairo'
+      fonts:
+        - asset: assets\fonts\Cairo-Regular.ttf
+        - asset: assets\fonts\Cairo-Medium.ttf
+          weight: 500
+        - asset: assets\fonts\Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets\fonts\Cairo-Bold.ttf
+          weight: 700
   # fonts:
   #   - family: Schyler
   #     fonts:
@@ -90,3 +101,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_assets:
+  assets_path: assets/images/
+  output_path: lib/Core/utils
+  filename: assetsImages.dart
+flutter_intl:
+  enabled: true
