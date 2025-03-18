@@ -11,14 +11,15 @@ import 'Core/Services/get_it.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
   setupGetIt();
+    print("✅ Firebase Initialized Successfully=================");
   Bloc.observer = CustomBlocObserver();
-  
-  await Firebase.initializeApp();
   await SharedPreferencesHelper.init();
-  
+
   runApp(const MyApp());
 }
+
 
 
 class MyApp extends StatelessWidget {
