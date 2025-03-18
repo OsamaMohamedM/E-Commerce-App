@@ -13,7 +13,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
   setupGetIt();
-    print("✅ Firebase Initialized Successfully=================");
   Bloc.observer = CustomBlocObserver();
   await SharedPreferencesHelper.init();
 
