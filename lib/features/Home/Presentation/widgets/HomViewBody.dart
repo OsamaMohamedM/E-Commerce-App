@@ -64,7 +64,7 @@ class ListFeaturedItem extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: 5,
       itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 8.0 , right: 8.0),
         child: FeaturedItem(itemWidth: itemWidth),
       ),
     );
