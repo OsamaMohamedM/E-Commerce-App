@@ -24,7 +24,7 @@ class FireBaseAuthService extends AuthService {
         email: email,
         password: password,
       );
-          return left(credential.user!);
+      return left(credential.user!);
     } on FirebaseAuthException catch (e) {
       log('on FirebaseAuthException Sign Up with email and password catch (e) ${e.toString()}');
       if (e.code == 'weak-password') {
@@ -185,5 +185,10 @@ class FireBaseAuthService extends AuthService {
       return right(CustomException('لقد حدث خطأ ما'));
     }
     return right(CustomException('لقد حدث خطأ ما'));
+  }
+
+  @override
+   bool isLogin() {
+    return FirebaseAuth.instance.currentUser  !=  null;
   }
 }

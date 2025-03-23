@@ -32,6 +32,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       isPasswordObscure = !isPasswordObscure;
     });
   }
+
   @override
   void dispose() {
     nameController.dispose();
@@ -48,7 +49,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         child: Form(
           child: Column(
             children: [
-              CustomAppBar(title: "حساب جديد", onPress: () {}),
+              CustomAppBarAuth(title: "حساب جديد", onPress: () {}),
               const SizedBox(height: 24),
               CustomTextFormFiledItem(
                   title: 'اسم المستخدم',
@@ -65,7 +66,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 checkboxValue = value;
               }),
               const SizedBox(height: 24),
-              
               CustomAuthButton(
                 title: "إنشاء حساب جديد",
                 onPressed: () {

@@ -31,7 +31,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBar(title: "تسجيل الدخول", onPress: () {}),
+        CustomAppBarAuth(title: "تسجيل الدخول", onPress: () {}),
         const SizedBox(height: 24),
         CustomTextFormField(
           isPasswordObscure: isPasswordObscure,
@@ -42,7 +42,6 @@ class _LoginFormSectionState extends State<LoginFormSection> {
         const SizedBox(height: 33),
         CustomAuthButton(title: "تسجيل الدخول", onPressed: () {}),
         const SizedBox(height: 10),
-        
       ],
     );
   }

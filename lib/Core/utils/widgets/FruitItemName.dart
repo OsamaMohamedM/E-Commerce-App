@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 
-import '../styles/app_colors.dart' ;
+import '../../Data/Model/Product.dart';
+import '../styles/app_colors.dart';
 import '../styles/textStyles.dart';
 
 class FruitItemName extends StatelessWidget {
-  const FruitItemName({super.key});
+  final Product product;
+  const FruitItemName({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('بطيخ', style: TextStyles.semiBold13),
+        Text(product.name, style: TextStyles.semiBold13),
         const SizedBox(
           height: 4,
         ),
         Text.rich(
           TextSpan(
-            text: '20جنية',
-            style: TextStyles.bold13.copyWith(
-                color: AppColors.myAmberColor),
+            text: product.price.toString(),
+            style: TextStyles.bold13.copyWith(color: AppColors.myAmberColor),
             children: [
               TextSpan(
                 text: 'الكيلو',

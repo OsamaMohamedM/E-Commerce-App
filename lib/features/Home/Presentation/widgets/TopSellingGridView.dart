@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../Core/Data/Model/Product.dart';
 import '../../../../Core/utils/widgets/FruitItem.dart';
 
-class TopSellingGridView extends StatelessWidget {
-  const TopSellingGridView({
+class ProductsGridView extends StatelessWidget {
+  final List<Product> products;
+  const ProductsGridView({
+    required this.products,
     super.key,
   });
 
@@ -12,13 +15,11 @@ class TopSellingGridView extends StatelessWidget {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 163/214,
+        childAspectRatio: 163 / 214,
         crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        
       ),
       delegate: SliverChildBuilderDelegate(
-        (context, index) => FruitItem(),
+        (context, index) => FruitItem(product: products[index]),
         childCount: 10,
       ),
     );

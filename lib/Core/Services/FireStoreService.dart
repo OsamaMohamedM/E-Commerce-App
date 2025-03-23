@@ -22,15 +22,15 @@ Future<void> updateData(String path, String id, Map<String, dynamic> data) {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getData(String path) {
-    // TODO: implement getData
-    throw UnimplementedError();
+  Future<List<Map<String, dynamic>>> getData(String path) async{
+    var data = await firebaseFirestore.collection(path).get();
+    return data.docs.map((e) => e.data()).toList();
   }
 
   @override
-  Future<Map<String, dynamic>> getDocument(String path, String id) {
-    // TODO: implement getDocument
-    throw UnimplementedError();
+  Future<Map<String, dynamic>> getDocument(String path, String id)async {
+    var data  = await firebaseFirestore.collection(path).doc(id).get();
+    return data.data() ?? {};
   }
 
   @override

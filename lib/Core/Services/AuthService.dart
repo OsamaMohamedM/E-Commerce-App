@@ -12,4 +12,5 @@ abstract class AuthService {
   Future<Either<User, CustomException>> signInWithFacebook();
   Future<Either<User, CustomException>> signInWithApple();
   Future deleteUser();
+  bool isLogin();
 }

@@ -6,8 +6,11 @@ import 'package:e_commerce/Core/Services/DataBaseService.dart';
 import 'package:e_commerce/Core/errors/Failure.dart';
 import 'package:e_commerce/Core/errors/ServerFailure.dart';
 import 'package:e_commerce/Core/utils/constants/BackEndEndPoints.dart';
+import 'package:e_commerce/Core/utils/constants/strings.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
 import 'package:e_commerce/features/Auth/Data/repos/authRepo.dart';
+
+import '../../../../Core/Services/SharedPrefrences.dart';
 
 class AuthRepoImp extends AuthRepo {
   final AuthService authService;
@@ -26,11 +29,10 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
-
       return await result.fold(
         (user) async {
-          UserData userData =
-              UserData(name: name, password: password, email: email, id: user.uid);
+          UserData userData = UserData(
+              name: name, password: password, email: email, id: user.uid);
           return await _handleUserCreation(userData);
         },
         (failure) => right(Serverfailure(failure.message)),
@@ -47,7 +49,7 @@ class AuthRepoImp extends AuthRepo {
       await addUser(data: user.toMap());
       return left(user);
     } catch (dbError) {
-      await authService.deleteUser(); // حذف المستخدم لو حصلت مشكلة في حفظ بياناته
+      await authService.deleteUser();
       log('Error adding user to DB, user deleted from Firebase: ${dbError.toString()}');
       return right(Serverfailure('Failed to save user data. User deleted.'));
     }
@@ -66,7 +68,8 @@ class AuthRepoImp extends AuthRepo {
 
       return await result.fold(
         (user) async {
-          UserData userData = UserData(id: user.uid, email: email, password: password, name: ""); 
+          UserData userData = UserData(
+              id: user.uid, email: email, password: password, name: "");
           return await _handleUserLogin(userData);
         },
         (exception) => right(Serverfailure(exception.message)),
@@ -84,7 +87,11 @@ class AuthRepoImp extends AuthRepo {
 
       return await result.fold(
         (user) async {
-          UserData userData = UserData(id: user.uid, email: user.email!, password: "", name: user.displayName ?? ""); 
+          UserData userData = UserData(
+              id: user.uid,
+              email: user.email!,
+              password: "",
+              name: user.displayName ?? "");
           return await _handleUserLogin(userData);
         },
         (exception) => right(Serverfailure(exception.message)),
@@ -102,7 +109,11 @@ class AuthRepoImp extends AuthRepo {
 
       return await result.fold(
         (user) async {
-          UserData userData = UserData(id: user.uid, email: user.email!, password: "", name: user.displayName ?? ""); 
+          UserData userData = UserData(
+              id: user.uid,
+              email: user.email!,
+              password: "",
+              name: user.displayName ?? "");
           return await _handleUserLogin(userData);
         },
         (exception) => right(Serverfailure(exception.message)),
@@ -120,7 +131,11 @@ class AuthRepoImp extends AuthRepo {
 
       return await result.fold(
         (user) async {
-          UserData userData = UserData(id: user.uid, email: user.email!, password: "", name: user.displayName ?? ""); 
+          UserData userData = UserData(
+              id: user.uid,
+              email: user.email!,
+              password: "",
+              name: user.displayName ?? "");
           return await _handleUserLogin(userData);
         },
         (exception) => right(Serverfailure(exception.message)),
@@ -134,6 +149,7 @@ class AuthRepoImp extends AuthRepo {
   Future<Either<UserData, Failure>> _handleUserLogin(UserData user) async {
     try {
       await addUser(data: user.toMap());
+      await SaveLocalData(userData:user);
       return left(user);
     } catch (dbError) {
       log('Error adding user to DB after login: ${dbError.toString()}');
@@ -150,5 +166,9 @@ class AuthRepoImp extends AuthRepo {
       log('Error in addUser: ${e.toString()}');
       throw Exception("Failed to add user to database: ${e.toString()}");
     }
+  }
+
+  Future SaveLocalData({required UserData userData}) async {
+    await SharedPreferencesHelper.setString(userPref, userData.toMap());
   }
 }
