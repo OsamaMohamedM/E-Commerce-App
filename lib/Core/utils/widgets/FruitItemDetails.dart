@@ -15,7 +15,7 @@ class FruitItemDetails extends StatelessWidget {
       children: [
         FruitItemName(product : product),
         const Spacer(),
-        AddToCartButton(),
+        AddToCartButton(onTap: (){},),
       ],
     );
   }

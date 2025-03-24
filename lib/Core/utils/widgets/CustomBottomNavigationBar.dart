@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../assetsImages.dart';
+import '../constants/assetsImages.dart';
 import 'BottomNavigationBarItem.dart';
 
 
@@ -48,6 +48,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               activeImage: Assets.assetsImagesHomeBold,
               name: 'الرئيسية',
             ),
+            Spacer(),
             CustomBottomNavigationBarItem(
               index: 1,
               currentIndex: currentIndex,
@@ -56,14 +57,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
               activeImage: Assets.assetsImagesProductsBold,
               name: 'المنتجات',
             ),
+            Spacer(),
             CustomBottomNavigationBarItem(
               index: 2,
               currentIndex: currentIndex,
               onTabChange: onTabChange,
               inActiveImage: Assets.assetsImagesShoppingcartOutLine,
-              activeImage: Assets.assetsImagesShoppingcartOutLine,
+              activeImage: Assets.assetsImagesShoppingcartBold,
               name: 'سلة المشتريات',
             ),
+            Spacer(),
             CustomBottomNavigationBarItem(
               index: 3,
               currentIndex: currentIndex,
@@ -72,6 +75,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               activeImage: Assets.assetsImagesUserBold,
               name: 'الحساب',
             ),
+
           ],
         ),
       ),

@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 import '../styles/app_colors.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({super.key});
+  final IconData icon;
+  final void Function() onTap;
+  const AddToCartButton({super.key, this.icon = Icons.add , required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: AppColors.darkPrimaryColor,
-      child: Icon(Icons.add, color: Colors.white),
+    return InkWell(
+      onTap: onTap,
+      child: CircleAvatar(
+        backgroundColor: AppColors.darkPrimaryColor,
+        child: Icon(icon, color: Colors.white),
+      ),
     );
   }
 }
