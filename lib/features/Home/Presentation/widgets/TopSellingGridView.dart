@@ -19,8 +19,11 @@ class ProductsGridView extends StatelessWidget {
         crossAxisSpacing: 8,
       ),
       delegate: SliverChildBuilderDelegate(
-        (context, index) => FruitItem(product: products[index]),
-        childCount: 10,
+        (context, index) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FruitItem(key: ValueKey(products[index].code),product: products[index]),
+        ),
+        childCount: products.length,
       ),
     );
   }

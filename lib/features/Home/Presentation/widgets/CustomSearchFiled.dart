@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../Core/utils/assetsImages.dart';
+import '../../../../Core/utils/constants/assetsImages.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
 
 class CustomSearchFiled extends StatelessWidget {

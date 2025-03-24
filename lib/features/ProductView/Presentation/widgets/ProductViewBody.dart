@@ -21,7 +21,10 @@ class ProductViewBody extends StatelessWidget {
           SliverToBoxAdapter(
               child: Column(
             children: [
-              CustomAppBar(tittle: 'المنتجات',enable: false,),
+              CustomAppBar(
+                tittle: 'المنتجات',
+                visibleLeading: false,
+              ),
               const SizedBox(
                 height: 26,
               ),
@@ -49,8 +52,7 @@ class ProductViewBody extends StatelessWidget {
               } else {
                 return Skeletonizer.sliver(
                   enabled: true,
-                  child: ProductsGridView(
-                      products: getProducts()),
+                  child: ProductsGridView(products: getProducts()),
                 );
               }
             },

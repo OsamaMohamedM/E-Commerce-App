@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../Core/helpers/getFakeProduct.dart';
+import '../../../../Core/utils/styles/textStyles.dart';
 import '../../../../Core/utils/widgets/CustomErrorWidget.dart';
 import '../../views_model/productCubit/bloc/ProductCubit.dart';
 import 'BestSellingHeader.dart';
@@ -49,7 +50,7 @@ class HomeViewBody extends StatelessWidget {
               if (state is ProductCubitFailure) {
                 return const SliverToBoxAdapter(child: CustomErrorWidget());
               } else if (state is ProductCubitSuccess) {
-                return ProductsGridView(
+                return state.products.isEmpty ? SliverToBoxAdapter(child: Center(child:Text('لا توجد منتجات للعرض!' ,style: TextStyles.bold19,))) : ProductsGridView(
                   products: state.products,
                 );
               } else {

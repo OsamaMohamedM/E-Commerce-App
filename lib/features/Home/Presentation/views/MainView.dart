@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Core/utils/widgets/CustomBottomNavigationBar.dart';
@@ -17,7 +18,7 @@ class _MainViewState extends State<MainView> {
   final List<Widget> pages = [
     HomeView(),
     ProductView(),
-    Center(child: Text("سلة المشتريات")),
+    CartView(),
     Center(child: Text("الحساب")),
   ];
 

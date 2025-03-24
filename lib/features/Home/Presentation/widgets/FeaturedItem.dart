@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../Core/utils/assetsImages.dart';
+import '../../../../Core/utils/constants/assetsImages.dart';
 import 'FeaturedItemText.dart';
 
 class FeaturedItem extends StatelessWidget {

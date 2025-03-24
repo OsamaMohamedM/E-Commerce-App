@@ -16,7 +16,7 @@ class ActiveBottomNavigationBar extends StatelessWidget {
       width: 100,
       height: 40,
       decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(35)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
         color: Colors.grey[300],
       ),
       child: Row(
@@ -26,12 +26,24 @@ class ActiveBottomNavigationBar extends StatelessWidget {
             height: 40,
             decoration: ShapeDecoration(
               color: AppColors.darkPrimaryColor,
-              shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(35)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(35)),
             ),
-            child: SvgPicture.asset(image),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SvgPicture.asset(image),
+            ),
           ),
           const SizedBox(width: 5),
-          Align(alignment: Alignment.center,child: Text(name, style: TextStyles.semiBold11.copyWith(color: AppColors.darkPrimaryColor))),
+          Flexible(
+              child: Center(
+                  child: Text(
+            name,
+            textAlign: TextAlign.center,
+            style: TextStyles.semiBold11.copyWith(
+              color: AppColors.darkPrimaryColor,
+            ),
+          ))),
         ],
       ),
     );
