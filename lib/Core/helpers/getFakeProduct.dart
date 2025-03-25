@@ -1,11 +1,11 @@
+import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 
-import 'package:e_commerce/Core/Data/Model/Product.dart';
-
-Product getProduct() {
-  return Product(
+ProductEntity getProduct() {
+  return ProductEntity(
     name: 'Apple',
     price: 10,
-    image: 'https://images.unsplash.com/photo-1490818396009-d7f8b8d5b4b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+    image:
+        'https://images.unsplash.com/photo-1490818396009-d7f8b8d5b4b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
     description: 'description',
     numSelling: 10,
     reviews: [],
@@ -17,4 +17,4 @@ Product getProduct() {
   );
 }
 
-List<Product> getProducts() => List.generate(15, (index) => getProduct());
+List<ProductEntity> getProducts() => List.generate(15, (index) => getProduct());

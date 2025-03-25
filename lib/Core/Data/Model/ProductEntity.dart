@@ -1,7 +1,6 @@
-
 import 'package:e_commerce/Core/Data/Model/Review.dart';
 
-class Product {
+class ProductEntity {
   final String code;
   final String name;
   final String description;
@@ -16,23 +15,23 @@ class Product {
   final int unitAmount;
   final int numSelling;
   final List<Review> reviews;
-  Product(
-      {this.avgRating = 0,
-      this.ratingCount = 0,
-      required this.code,
-      required this.isFeatured,
-      required this.expirationMonths,
-      required this.isOrganic,
-      required this.unitAmount,
-      required this.name,
-      required this.description,
-      required this.price,
-      required this.image,
-      this.numSelling = 0,
-      this.reviews = const [],
-      });
-  factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
+  ProductEntity({
+    this.avgRating = 0,
+    this.ratingCount = 0,
+    required this.code,
+    required this.isFeatured,
+    required this.expirationMonths,
+    required this.isOrganic,
+    required this.unitAmount,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
+    this.numSelling = 0,
+    this.reviews = const [],
+  });
+  factory ProductEntity.fromMap(Map<String, dynamic> map) {
+    return ProductEntity(
       numSelling: map['numSelling'],
       code: map['code'],
       name: map['name'],
@@ -63,4 +62,12 @@ class Product {
         'reviews': reviews.map((e) => e.toMap()).toList(),
         'numSelling': numSelling
       };
+
+      @override
+     bool operator ==(Object product) {
+    if (product is ProductEntity) {
+      return product.code == code;
+    }
+    return false;
+  }
 }

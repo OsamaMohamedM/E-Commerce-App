@@ -1,4 +1,4 @@
-import 'package:e_commerce/Core/Data/Model/Product.dart';
+import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 import 'package:e_commerce/Core/Data/Repo/ProductRepo.dart';
 import 'package:e_commerce/Core/Data/Repo/ProductRepoImp.dart';
 import 'package:e_commerce/Core/Services/DataBaseService.dart';

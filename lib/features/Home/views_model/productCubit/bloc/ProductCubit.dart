@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/Core/Data/Repo/ProductRepo.dart';
 
-import '../../../../../Core/Data/Model/Product.dart';
+import '../../../../../Core/Data/Model/ProductEntity.dart';
 
 part 'ProductCubitState.dart';
 
