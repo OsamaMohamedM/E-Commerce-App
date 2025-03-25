@@ -1,10 +1,14 @@
+import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../Data/models/CartItem.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
 
 class ProductInfo extends StatelessWidget {
-  const ProductInfo({super.key});
+  final CartItemEntity product;
+  const ProductInfo({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +19,9 @@ class ProductInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('بطيخ', style: TextStyles.bold13),
+            Text(product.product.name, style: TextStyles.bold13),
             Text(
-              '3 كم',
+              product.clcWeight().toString(),
               style:
                   TextStyles.regular13.copyWith(color: AppColors.myAmberColor),
             ),
@@ -26,10 +30,11 @@ class ProductInfo extends StatelessWidget {
         const Spacer(),
         IconButton(
           icon: const Icon(Icons.delete_outline),
-          onPressed: () {},
+          onPressed: () {
+            context.watch<CartCubit>().removeFromCart(product.product);
+          },
         ),
       ],
     );
   }
 }
-

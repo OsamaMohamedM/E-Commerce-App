@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../Data/Model/Product.dart';
+import '../../Data/Model/ProductEntity.dart';
 import '../styles/app_colors.dart';
 import '../styles/textStyles.dart';
 
 class FruitItemName extends StatelessWidget {
-  final Product product;
+  final ProductEntity product;
   const FruitItemName({required this.product, super.key});
 
   @override

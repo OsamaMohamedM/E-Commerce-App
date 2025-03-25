@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
 import 'package:flutter/material.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/widgets/CustomAppBar.dart';
@@ -5,37 +6,62 @@ import 'CartItem.dart';
 import 'CartResult.dart';
 
 class CartViewBody extends StatelessWidget {
-  CartViewBody({super.key});
+  final CartEntity cartEntity;
+  const CartViewBody({super.key,required this.cartEntity});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 17.5, vertical: 16),
-      child: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-            child: Column(
-              children: [
-                CustomAppBar(tittle: 'السلة', visibleTrailing: false),
-                SizedBox(height: 26),
-                CartResult(),
-                SizedBox(height: 24),
-              ],
-            ),
+      child: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    const CustomAppBar(tittle: 'السلة', visibleTrailing: false),
+                    const SizedBox(height: 26),
+                    CartResult(num:  cartEntity.cartItemEntityList.length),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              ),
+              SliverList.builder(
+                itemCount: cartEntity.cartItemEntityList.length,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    Divider(
+                      color: AppColors.customTextFieldBorder,
+                    ),
+                    SizedBox(
+                        width: double.infinity, height: 150, child: CartItem(cartItemEntity: cartEntity.cartItemEntityList[index])),
+                    Divider(
+                      color: AppColors.customTextFieldBorder,
+                    ),
+                  ],
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height:100),)
+            ],
           ),
-          SliverList.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) => Column(
-              children: [
-                Divider(
-                  color: AppColors.customTextFieldBorder,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: AppColors.myAmberColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                SizedBox(
-                    width: double.infinity, height: 150, child: CartItem()),
-                Divider(
-                  color: AppColors.customTextFieldBorder,
-                ),
-              ],
+              ),
+              child:  Text(
+                cartEntity.clcTotal().toString() ,
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
             ),
           )
         ],

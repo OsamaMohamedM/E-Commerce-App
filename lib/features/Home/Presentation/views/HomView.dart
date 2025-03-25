@@ -1,4 +1,3 @@
-import 'package:e_commerce/Core/Data/Model/Product.dart';
 import 'package:e_commerce/features/Home/Presentation/widgets/HomeViewBody.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:e_commerce/Core/Data/Model/Product.dart';
+import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 import 'package:flutter/material.dart';
 
 import 'FavoriteButton.dart';
@@ -6,8 +6,8 @@ import 'FruitItemDetails.dart';
 import 'FruitItemImage.dart';
 
 class FruitItem extends StatelessWidget {
-  final Product product;
-  const FruitItem({required this.product,super.key});
+  final ProductEntity product;
+  const FruitItem({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,11 @@ class FruitItem extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              FruitItemImage(image : product.image!),
+              FruitItemImage(image: product.image!),
               const SizedBox(
                 height: 24,
               ),
-              FruitItemDetails(product : product),
+              FruitItemDetails(product: product),
               const SizedBox(
                 height: 19,
               )

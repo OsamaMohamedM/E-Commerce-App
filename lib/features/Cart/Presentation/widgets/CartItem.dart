@@ -1,39 +1,36 @@
+import 'package:e_commerce/Core/utils/widgets/FruitItemImage.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'ProductCartImage.dart';
+import '../../Data/models/CartItem.dart';
+import '../../view_model/cubit/cart_cubit.dart';
 import 'ProductInfo.dart';
 import 'QuantityAndPrice.dart';
 
-class CartItem extends StatefulWidget {
-  const CartItem({super.key});
-
-  @override
-  _CartItemState createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
-  int counter = 0;
+class CartItem extends StatelessWidget {
+  final CartItemEntity cartItemEntity;
+  const CartItem({super.key , required this.cartItemEntity});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProductCartImage(),
-
+        FruitItemImage(image: cartItemEntity.product.image!),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ProductInfo(),
+                ProductInfo(product:cartItemEntity),
                 Spacer(),
                 QuantityAndPrice(
-                  counter: counter,
-                  onIncrement: () => setState(() => counter++),
+                  product: cartItemEntity,
+                  counter: cartItemEntity.count,
+                  onIncrement: () => context.watch<CartCubit>().addToCart(cartItemEntity.product),
                   onDecrement: () {
-                    if (counter > 0) setState(() => counter--);
+                    context.watch<CartCubit>().decreaseFromCart(cartItemEntity.product);
                   },
                 ),
               ],
@@ -44,4 +41,3 @@ class _CartItemState extends State<CartItem> {
     );
   }
 }
-

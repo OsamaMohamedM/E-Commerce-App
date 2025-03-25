@@ -4,7 +4,8 @@ import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
 
 class CartResult extends StatelessWidget {
-  const CartResult({super.key});
+ final int num ;
+  const CartResult({super.key , required this.num});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class CartResult extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Center(
         child: Text(
-          'لديك 4 منتجات في السلة',
+          'لديك ${num} منتجات في السلة',
           style: TextStyles.regular13,
         ),
       ),
