@@ -14,7 +14,8 @@ class CheckOutViewBody extends StatefulWidget {
 
 class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   late PageController pageController;
-  void init() {
+  @override
+  void initState() {
     pageController = PageController(initialPage: 0);
     pageController.addListener(() {
       setState(() {
@@ -34,10 +35,11 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0 ,vertical: 30),
       child: Column(
         children: [
           CustomAppBar(tittle: 'الشحن'),
+          const SizedBox(height: 16,),
           CheckOutSteps(
             pageController: pageController,
             currentIndex: currentIndex,
@@ -46,7 +48,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
           CheckOutStepsPageView(
             controller: pageController,
           ),
-          Spacer(),
+        
           CustomButton(
               buttonName: getNextButtonText(),
               onPressed: () {

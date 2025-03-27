@@ -2,7 +2,8 @@ import 'package:e_commerce/features/CheckOut/presentation/widgets/ShippingSectio
 import 'package:flutter/material.dart';
 
 import 'AddressInputSection.dart';
-import 'ConfirmationSection.dart';
+
+import 'PaymentSection.dart';
 
 class CheckOutStepsPageView extends StatelessWidget {
   PageController controller;
@@ -27,7 +28,7 @@ class CheckOutStepsPageView extends StatelessWidget {
     return [
       ShippingSection(),
       AddressInputSection(),
-      ConfirmationSection(),
+      PaymentSection(),
     ];
   }
 }

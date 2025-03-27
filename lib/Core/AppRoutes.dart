@@ -21,7 +21,7 @@ class AppRoutes {
 
   static final GoRouter router = GoRouter(
     routes: [
-      GoRoute(path: splash, builder: (context, state) => const SplashView()),
+      GoRoute(path: splash, builder: (context, state) => const MainView()),
       GoRoute(
           path: onBoardingView,
           builder: (context, state) => const OnBoardingView()),
@@ -33,13 +33,13 @@ class AppRoutes {
         return CheckOutView(cartEntity: state.extra as CartEntity);
       }), 
     ],
-    redirect: (context, state) {
-      final bool isLoggedIn = getIt.get<AuthService>().isLogin();
-      if (isLoggedIn) {
-        return homeView;
-      } else {
-        return loginView;
-      }
-    },
+    // redirect: (context, state) {
+    //   final bool isLoggedIn = getIt.get<AuthService>().isLogin();
+    //   if (isLoggedIn) {
+    //     return homeView;
+    //   } else {
+    //     return loginView;
+    //   }
+    // },
   );
 }

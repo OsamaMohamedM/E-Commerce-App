@@ -22,6 +22,7 @@ class CustomOrderSummary extends StatelessWidget {
             Text('20.00 جنيه' ,style: TextStyles.semiBold16, textAlign: TextAlign.right,),
           ],
         ),
+        const SizedBox(height: 8,),
         Row(
           children: [
             Text('التوصيل : ' ,style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),),
@@ -39,6 +40,7 @@ class CustomOrderSummary extends StatelessWidget {
             Text('20.00 جنيه' ,style: TextStyles.bold16.copyWith(color: Color(0xff4E5556)), textAlign: TextAlign.right,),
           ],
         ),
+        SizedBox(height: 15,),
       ],
     ));
   }

@@ -15,6 +15,7 @@ class _ShippingSectionState extends State<ShippingSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 16,),  
         ShippingItem(
           price: "40 جنيه",
           subTitle: 'التسليم في المكان',
@@ -26,6 +27,7 @@ class _ShippingSectionState extends State<ShippingSection> {
             });
           },
         ),
+        const SizedBox(height: 16,),  
         ShippingItem(
           price: "40 جنيه",
           subTitle: 'يرجي تحديد طريقه الدفع',
