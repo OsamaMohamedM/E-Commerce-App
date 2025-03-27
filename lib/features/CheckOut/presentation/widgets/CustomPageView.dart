@@ -6,8 +6,8 @@ import 'AddressInputSection.dart';
 import 'PaymentSection.dart';
 
 class CheckOutStepsPageView extends StatelessWidget {
-  PageController controller;
-  CheckOutStepsPageView({super.key, required this.controller});
+  final PageController controller;
+  const CheckOutStepsPageView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
