@@ -6,7 +6,6 @@ import '../../../../Core/utils/widgets/CustomButton.dart';
 import 'CustomPageView.dart';
 
 class CheckOutViewBody extends StatefulWidget {
-
   const CheckOutViewBody({super.key});
 
   @override
@@ -15,35 +14,61 @@ class CheckOutViewBody extends StatefulWidget {
 
 class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   late PageController pageController;
-  void init()
-  {
+  void init() {
     pageController = PageController(initialPage: 0);
+    pageController.addListener(() {
+      setState(() {
+        currentIndex = pageController.page!.toInt();
+      });
+    });
     super.initState();
   }
+
   @override
-  void dispose()
-  {
+  void dispose() {
     pageController.dispose();
     super.dispose();
   }
+
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
           CustomAppBar(tittle: 'الشحن'),
-          CheckOutSteps(),
-          SizedBox(height :10),
-          CheckOutStepsPageView(controller: pageController,),
+          CheckOutSteps(
+            pageController: pageController,
+            currentIndex: currentIndex,
+          ),
+          SizedBox(height: 10),
+          CheckOutStepsPageView(
+            controller: pageController,
+          ),
           Spacer(),
-          CustomButton(buttonName: "التالي", onPressed: () {
-            pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.fastLinearToSlowEaseIn);
-          })
+          CustomButton(
+              buttonName: getNextButtonText(),
+              onPressed: () {
+                pageController.animateToPage(currentIndex + 1,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.fastLinearToSlowEaseIn);
+              })
         ],
       ),
     );
+  }
+
+  String getNextButtonText() {
+    switch (currentIndex) {
+      case 0:
+        return 'التالي';
+      case 1:
+        return 'التالي';
+      case 2:
+        return 'الدفع عبر PayPal';
+      default:
+        return 'التالي';
+    }
   }
 }

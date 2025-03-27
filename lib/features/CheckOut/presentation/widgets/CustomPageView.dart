@@ -1,6 +1,9 @@
 import 'package:e_commerce/features/CheckOut/presentation/widgets/ShippingSection.dart';
 import 'package:flutter/material.dart';
 
+import 'AddressInputSection.dart';
+import 'ConfirmationSection.dart';
+
 class CheckOutStepsPageView extends StatelessWidget {
   PageController controller;
   CheckOutStepsPageView({super.key, required this.controller});
@@ -9,7 +12,7 @@ class CheckOutStepsPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: PageView.builder(
                 controller: controller,
                 physics: const NeverScrollableScrollPhysics(),
@@ -23,9 +26,8 @@ class CheckOutStepsPageView extends StatelessWidget {
   List<Widget> getPages() {
     return [
       ShippingSection(),
-      SizedBox(),
-      SizedBox(),
-      SizedBox(),
+      AddressInputSection(),
+      ConfirmationSection(),
     ];
   }
 }
