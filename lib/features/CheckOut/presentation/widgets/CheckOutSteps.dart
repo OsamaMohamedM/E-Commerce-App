@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../Data/models/Order.dart';
 import 'StepItem.dart';
 
 class CheckOutSteps extends StatelessWidget {
@@ -14,11 +16,16 @@ class CheckOutSteps extends StatelessWidget {
       return Expanded(
           child: GestureDetector(
               onTap: () {
+                 if(context.read<Order>().payWithCash!=null) {
                 pageController.animateToPage(
                   index,
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.fastLinearToSlowEaseIn,
                 );
+                }else
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('يرجي تحديد طريقه الدفع')));
+                }
               }, 
               child: StepItem(isActive: currentIndex >= 0)));
     }));

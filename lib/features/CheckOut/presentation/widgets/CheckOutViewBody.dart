@@ -1,8 +1,10 @@
 import 'package:e_commerce/Core/utils/widgets/CustomAppBar.dart';
 import 'package:e_commerce/features/CheckOut/presentation/widgets/CheckOutSteps.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Core/utils/widgets/CustomButton.dart';
+import '../../Data/models/Order.dart';
 import 'CustomPageView.dart';
 
 class CheckOutViewBody extends StatefulWidget {
@@ -52,9 +54,14 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
           CustomButton(
               buttonName: getNextButtonText(),
               onPressed: () {
-                pageController.animateToPage(currentIndex + 1,
+                if(context.read<Order>().payWithCash!=null) {
+                  pageController.animateToPage(currentIndex + 1,
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.fastLinearToSlowEaseIn);
+                }else
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('يرجي تحديد طريقه الدفع')));
+                }
               })
         ],
       ),
