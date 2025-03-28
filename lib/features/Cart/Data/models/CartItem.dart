@@ -1,4 +1,5 @@
 import '../../../../Core/Data/Model/ProductEntity.dart';
+import 'orderProductModel.dart';
 
 class CartItemEntity {
 
@@ -25,4 +26,6 @@ class CartItemEntity {
     }
     return false;
   }
+
+  toJson() => {'product': OrderProductModel.fromEntity(this), 'count': count};
 }

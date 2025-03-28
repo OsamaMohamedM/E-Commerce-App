@@ -16,17 +16,17 @@ class CheckOutSteps extends StatelessWidget {
       return Expanded(
           child: GestureDetector(
               onTap: () {
-                 if(context.read<Order>().payWithCash!=null) {
-                pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                );
-                }else
-                {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('يرجي تحديد طريقه الدفع')));
+                if (context.read<OrderEntity>().payWithCash != null) {
+                  pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('يرجي تحديد طريقه الدفع')));
                 }
-              }, 
+              },
               child: StepItem(isActive: currentIndex >= 0)));
     }));
   }

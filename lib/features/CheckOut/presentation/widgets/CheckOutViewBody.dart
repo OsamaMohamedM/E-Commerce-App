@@ -87,7 +87,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   }
 
   void ShippingSectionValidate(BuildContext context) {
-    if (context.read<Order>().payWithCash != null) {
+    if (context.read<OrderEntity>().payWithCash != null) {
       pageController.animateToPage(currentIndex + 1,
           duration: const Duration(milliseconds: 300),
           curve: Curves.fastLinearToSlowEaseIn);

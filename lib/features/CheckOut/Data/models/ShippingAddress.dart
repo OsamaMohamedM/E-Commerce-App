@@ -18,4 +18,6 @@ class ShippingAddressEntity {
   {
     return '$address $addressDetails $city';
   }
+
+  toJson() => {'name': name, 'address': address, 'addressDetails': addressDetails, 'city': city, 'email': email, 'phone': phone};
 }

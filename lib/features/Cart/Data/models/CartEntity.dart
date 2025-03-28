@@ -1,7 +1,6 @@
-import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 
+import '../../../../Core/Data/Model/ProductEntity.dart';
 import 'CartItem.dart';
-
 class CartEntity {
   List<CartItemEntity> cartItemEntityList;
 
@@ -49,5 +48,10 @@ class CartEntity {
       total+=cartItemEntityList[i].clcPrice();
     }
     return total;
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'cartItemEntityList': cartItemEntityList.map((item) => item.toJson()).toList(),
+    };
   }
 }

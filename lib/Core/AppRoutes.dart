@@ -6,6 +6,7 @@ import 'package:e_commerce/features/Home/Presentation/views/MainView.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
 import 'package:e_commerce/features/Auth/Presentation/views/LoginView.dart';
 import 'package:e_commerce/features/onBoarding/presentation/views/onBoardingView.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import '../features/Cart/Data/models/CartEntity.dart';
 import '../features/CheckOut/presentation/view/CheckOutView.dart';
@@ -34,7 +35,9 @@ class AppRoutes {
           path: checkOutView,
           builder: (context, state) {
             return CheckOutView(
-                order: Order(cartEntity: state.extra as CartEntity));
+                order: OrderEntity(
+                    cartEntity: state.extra as CartEntity,
+                    uid: FirebaseAuth.instance.currentUser!.uid));
           }),
     ],
     redirect: (context, state) {

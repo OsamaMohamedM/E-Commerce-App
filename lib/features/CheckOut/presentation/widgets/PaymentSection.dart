@@ -9,12 +9,13 @@ import 'PaymentItem.dart';
 class PaymentSection extends StatelessWidget {
   final PageController pageController;
   const PaymentSection({
-    super.key, required this.pageController,
+    super.key,
+    required this.pageController,
   });
 
   @override
   Widget build(BuildContext context) {
-    return PaymentItem(  
+    return PaymentItem(
         title: 'ملخص الطلب : ',
         pageController: pageController,
         child: Column(
@@ -32,7 +33,7 @@ class PaymentSection extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '${context.read<Order>().cartEntity.clcTotal()} جنيه',
+                  '${context.read<OrderEntity>().cartEntity.clcTotal()} جنيه',
                   style: TextStyles.semiBold16,
                   textAlign: TextAlign.right,
                 ),
@@ -45,14 +46,14 @@ class PaymentSection extends StatelessWidget {
               children: [
                 Text(
                   'التوصيل : ',
-                  style:
-                      TextStyles.regular13.copyWith(color: AppColors.darkGrayColor),
+                  style: TextStyles.regular13
+                      .copyWith(color: AppColors.darkGrayColor),
                 ),
                 const Spacer(),
                 Text(
-                  '${context.read<Order>().payWithCash! ? 0.00 : 20.00} جنيه',
-                  style:
-                      TextStyles.regular13.copyWith(color:AppColors.darkGrayColor),
+                  '${context.read<OrderEntity>().payWithCash! ? 0.00 : 20.00} جنيه',
+                  style: TextStyles.regular13
+                      .copyWith(color: AppColors.darkGrayColor),
                   textAlign: TextAlign.right,
                 ),
               ],
@@ -71,12 +72,14 @@ class PaymentSection extends StatelessWidget {
               children: [
                 Text(
                   'الكلي : ',
-                  style: TextStyles.bold16.copyWith(color:AppColors.darkGrayColor),
+                  style: TextStyles.bold16
+                      .copyWith(color: AppColors.darkGrayColor),
                 ),
                 const Spacer(),
                 Text(
-                  '${context.read<Order>().cartEntity.clcTotal() + 20} جنيه',
-                  style: TextStyles.bold16.copyWith(color: AppColors.darkGrayColor),
+                  '${context.read<OrderEntity>().cartEntity.clcTotal() + 20} جنيه',
+                  style: TextStyles.bold16
+                      .copyWith(color: AppColors.darkGrayColor),
                   textAlign: TextAlign.right,
                 ),
               ],

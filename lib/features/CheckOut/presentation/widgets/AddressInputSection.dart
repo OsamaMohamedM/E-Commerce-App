@@ -4,27 +4,31 @@ import '../../../Auth/Presentation/widgets/CustomTextFormFiledItem.dart';
 import '../../Data/models/Order.dart';
 
 class AddressInputSection extends StatefulWidget {
- final  GlobalKey<FormState> formKey ;
- final ValueNotifier<AutovalidateMode> autovalidateModeNotifier ;
-  const AddressInputSection({super.key,required this.formKey ,required this.autovalidateModeNotifier});
+  final GlobalKey<FormState> formKey;
+  final ValueNotifier<AutovalidateMode> autovalidateModeNotifier;
+  const AddressInputSection(
+      {super.key,
+      required this.formKey,
+      required this.autovalidateModeNotifier});
 
   @override
   State<AddressInputSection> createState() => _AddressInputSectionState();
 }
 
-class _AddressInputSectionState extends State<AddressInputSection>with AutomaticKeepAliveClientMixin {
+class _AddressInputSectionState extends State<AddressInputSection>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ValueListenableBuilder<AutovalidateMode>(
-      valueListenable:widget.autovalidateModeNotifier ,
-      builder:(context,value ,child)=> Form(
+      valueListenable: widget.autovalidateModeNotifier,
+      builder: (context, value, child) => Form(
         key: widget.formKey,
         child: Column(
           children: [
             CustomTextFormFiledItem(
-              onSaved: (String? val){
-                context.read<Order>().shippingAddress!.name = val;
+              onSaved: (String? val) {
+                context.read<OrderEntity>().shippingAddress!.name = val;
               },
               onPressed: () {},
               isObscure: false,
@@ -35,8 +39,8 @@ class _AddressInputSectionState extends State<AddressInputSection>with Automatic
               height: 8,
             ),
             CustomTextFormFiledItem(
-              onSaved: (String? val){
-                context.read<Order>().shippingAddress!.email = val;
+              onSaved: (String? val) {
+                context.read<OrderEntity>().shippingAddress!.email = val;
               },
               onPressed: () {},
               isObscure: false,
@@ -47,8 +51,8 @@ class _AddressInputSectionState extends State<AddressInputSection>with Automatic
               height: 8,
             ),
             CustomTextFormFiledItem(
-              onSaved: (String? val){
-                context.read<Order>().shippingAddress!.address = val;
+              onSaved: (String? val) {
+                context.read<OrderEntity>().shippingAddress!.address = val;
               },
               onPressed: () {},
               isObscure: false,
@@ -63,21 +67,21 @@ class _AddressInputSectionState extends State<AddressInputSection>with Automatic
               isObscure: false,
               isPassword: false,
               title: "المدينة",
-              onSaved: (String? val){
-                context.read<Order>().shippingAddress!.city = val;
+              onSaved: (String? val) {
+                context.read<OrderEntity>().shippingAddress!.city = val;
               },
-      
             ),
             const SizedBox(
               height: 8,
             ),
-            CustomTextFormFiledItem( 
+            CustomTextFormFiledItem(
               onPressed: () {},
               isObscure: false,
               isPassword: false,
               title: 'رقم الطابق - رقم الشقة',
-              onSaved: (String? val){
-                context.read<Order>().shippingAddress!.addressDetails = val;
+              onSaved: (String? val) {
+                context.read<OrderEntity>().shippingAddress!.addressDetails =
+                    val;
               },
             ),
             const SizedBox(
@@ -88,8 +92,8 @@ class _AddressInputSectionState extends State<AddressInputSection>with Automatic
               isObscure: false,
               isPassword: false,
               title: "رقم الهاتف",
-              onSaved: (String? val){
-                context.read<Order>().shippingAddress!.phone = val;
+              onSaved: (String? val) {
+                context.read<OrderEntity>().shippingAddress!.phone = val;
               },
             ),
           ],
@@ -97,8 +101,7 @@ class _AddressInputSectionState extends State<AddressInputSection>with Automatic
       ),
     );
   }
-  
-  @override
 
+  @override
   bool get wantKeepAlive => true;
 }

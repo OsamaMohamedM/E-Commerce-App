@@ -2,13 +2,22 @@
 import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
 import 'ShippingAddress.dart';
 
-class Order {
+class OrderEntity {
+  String uid;
   bool? payWithCash;
   CartEntity cartEntity;
   ShippingAddressEntity? shippingAddress;
-  Order({
+  OrderEntity({
     this.payWithCash,
     required this.cartEntity,
+    required this.uid,
     ShippingAddressEntity? shippingAddress,
   }) : shippingAddress = shippingAddress ?? ShippingAddressEntity();
+
+  toJson() => {
+        'payWithCash': payWithCash,
+        'uid': uid,
+        'cartEntity': cartEntity.toJson(),
+        'shippingAddress': shippingAddress!.toJson(),
+      };
 }
