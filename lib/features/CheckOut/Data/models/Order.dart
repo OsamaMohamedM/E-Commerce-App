@@ -5,10 +5,12 @@ import 'ShippingAddress.dart';
 class Order {
    bool? payWithCash;
   CartEntity cartEntity;
-  final ShippingAddress? shippingAddress;
+   ShippingAddress? shippingAddress;
   Order({
     this.payWithCash,
     required this.cartEntity,
-    this.shippingAddress,
-  });
+    ShippingAddress? shippingAddress,
+  }) : shippingAddress = shippingAddress ?? ShippingAddress();
+
+  
 }

@@ -7,7 +7,11 @@ import 'PaymentSection.dart';
 
 class CheckOutStepsPageView extends StatelessWidget {
   final PageController controller;
-  const CheckOutStepsPageView({super.key, required this.controller});
+  final GlobalKey<FormState> formKey ;
+  final Function(int index) onPressed;
+  final ValueNotifier<AutovalidateMode> autovalidateModeNotifier ;
+
+  const CheckOutStepsPageView({super.key, required this.controller, required this.formKey,required this.autovalidateModeNotifier, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +19,11 @@ class CheckOutStepsPageView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: PageView.builder(
+            onPageChanged: onPressed,
                 controller: controller,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
-          return getPages()[index];
+                return getPages()[index];
                 },
               ),
         ));
@@ -27,7 +32,7 @@ class CheckOutStepsPageView extends StatelessWidget {
   List<Widget> getPages() {
     return [
       ShippingSection(),
-      AddressInputSection(),
+      AddressInputSection(formKey: formKey,autovalidateModeNotifier: autovalidateModeNotifier,),
       PaymentSection(),
     ];
   }

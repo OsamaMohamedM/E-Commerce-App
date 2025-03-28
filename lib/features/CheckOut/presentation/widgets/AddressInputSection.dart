@@ -1,110 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../Auth/Presentation/widgets/CustomTextFormFiledItem.dart';
+import '../../Data/models/Order.dart';
 
 class AddressInputSection extends StatefulWidget {
-  const AddressInputSection({super.key});
+ final  GlobalKey<FormState> formKey ;
+ final ValueNotifier<AutovalidateMode> autovalidateModeNotifier ;
+  const AddressInputSection({super.key,required this.formKey ,required this.autovalidateModeNotifier});
 
   @override
   State<AddressInputSection> createState() => _AddressInputSectionState();
 }
 
-class _AddressInputSectionState extends State<AddressInputSection> {
-  late TextEditingController nameTextEditingController;
-
-  late TextEditingController emailTextEditingController;
-
-  late TextEditingController addressTextEditingController;
-
-  late TextEditingController cityTextEditingController;
-
-  late TextEditingController floorNumberTextEditingController;
-
-  late TextEditingController phoneNumberTextEditingController;
-
-  @override
-  void initState() {
-    nameTextEditingController = TextEditingController();
-    emailTextEditingController = TextEditingController();
-    addressTextEditingController = TextEditingController();
-    cityTextEditingController = TextEditingController();
-    floorNumberTextEditingController = TextEditingController();
-    phoneNumberTextEditingController = TextEditingController();
-    super.initState();
-  }
-@override
-  void dispose() {
-    nameTextEditingController.dispose();
-    emailTextEditingController.dispose();
-    addressTextEditingController.dispose();
-    cityTextEditingController.dispose();
-    floorNumberTextEditingController.dispose();
-    phoneNumberTextEditingController.dispose();
-    
-    super.dispose();
-  }
-
+class _AddressInputSectionState extends State<AddressInputSection>with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTextFormFiledItem(
-          controller: nameTextEditingController,
-          onPressed: () {},
-          isObscure: false,
-          isPassword: false,
-          title: "اسم المستخدم",
+    super.build(context);
+    return ValueListenableBuilder<AutovalidateMode>(
+      valueListenable:widget.autovalidateModeNotifier ,
+      builder:(context,value ,child)=> Form(
+        key: widget.formKey,
+        child: Column(
+          children: [
+            CustomTextFormFiledItem(
+              onSaved: (String? val){
+                context.read<Order>().shippingAddress!.name = val;
+              },
+              onPressed: () {},
+              isObscure: false,
+              isPassword: false,
+              title: "اسم المستخدم",
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CustomTextFormFiledItem(
+              onSaved: (String? val){
+                context.read<Order>().shippingAddress!.email = val;
+              },
+              onPressed: () {},
+              isObscure: false,
+              isPassword: false,
+              title: "البريد الالكتروني",
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CustomTextFormFiledItem(
+              onSaved: (String? val){
+                context.read<Order>().shippingAddress!.address = val;
+              },
+              onPressed: () {},
+              isObscure: false,
+              isPassword: false,
+              title: "العنوان",
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CustomTextFormFiledItem(
+              onPressed: () {},
+              isObscure: false,
+              isPassword: false,
+              title: "المدينة",
+              onSaved: (String? val){
+                context.read<Order>().shippingAddress!.city = val;
+              },
+      
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CustomTextFormFiledItem( 
+              onPressed: () {},
+              isObscure: false,
+              isPassword: false,
+              title: 'رقم الطابق - رقم الشقة',
+              onSaved: (String? val){
+                context.read<Order>().shippingAddress!.addressDetails = val;
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CustomTextFormFiledItem(
+              onPressed: () {},
+              isObscure: false,
+              isPassword: false,
+              title: "رقم الهاتف",
+              onSaved: (String? val){
+                context.read<Order>().shippingAddress!.phone = val;
+              },
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 8,
-        ),
-        CustomTextFormFiledItem(
-          controller: emailTextEditingController,
-          onPressed: () {},
-          isObscure: false,
-          isPassword: false,
-          title: "البريد الالكتروني",
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        CustomTextFormFiledItem(
-          controller: addressTextEditingController,
-          onPressed: () {},
-          isObscure: false,
-          isPassword: false,
-          title: "العنوان",
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        CustomTextFormFiledItem(
-          controller: cityTextEditingController,
-          onPressed: () {},
-          isObscure: false,
-          isPassword: false,
-          title: "المدينة",
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        CustomTextFormFiledItem(
-          controller: floorNumberTextEditingController,
-          onPressed: () {},
-          isObscure: false,
-          isPassword: false,
-          title: 'رقم الطابق - رقم الشقة',
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        CustomTextFormFiledItem(
-          controller: phoneNumberTextEditingController,
-          onPressed: () {},
-          isObscure: false,
-          isPassword: false,
-          title: "رقم الهاتف",
-        ),
-      ],
+      ),
     );
   }
+  
+  @override
+
+  bool get wantKeepAlive => true;
 }

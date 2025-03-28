@@ -11,16 +11,8 @@ class LoginFormSection extends StatefulWidget {
 }
 
 class _LoginFormSectionState extends State<LoginFormSection> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
   bool isPasswordObscure = true;
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
+  
   void updateState() {
     setState(() {
       isPasswordObscure = !isPasswordObscure;
@@ -35,8 +27,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
         const SizedBox(height: 24),
         CustomTextFormField(
           isPasswordObscure: isPasswordObscure,
-          emailController: emailController,
-          passwordController: passwordController,
+          
           onPressed: updateState,
         ),
         const SizedBox(height: 33),

@@ -16,6 +16,9 @@ class CheckOutViewBody extends StatefulWidget {
 
 class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   late PageController pageController;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ValueNotifier<AutovalidateMode> autovalidateModeNotifier =
+      ValueNotifier(AutovalidateMode.disabled);
   @override
   void initState() {
     pageController = PageController(initialPage: 0);
@@ -30,6 +33,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    autovalidateModeNotifier.dispose();
     super.dispose();
   }
 
@@ -37,35 +41,59 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0 ,vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
       child: Column(
         children: [
           CustomAppBar(tittle: 'الشحن'),
-          const SizedBox(height: 16,),
+          const SizedBox(
+            height: 16,
+          ),
           CheckOutSteps(
             pageController: pageController,
             currentIndex: currentIndex,
           ),
           SizedBox(height: 10),
           CheckOutStepsPageView(
+            onPressed: (int val) {
+              currentIndex = val;
+            },
+            autovalidateModeNotifier: autovalidateModeNotifier,
+            formKey: formKey,
             controller: pageController,
           ),
-        
           CustomButton(
               buttonName: getNextButtonText(),
               onPressed: () {
-                if(context.read<Order>().payWithCash!=null) {
-                  pageController.animateToPage(currentIndex + 1,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.fastLinearToSlowEaseIn);
-                }else
-                {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('يرجي تحديد طريقه الدفع')));
+                if (currentIndex == 0) {
+                  ShippingSectionValidate(context);
+                } else if (currentIndex == 1) {
+                  AddressFormValidate(context);
                 }
               })
         ],
       ),
     );
+  }
+
+  void AddressFormValidate(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      pageController.animateToPage(currentIndex + 1,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastLinearToSlowEaseIn);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('يرجي ادخال بيانات العنوان بشكل صحيح')));
+    }
+  }
+
+  void ShippingSectionValidate(BuildContext context) {
+    if (context.read<Order>().payWithCash != null) {
+      pageController.animateToPage(currentIndex + 1,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastLinearToSlowEaseIn);
+    } else {
+      autovalidateModeNotifier.value = AutovalidateMode.always;
+    }
   }
 
   String getNextButtonText() {

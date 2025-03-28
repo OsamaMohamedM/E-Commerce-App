@@ -53,13 +53,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               const SizedBox(height: 24),
               CustomTextFormFiledItem(
                   title: 'اسم المستخدم',
-                  controller: nameController,
+                 
                   onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTextFormField(
                   isPasswordObscure: isPasswordObscure,
-                  emailController: emailController,
-                  passwordController: passwordController,
+                  
                   onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTermsAndConditionsRow(onChanged: (value) {
