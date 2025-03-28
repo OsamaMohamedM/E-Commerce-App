@@ -8,7 +8,8 @@ import 'AddressDetails.dart';
 class PaymentItem extends StatelessWidget {
   final String title;
   final Widget child;
-  const PaymentItem({super.key, required this.title, required this.child});
+  final PageController pageController;
+  const PaymentItem({super.key, required this.title, required this.child, required this.pageController});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class PaymentItem extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            AddressDetails(address: context.read<Order>().shippingAddress!.toString(),),
+            AddressDetails(address: context.read<Order>().shippingAddress!.toString(), onPressed: (){
+             pageController.jumpToPage(pageController.page!.toInt() - 1);
+            },),
         ],
     );
   }

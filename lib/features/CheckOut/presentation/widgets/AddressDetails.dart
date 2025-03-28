@@ -4,8 +4,10 @@ import '../../../../Core/utils/styles/textStyles.dart';
 
 class AddressDetails extends StatelessWidget {
   final String address;
+  final  void Function()? onPressed;
   const AddressDetails({
-    super.key, required this.address,
+    
+    super.key, required this.address,this.onPressed,
   });
 
   @override
@@ -19,9 +21,12 @@ class AddressDetails extends StatelessWidget {
               style: TextStyles.bold13,
             ),
             const Spacer(),
-            Icon(
-              Icons.edit_square,
-              color: Color(0xff949D9E),
+            IconButton(
+              onPressed : onPressed,
+              icon: Icon(
+                Icons.edit_square,
+                color: Color(0xff949D9E),
+              ),
             ),
             const SizedBox(width: 4),
             Text(

@@ -59,7 +59,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
             },
             autovalidateModeNotifier: autovalidateModeNotifier,
             formKey: formKey,
-            controller: pageController,
+            pageController: pageController,
           ),
           CustomButton(
               buttonName: getNextButtonText(),
