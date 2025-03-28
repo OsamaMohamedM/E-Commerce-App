@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Core/utils/styles/textStyles.dart';
+import '../../Data/models/Order.dart';
+import 'AddressDetails.dart';
 
 class PaymentItem extends StatelessWidget {
   final String title;
@@ -29,25 +32,9 @@ class PaymentItem extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Row(
-              children: [
-                  Text('عنوان التوصيل',style: TextStyles.bold13,),
-                  const Spacer(),
-                  Icon(Icons.edit_square , color: Color(0xff949D9E),),
-                  const SizedBox(width : 4),
-                  Text('تعديل',style: TextStyles.semiBold13.copyWith(color: Color(0xff949D9E)),),
-              ],
-            ),
-            const SizedBox(height: 8,),
-            Row(
-              children: [
-                  Icon(Icons.location_on , color: Color(0xff292D32),),
-                  Text('78 القاهرة الجديده شارع صلاح سالم',style: TextStyles.bold13,),
-                
-              ],
-            ),
-
+            AddressDetails(address: context.read<Order>().shippingAddress!.toString(),),
         ],
     );
   }
 }
+

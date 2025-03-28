@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Core/utils/styles/textStyles.dart';
+import '../../Data/models/Order.dart';
 import 'PaymentItem.dart';
 
 class CustomOrderSummary extends StatelessWidget {
@@ -19,7 +21,7 @@ class CustomOrderSummary extends StatelessWidget {
           children: [
             Text('المجموع الفرعي' ,style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),),
             const Spacer(),
-            Text('20.00 جنيه' ,style: TextStyles.semiBold16, textAlign: TextAlign.right,),
+            Text('${context.read<Order>().cartEntity.clcTotal()} جنيه' ,style: TextStyles.semiBold16, textAlign: TextAlign.right,),
           ],
         ),
         const SizedBox(height: 8,),
@@ -27,7 +29,7 @@ class CustomOrderSummary extends StatelessWidget {
           children: [
             Text('التوصيل : ' ,style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),),
             const Spacer(),
-            Text('20.00 جنيه' ,style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)), textAlign: TextAlign.right,),
+            Text('${context.read<Order>().payWithCash! ? 0.00 : 20.00} جنيه' ,style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)), textAlign: TextAlign.right,),
           ],
         ),
         SizedBox(height: 9,),
@@ -37,7 +39,7 @@ class CustomOrderSummary extends StatelessWidget {
           children: [
             Text('الكلي : ' ,style: TextStyles.bold16.copyWith(color: Color(0xff4E5556)),),
             const Spacer(),
-            Text('20.00 جنيه' ,style: TextStyles.bold16.copyWith(color: Color(0xff4E5556)), textAlign: TextAlign.right,),
+            Text('${context.read<Order>().cartEntity.clcTotal()+20} جنيه' ,style: TextStyles.bold16.copyWith(color: Color(0xff4E5556)), textAlign: TextAlign.right,),
           ],
         ),
         SizedBox(height: 15,),

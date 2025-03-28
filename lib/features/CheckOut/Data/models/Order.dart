@@ -3,14 +3,12 @@ import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
 import 'ShippingAddress.dart';
 
 class Order {
-   bool? payWithCash;
+  bool? payWithCash;
   CartEntity cartEntity;
-   ShippingAddress? shippingAddress;
+  ShippingAddressEntity? shippingAddress;
   Order({
     this.payWithCash,
     required this.cartEntity,
-    ShippingAddress? shippingAddress,
-  }) : shippingAddress = shippingAddress ?? ShippingAddress();
-
-  
+    ShippingAddressEntity? shippingAddress,
+  }) : shippingAddress = shippingAddress ?? ShippingAddressEntity();
 }

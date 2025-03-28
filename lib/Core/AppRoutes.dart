@@ -1,6 +1,7 @@
 import 'package:e_commerce/Core/Services/get_it.dart';
 import 'package:e_commerce/features/Auth/Presentation/views/SignUp.dart';
 import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
+import 'package:e_commerce/features/CheckOut/Data/models/Order.dart';
 import 'package:e_commerce/features/Home/Presentation/views/MainView.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
 import 'package:e_commerce/features/Auth/Presentation/views/LoginView.dart';
@@ -29,9 +30,12 @@ class AppRoutes {
       GoRoute(path: signUpView, builder: (context, state) => const SignUp()),
       GoRoute(path: homeView, builder: (context, state) => const MainView()),
       GoRoute(path: cartView, builder: (context, state) => const CartView()),
-      GoRoute(path: checkOutView, builder: (context, state) {
-        return CheckOutView(cartEntity: state.extra as CartEntity);
-      }), 
+      GoRoute(
+          path: checkOutView,
+          builder: (context, state) {
+            return CheckOutView(
+                order: Order(cartEntity: state.extra as CartEntity));
+          }),
     ],
     redirect: (context, state) {
       final bool isLoggedIn = getIt.get<AuthService>().isLogin();
