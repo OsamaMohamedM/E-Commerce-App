@@ -9,7 +9,7 @@ class CustomTextFormFiledItem extends StatelessWidget {
     required this.title,
     this.isObscure = false,
     this.isPassword = false,
-    required this.onPressed, 
+    required this.onPressed,
     this.onSaved,
   });
 

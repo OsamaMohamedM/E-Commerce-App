@@ -14,10 +14,16 @@ class ShippingAddressEntity {
     this.email,
     this.phone,
   });
-  String toString()
-  {
+  String toString() {
     return '$address $addressDetails $city';
   }
 
-  toJson() => {'name': name, 'address': address, 'addressDetails': addressDetails, 'city': city, 'email': email, 'phone': phone};
+  toJson() => {
+        'name': name,
+        'address': address,
+        'addressDetails': addressDetails,
+        'city': city,
+        'email': email,
+        'phone': phone
+      };
 }

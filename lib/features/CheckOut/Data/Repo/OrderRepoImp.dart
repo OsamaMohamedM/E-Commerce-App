@@ -13,7 +13,7 @@ class OrderRepoImp extends OrderRepo {
   @override
   Future<Either<Failure, void>> addOrder(OrderEntity order) async {
     try {
-      await db.addData(BackEndEndPoints.orders, order.toJson());
+      await db.addData(BackEndEndPoints.orders, order.toMap());
       return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure(e.toString()));

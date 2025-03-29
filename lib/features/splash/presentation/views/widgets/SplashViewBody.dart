@@ -23,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void _navigateToOnBoarding() {
     final isOnBoardingViewSeen =
-        SharedPreferencesHelper.getValue(kisOnBoardingViewSeen) ;
+        SharedPreferencesHelper.getValue(kisOnBoardingViewSeen);
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         if (isOnBoardingViewSeen == true) {

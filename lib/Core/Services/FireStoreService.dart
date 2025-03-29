@@ -10,10 +10,10 @@ class FirestoreService extends DataBaseService {
       await firebaseFirestore.collection(path).add(data);
 
   @override
-Future<void> updateData(String path, String id, Map<String, dynamic> data) {
-  // TODO: implement updateData
-  throw UnimplementedError();
-}
+  Future<void> updateData(String path, String id, Map<String, dynamic> data) {
+    // TODO: implement updateData
+    throw UnimplementedError();
+  }
 
   @override
   Future<void> deleteData(String path, String id) {
@@ -22,20 +22,22 @@ Future<void> updateData(String path, String id, Map<String, dynamic> data) {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getData(String path) async{
+  Future<List<Map<String, dynamic>>> getData(String path) async {
     var data = await firebaseFirestore.collection(path).get();
     return data.docs.map((e) => e.data()).toList();
   }
 
   @override
-  Future<Map<String, dynamic>> getDocument(String path, String id)async {
-    var data  = await firebaseFirestore.collection(path).doc(id).get();
+  Future<Map<String, dynamic>> getDocument(String path, String id) async {
+    var data = await firebaseFirestore.collection(path).doc(id).get();
     return data.data() ?? {};
   }
 
   @override
-  Future<UserData> getUserData({required String path, required String uid})async {
-    UserData userData =await firebaseFirestore.collection(path).doc(uid).get().then((value) {
+  Future<UserData> getUserData(
+      {required String path, required String uid}) async {
+    UserData userData =
+        await firebaseFirestore.collection(path).doc(uid).get().then((value) {
       return UserData.fromJson(value.data()!);
     });
     return userData;

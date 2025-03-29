@@ -9,11 +9,14 @@ class SignInCubit extends Cubit<SignInState> {
   final AuthRepo _authRepo;
   SignInCubit(this._authRepo) : super(SignInInitial());
 
-  Future<void> signInUserWithEmailAndPassword({required String email , required password}) async {
+  Future<void> signInUserWithEmailAndPassword(
+      {required String email, required password}) async {
     emit(SignInLoading());
     try {
-      final user = await _authRepo.signInUserWithEmailPassword(email: email, password: password);
-      emit(user.fold((user) => SignInSuccess(user), (failure) => SignInFailure(failure.message)));
+      final user = await _authRepo.signInUserWithEmailPassword(
+          email: email, password: password);
+      emit(user.fold((user) => SignInSuccess(user),
+          (failure) => SignInFailure(failure.message)));
     } catch (e) {
       emit(SignInFailure(e.toString()));
     }
@@ -23,29 +26,32 @@ class SignInCubit extends Cubit<SignInState> {
     emit(SignInLoading());
     try {
       final user = await _authRepo.signInWithGoogle();
-      emit(user.fold((user) => SignInSuccess(user), (failure) => SignInFailure(failure.message)));
+      emit(user.fold((user) => SignInSuccess(user),
+          (failure) => SignInFailure(failure.message)));
     } catch (e) {
       log('message from signInWithGoogle Cubit : ${e.toString()}');
       emit(SignInFailure(e.toString()));
     }
   }
 
-  Future<void>signInWithFaceBook()async{
+  Future<void> signInWithFaceBook() async {
     emit(SignInLoading());
     try {
       final user = await _authRepo.signInWithFacebook();
-      emit(user.fold((user) => SignInSuccess(user), (failure) => SignInFailure(failure.message)));
+      emit(user.fold((user) => SignInSuccess(user),
+          (failure) => SignInFailure(failure.message)));
     } catch (e) {
       log('message from signInWithFaceBook Cubit : ${e.toString()}');
       emit(SignInFailure(e.toString()));
     }
   }
 
-  Future<void>signInWithApple()async{
+  Future<void> signInWithApple() async {
     emit(SignInLoading());
     try {
       final user = await _authRepo.signInWithApple();
-      emit(user.fold((user) => SignInSuccess(user), (failure) => SignInFailure(failure.message)));
+      emit(user.fold((user) => SignInSuccess(user),
+          (failure) => SignInFailure(failure.message)));
     } catch (e) {
       log('message from signInWithApple Cubit : ${e.toString()}');
       emit(SignInFailure(e.toString()));

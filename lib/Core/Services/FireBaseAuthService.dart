@@ -188,7 +188,7 @@ class FireBaseAuthService extends AuthService {
   }
 
   @override
-   bool isLogin() {
-    return FirebaseAuth.instance.currentUser  !=  null;
+  bool isLogin() {
+    return FirebaseAuth.instance.currentUser != null;
   }
 }

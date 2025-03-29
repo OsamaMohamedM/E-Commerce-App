@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 import '../constants/assetsImages.dart';
 import 'BottomNavigationBarItem.dart';
-
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -75,14 +73,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
               activeImage: Assets.assetsImagesUserBold,
               name: 'الحساب',
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
-
-
-

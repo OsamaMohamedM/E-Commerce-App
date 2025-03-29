@@ -61,7 +61,8 @@ class MainViewBloc extends StatelessWidget {
     return BlocListener<CartCubit, CartState>(
       listener: (context, state) {
         if (state is CartItemAdded) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("تم الاضافة للسلة")));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("تم الاضافة للسلة")));
         }
       },
       child: SafeArea(

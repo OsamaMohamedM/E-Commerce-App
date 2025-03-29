@@ -6,5 +6,5 @@ abstract class DataBaseService {
   Future<void> deleteData(String path, String id);
   Future<List<Map<String, dynamic>>> getData(String path);
   Future<Map<String, dynamic>> getDocument(String path, String id);
-  Future<UserData> getUserData({required String path , required String uid});
+  Future<UserData> getUserData({required String path, required String uid});
 }

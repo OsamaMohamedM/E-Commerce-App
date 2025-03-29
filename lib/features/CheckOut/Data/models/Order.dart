@@ -14,10 +14,26 @@ class OrderEntity {
     ShippingAddressEntity? shippingAddress,
   }) : shippingAddress = shippingAddress ?? ShippingAddressEntity();
 
-  toJson() => {
+  toMap() => {
         'payWithCash': payWithCash,
         'uid': uid,
         'cartEntity': cartEntity.toJson(),
         'shippingAddress': shippingAddress!.toJson(),
       };
+
+  clcShippingCost() {
+    if (payWithCash == true) {
+      return 20;
+    } else {
+      return 0;
+    }
+  }
+
+  double clcShippingDiscount() {
+    return 0;
+  }
+
+  double CalculateAllPrice() {
+    return cartEntity.clcTotal() + clcShippingCost() - clcShippingDiscount();
+  }
 }

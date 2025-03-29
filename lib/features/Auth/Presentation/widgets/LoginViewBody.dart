@@ -24,7 +24,8 @@ class LoginViewBody extends StatelessWidget {
         return ModalProgressHUD(
           inAsyncCall: state is SignInLoading,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [

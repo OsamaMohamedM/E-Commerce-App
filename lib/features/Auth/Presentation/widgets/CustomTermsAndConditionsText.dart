@@ -6,7 +6,10 @@ import '../../../../Core/utils/styles/textStyles.dart';
 
 class CustomTermsAndConditionsText extends StatelessWidget {
   const CustomTermsAndConditionsText({
-    super.key, required this.title, required this.subtitle,  this.onTap,
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.onTap,
   });
   final String title;
   final String subtitle;
@@ -16,13 +19,12 @@ class CustomTermsAndConditionsText extends StatelessWidget {
     return Text.rich(
       TextSpan(
           text: title,
-          style:
-              TextStyles.semiBold13.copyWith(color: AppColors.grayTextColor),
+          style: TextStyles.semiBold13.copyWith(color: AppColors.grayTextColor),
           children: [
             TextSpan(
-              text :subtitle,
+              text: subtitle,
               style: TextStyles.bold13
-                .copyWith(color: AppColors.lightPrimaryColor),
+                  .copyWith(color: AppColors.lightPrimaryColor),
               recognizer: TapGestureRecognizer()..onTap = onTap,
             )
           ]),

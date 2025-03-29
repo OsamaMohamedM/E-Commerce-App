@@ -9,7 +9,7 @@ import 'QuantityAndPrice.dart';
 
 class CartItem extends StatelessWidget {
   final CartItemEntity cartItemEntity;
-  const CartItem({super.key , required this.cartItemEntity});
+  const CartItem({super.key, required this.cartItemEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +23,18 @@ class CartItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ProductInfo(product:cartItemEntity),
+                ProductInfo(product: cartItemEntity),
                 Spacer(),
                 QuantityAndPrice(
                   product: cartItemEntity,
                   counter: cartItemEntity.count,
-                  onIncrement: () => context.watch<CartCubit>().addToCart(cartItemEntity.product),
+                  onIncrement: () => context
+                      .watch<CartCubit>()
+                      .addToCart(cartItemEntity.product),
                   onDecrement: () {
-                    context.watch<CartCubit>().decreaseFromCart(cartItemEntity.product);
+                    context
+                        .watch<CartCubit>()
+                        .decreaseFromCart(cartItemEntity.product);
                   },
                 ),
               ],

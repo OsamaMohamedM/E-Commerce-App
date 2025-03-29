@@ -1,4 +1,4 @@
-class  CustomException implements Exception {
+class CustomException implements Exception {
   final String message;
   CustomException(this.message);
 
@@ -6,5 +6,4 @@ class  CustomException implements Exception {
   String toString() {
     return message;
   }
-  
 }

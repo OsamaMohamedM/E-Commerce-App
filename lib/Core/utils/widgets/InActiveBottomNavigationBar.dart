@@ -11,8 +11,7 @@ class InActiveBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
-      child: SvgPicture.asset(image, width: 24, height: 24)
-      );
+        color: Colors.transparent,
+        child: SvgPicture.asset(image, width: 24, height: 24));
   }
 }

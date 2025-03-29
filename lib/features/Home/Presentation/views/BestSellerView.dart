@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/BestSellerViewBody.dart';
+
 class BestSellerView extends StatelessWidget {
   const BestSellerView({super.key});
 
@@ -10,4 +11,3 @@ class BestSellerView extends StatelessWidget {
     );
   }
 }
-

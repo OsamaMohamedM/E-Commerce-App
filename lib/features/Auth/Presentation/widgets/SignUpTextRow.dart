@@ -23,7 +23,7 @@ class SignUpTextRow extends StatelessWidget {
           onTap: () {
             GoRouter.of(context).push(AppRoutes.signUpView);
           },
-          child:  Text(
+          child: Text(
             "سجل الان",
             style: TextStyles.semiBold16.copyWith(
               color: AppColors.lightPrimaryColor,
@@ -34,4 +34,3 @@ class SignUpTextRow extends StatelessWidget {
     );
   }
 }
-

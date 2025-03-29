@@ -6,11 +6,11 @@ class SharedPreferencesHelper {
     _preferences = await SharedPreferences.getInstance();
   }
 
-  static Future setBool(String key, dynamic value) async{
+  static Future setBool(String key, dynamic value) async {
     await _preferences.setBool(key, value);
   }
 
-  static Future getValue(String key) async{
+  static Future getValue(String key) async {
     return await _preferences.get(key);
   }
 

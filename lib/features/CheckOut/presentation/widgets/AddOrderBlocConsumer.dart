@@ -15,18 +15,17 @@ class AddOrderBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AddOrderCubit, AddOrderState>(
       listener: (context, state) {
-        if(state is AddOrderSuccess)
-        {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("تم اضافة الطلب بنجاح")));
-        }
-        else if(state is AddOrderFailure)
-        {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+        if (state is AddOrderSuccess) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("تم اضافة الطلب بنجاح")));
+        } else if (state is AddOrderFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       builder: (context, state) {
-        return ModalProgressHUD(inAsyncCall: state is AddOrderLoading,
-        child: CheckOutViewBody());
+        return ModalProgressHUD(
+            inAsyncCall: state is AddOrderLoading, child: CheckOutViewBody());
       },
     );
   }

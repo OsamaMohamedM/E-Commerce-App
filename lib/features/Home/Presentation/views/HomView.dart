@@ -13,7 +13,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     var itemWidth = MediaQuery.of(context).size.width - 32;
     return BlocProvider(
-      create: (context) => ProductCubit(getIt.get<ProductRepo>())..getProducts(),
+      create: (context) =>
+          ProductCubit(getIt.get<ProductRepo>())..getProducts(),
       child: HomeViewBody(itemWidth: itemWidth),
     );
   }

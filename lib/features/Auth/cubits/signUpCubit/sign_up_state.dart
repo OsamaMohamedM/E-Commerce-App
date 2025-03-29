@@ -15,5 +15,3 @@ final class SignUpFailure extends SignUpState {
 }
 
 final class SignUpLoading extends SignUpState {}
-
-

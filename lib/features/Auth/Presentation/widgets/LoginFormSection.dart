@@ -12,7 +12,7 @@ class LoginFormSection extends StatefulWidget {
 
 class _LoginFormSectionState extends State<LoginFormSection> {
   bool isPasswordObscure = true;
-  
+
   void updateState() {
     setState(() {
       isPasswordObscure = !isPasswordObscure;
@@ -27,7 +27,6 @@ class _LoginFormSectionState extends State<LoginFormSection> {
         const SizedBox(height: 24),
         CustomTextFormField(
           isPasswordObscure: isPasswordObscure,
-          
           onPressed: updateState,
         ),
         const SizedBox(height: 33),

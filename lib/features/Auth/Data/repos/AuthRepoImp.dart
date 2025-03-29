@@ -149,7 +149,7 @@ class AuthRepoImp extends AuthRepo {
   Future<Either<UserData, Failure>> _handleUserLogin(UserData user) async {
     try {
       await addUser(data: user.toMap());
-      await SaveLocalData(userData:user);
+      await SaveLocalData(userData: user);
       return left(user);
     } catch (dbError) {
       log('Error adding user to DB after login: ${dbError.toString()}');

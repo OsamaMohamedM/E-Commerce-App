@@ -2,11 +2,10 @@ import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Data/models/CartEntity.dart';
 
-
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
- CartEntity cartEntity ;
+  CartEntity cartEntity;
   CartCubit(this.cartEntity) : super(CartInitial());
 
   void addToCart(ProductEntity cartProductItem) {
@@ -23,8 +22,8 @@ class CartCubit extends Cubit<CartState> {
     cartEntity.decreaseItem(cartProductItem);
     emit(CartItemDecrease());
   }
-  int getNumberOfItems()
-  {
+
+  int getNumberOfItems() {
     return cartEntity.cartItemEntityList.length;
   }
 }

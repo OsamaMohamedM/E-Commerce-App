@@ -5,7 +5,8 @@ import '../styles/app_colors.dart';
 class AddToCartButton extends StatelessWidget {
   final IconData icon;
   final void Function() onTap;
-  const AddToCartButton({super.key, this.icon = Icons.add , required this.onTap});
+  const AddToCartButton(
+      {super.key, this.icon = Icons.add, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

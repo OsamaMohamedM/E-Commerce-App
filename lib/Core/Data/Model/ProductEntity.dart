@@ -63,8 +63,8 @@ class ProductEntity {
         'numSelling': numSelling
       };
 
-      @override
-     bool operator ==(Object product) {
+  @override
+  bool operator ==(Object product) {
     if (product is ProductEntity) {
       return product.code == code;
     }

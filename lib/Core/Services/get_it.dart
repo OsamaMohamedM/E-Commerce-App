@@ -16,12 +16,9 @@ GetIt getIt = GetIt.instance;
 void setupGetIt() {
   getIt.registerSingleton<AuthService>(FireBaseAuthService());
   getIt.registerSingleton<DataBaseService>(FirestoreService());
-  getIt.registerSingleton<AuthRepo>(
-    AuthRepoImp(authService: getIt<AuthService>(), 
-    db: getIt<DataBaseService>()));
+  getIt.registerSingleton<AuthRepo>(AuthRepoImp(
+      authService: getIt<AuthService>(), db: getIt<DataBaseService>()));
   getIt.registerSingleton<ProductRepo>(
-    ProductRepoImp(db: getIt<DataBaseService>()));
-  getIt.registerSingleton<OrderRepo>(
-    OrderRepoImp(getIt<DataBaseService>()));
-  }
- 
+      ProductRepoImp(db: getIt<DataBaseService>()));
+  getIt.registerSingleton<OrderRepo>(OrderRepoImp(getIt<DataBaseService>()));
+}

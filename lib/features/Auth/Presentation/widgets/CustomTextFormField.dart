@@ -14,7 +14,6 @@ class CustomTextFormField extends StatelessWidget {
     return Column(
       children: [
         CustomTextFormFiledItem(
-           
             onPressed: onPressed,
             isObscure: isPasswordObscure,
             isPassword: false,
@@ -27,7 +26,6 @@ class CustomTextFormField extends StatelessWidget {
             isObscure: isPasswordObscure,
             isPassword: true,
             title: "كلمة المرور"),
-
       ],
     );
   }

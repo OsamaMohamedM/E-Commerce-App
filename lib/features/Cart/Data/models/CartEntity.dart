@@ -1,14 +1,14 @@
-
 import '../../../../Core/Data/Model/ProductEntity.dart';
 import 'CartItem.dart';
+
 class CartEntity {
   List<CartItemEntity> cartItemEntityList;
 
   CartEntity({this.cartItemEntityList = const []});
 
   void addItem(ProductEntity product) {
-   int index =  findProduct(product);
-    if (index==-1) {
+    int index = findProduct(product);
+    if (index == -1) {
       CartItemEntity cartItemEntity =
           CartItemEntity(product: product, count: 1);
       cartItemEntityList.add(cartItemEntity);
@@ -32,26 +32,29 @@ class CartEntity {
       cartItemEntityList.removeAt(index);
     }
   }
+
   void decreaseItem(ProductEntity product) {
     int index = findProduct(product);
     if (index != -1) {
       cartItemEntityList[index].count--;
-      if(cartItemEntityList[index].count==0) {
+      if (cartItemEntityList[index].count == 0) {
         cartItemEntityList.removeAt(index);
       }
     }
   }
-  num clcTotal()
-  {
-    num total=0;
+
+  num clcTotal() {
+    num total = 0;
     for (int i = 0; i < cartItemEntityList.length; i++) {
-      total+=cartItemEntityList[i].clcPrice();
+      total += cartItemEntityList[i].clcPrice();
     }
     return total;
   }
+
   Map<String, dynamic> toJson() {
     return {
-      'cartItemEntityList': cartItemEntityList.map((item) => item.toJson()).toList(),
+      'cartItemEntityList':
+          cartItemEntityList.map((item) => item.toJson()).toList(),
     };
   }
 }

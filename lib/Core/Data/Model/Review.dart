@@ -31,5 +31,4 @@ class Review {
       reviewDescription: map['reviewDescription'] as String,
     );
   }
-  
 }

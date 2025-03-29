@@ -52,14 +52,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               CustomAppBarAuth(title: "حساب جديد", onPress: () {}),
               const SizedBox(height: 24),
               CustomTextFormFiledItem(
-                  title: 'اسم المستخدم',
-                 
-                  onPressed: onPressed),
+                  title: 'اسم المستخدم', onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTextFormField(
-                  isPasswordObscure: isPasswordObscure,
-                  
-                  onPressed: onPressed),
+                  isPasswordObscure: isPasswordObscure, onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTermsAndConditionsRow(onChanged: (value) {
                 checkboxValue = value;

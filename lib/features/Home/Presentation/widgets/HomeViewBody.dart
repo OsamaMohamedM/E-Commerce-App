@@ -50,14 +50,20 @@ class HomeViewBody extends StatelessWidget {
               if (state is ProductCubitFailure) {
                 return const SliverToBoxAdapter(child: CustomErrorWidget());
               } else if (state is ProductCubitSuccess) {
-                return state.products.isEmpty ? SliverToBoxAdapter(child: Center(child:Text('لا توجد منتجات للعرض!' ,style: TextStyles.bold19,))) : ProductsGridView(
-                  products: state.products,
-                );
+                return state.products.isEmpty
+                    ? SliverToBoxAdapter(
+                        child: Center(
+                            child: Text(
+                        'لا توجد منتجات للعرض!',
+                        style: TextStyles.bold19,
+                      )))
+                    : ProductsGridView(
+                        products: state.products,
+                      );
               } else {
                 return Skeletonizer.sliver(
                   enabled: true,
-                  child: ProductsGridView(
-                      products: getProducts()),
+                  child: ProductsGridView(products: getProducts()),
                 );
               }
             },

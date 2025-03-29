@@ -2,7 +2,6 @@ import '../../../../Core/Data/Model/ProductEntity.dart';
 import 'orderProductModel.dart';
 
 class CartItemEntity {
-
   final ProductEntity product;
   int count;
 
@@ -19,8 +18,8 @@ class CartItemEntity {
     return product.unitAmount * count;
   }
 
-   @override
-     bool operator ==(Object cartItemEntity) {
+  @override
+  bool operator ==(Object cartItemEntity) {
     if (cartItemEntity is CartItemEntity) {
       return cartItemEntity.product == product;
     }

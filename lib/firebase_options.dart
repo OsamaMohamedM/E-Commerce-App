@@ -64,8 +64,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '120051000244',
     projectId: 'ecommerce-6cd39',
     storageBucket: 'ecommerce-6cd39.firebasestorage.app',
-    androidClientId: '120051000244-tkbaucvhcedg6iprns791hk00m6b73qd.apps.googleusercontent.com',
-    iosClientId: '120051000244-682lmlnsun0tqj7n8ao8ags91m6d3nnu.apps.googleusercontent.com',
+    androidClientId:
+        '120051000244-tkbaucvhcedg6iprns791hk00m6b73qd.apps.googleusercontent.com',
+    iosClientId:
+        '120051000244-682lmlnsun0tqj7n8ao8ags91m6d3nnu.apps.googleusercontent.com',
     iosBundleId: 'com.example.eCommerce',
   );
 
@@ -75,8 +77,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '120051000244',
     projectId: 'ecommerce-6cd39',
     storageBucket: 'ecommerce-6cd39.firebasestorage.app',
-    androidClientId: '120051000244-tkbaucvhcedg6iprns791hk00m6b73qd.apps.googleusercontent.com',
-    iosClientId: '120051000244-682lmlnsun0tqj7n8ao8ags91m6d3nnu.apps.googleusercontent.com',
+    androidClientId:
+        '120051000244-tkbaucvhcedg6iprns791hk00m6b73qd.apps.googleusercontent.com',
+    iosClientId:
+        '120051000244-682lmlnsun0tqj7n8ao8ags91m6d3nnu.apps.googleusercontent.com',
     iosBundleId: 'com.example.eCommerce',
   );
 

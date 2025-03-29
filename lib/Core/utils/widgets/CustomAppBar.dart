@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     required this.tittle,
     this.visibleLeading = true,
-    this.visibleTrailing =true,
+    this.visibleTrailing = true,
     super.key,
   });
 
