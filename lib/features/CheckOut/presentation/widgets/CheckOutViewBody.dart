@@ -50,6 +50,28 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
             height: 16,
           ),
           CheckOutSteps(
+            onTap: (index) {
+              if (index == 0) {
+                pageController.animateToPage(index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.fastLinearToSlowEaseIn);
+              } else if (index == 1) {
+                var ordderEntity = context.read<OrderEntity>();
+                if (ordderEntity.payWithCash != null) {
+                  pageController.animateToPage(index,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.fastLinearToSlowEaseIn);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('اختر طريقة الدفع'),
+                    ),
+                  );
+                }
+              } else {
+                AddressFormValidate(context); 
+              }
+            },
             pageController: pageController,
             currentIndex: currentIndex,
           ),
@@ -70,9 +92,8 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
                 } else if (currentIndex == 1) {
                   AddressFormValidate(context);
                 } else {
-                final order = context.read<OrderEntity>();
-                Payment(orderEntity: order).handlePayment(context);
-                context.read<AddOrderCubit>().addOrder(order);
+                  final order = context.read<OrderEntity>();
+                  Payment(orderEntity: order).handlePayment(context);
                 }
               })
         ],
@@ -114,4 +135,3 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
     }
   }
 }
-

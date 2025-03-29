@@ -15,9 +15,12 @@ class OrderEntity {
   }) : shippingAddress = shippingAddress ?? ShippingAddressEntity();
 
   toMap() => {
-        'payWithCash': payWithCash,
+        'payMethood': (payWithCash == true ? 'Cash' : 'payPal'),
         'uid': uid,
+        'status': 'pending',
+        'date':DateTime.now().toString(),
         'cartEntity': cartEntity.toJson(),
+        'total': cartEntity.clcTotal(),
         'shippingAddress': shippingAddress!.toJson(),
       };
 

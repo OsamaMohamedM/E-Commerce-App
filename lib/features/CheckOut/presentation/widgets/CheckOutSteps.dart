@@ -6,8 +6,12 @@ import 'StepItem.dart';
 class CheckOutSteps extends StatelessWidget {
   final int currentIndex;
   final PageController pageController;
+  final ValueChanged<int> onTap;
   const CheckOutSteps(
-      {super.key, required this.currentIndex, required this.pageController});
+      {super.key,
+      required this.currentIndex,
+      required this.pageController,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +20,7 @@ class CheckOutSteps extends StatelessWidget {
       return Expanded(
           child: GestureDetector(
               onTap: () {
-                if (context.read<OrderEntity>().payWithCash != null) {
-                  pageController.animateToPage(
-                    index,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('يرجي تحديد طريقه الدفع')));
-                }
+                onTap(index);
               },
               child: StepItem(isActive: currentIndex >= 0)));
     }));
