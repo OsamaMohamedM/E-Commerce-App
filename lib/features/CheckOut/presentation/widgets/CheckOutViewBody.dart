@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../Core/utils/widgets/CustomButton.dart';
 import '../../Data/models/Order.dart';
+import '../../cubits/cubit/add_order_cubit.dart';
 import 'CustomPageView.dart';
 
 class CheckOutViewBody extends StatefulWidget {
@@ -68,6 +69,11 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
                   ShippingSectionValidate(context);
                 } else if (currentIndex == 1) {
                   AddressFormValidate(context);
+                }else
+                {
+                  context.read<AddOrderCubit>().addOrder(
+                    context.read<OrderEntity>(),
+                  );
                 }
               })
         ],

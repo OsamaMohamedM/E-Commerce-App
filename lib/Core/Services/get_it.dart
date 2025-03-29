@@ -4,6 +4,8 @@ import 'package:e_commerce/Core/Services/DataBaseService.dart';
 import 'package:e_commerce/Core/Services/FireBaseAuthService.dart';
 import 'package:e_commerce/Core/Services/FireStoreService.dart';
 import 'package:e_commerce/features/Auth/Data/repos/AuthRepoImp.dart';
+import 'package:e_commerce/features/CheckOut/Data/Repo/OrderRepo.dart';
+import 'package:e_commerce/features/CheckOut/Data/Repo/OrderRepoImp.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/Auth/Data/repos/authRepo.dart';
@@ -19,5 +21,7 @@ void setupGetIt() {
     db: getIt<DataBaseService>()));
   getIt.registerSingleton<ProductRepo>(
     ProductRepoImp(db: getIt<DataBaseService>()));
+  getIt.registerSingleton<OrderRepo>(
+    OrderRepoImp(getIt<DataBaseService>()));
   }
  
