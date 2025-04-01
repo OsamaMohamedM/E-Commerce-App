@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 import 'package:e_commerce/Core/Data/Repo/ProductRepo.dart';
@@ -15,6 +17,7 @@ class ProductRepoImp extends ProductRepo {
   Future<Either<Failure, List<ProductEntity>>> getProducts() async {
     try {
       var data = await db.getData(BackEndEndPoints.products);
+      log(data.toString());
       return Right(data.map((e) => ProductEntity.fromMap(e)).toList());
     } catch (e) {
       return Left(Serverfailure(e.toString()));

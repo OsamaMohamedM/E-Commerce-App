@@ -149,7 +149,7 @@ class AuthRepoImp extends AuthRepo {
   Future<Either<UserData, Failure>> _handleUserLogin(UserData user) async {
     try {
       await addUser(data: user.toMap());
-      await SaveLocalData(userData: user);
+       await saveLocalData(userData: user);
       return left(user);
     } catch (dbError) {
       log('Error adding user to DB after login: ${dbError.toString()}');
@@ -162,13 +162,14 @@ class AuthRepoImp extends AuthRepo {
     if (data.isEmpty) return;
     try {
       await db.addData(BackEndEndPoints.users, data);
+      log('User added to database successfully.');
     } catch (e) {
       log('Error in addUser: ${e.toString()}');
       throw Exception("Failed to add user to database: ${e.toString()}");
     }
   }
 
-  Future SaveLocalData({required UserData userData}) async {
-    await SharedPreferencesHelper.setString(userPref, userData.toMap());
+  Future saveLocalData({required UserData userData}) async {
+    await SharedPreferencesHelper.setMap(userPref, userData.toMap());
   }
 }

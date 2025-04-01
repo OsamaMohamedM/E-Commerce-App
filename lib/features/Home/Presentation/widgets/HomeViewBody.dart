@@ -48,7 +48,7 @@ class HomeViewBody extends StatelessWidget {
           BlocBuilder<ProductCubit, ProductCubitState>(
             builder: (context, state) {
               if (state is ProductCubitFailure) {
-                return const SliverToBoxAdapter(child: CustomErrorWidget());
+                return SliverToBoxAdapter(child: CustomErrorWidget(message : state.message));
               } else if (state is ProductCubitSuccess) {
                 return state.products.isEmpty
                     ? SliverToBoxAdapter(

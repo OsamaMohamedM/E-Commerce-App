@@ -2,7 +2,7 @@
 import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
 import 'ShippingAddress.dart';
 
-class OrderEntity {
+class OrderEntity  {
   String uid;
   bool? payWithCash;
   CartEntity cartEntity;
@@ -18,7 +18,7 @@ class OrderEntity {
         'payMethood': (payWithCash == true ? 'Cash' : 'payPal'),
         'uid': uid,
         'status': 'pending',
-        'date':DateTime.now().toString(),
+        'date': DateTime.now().toString(),
         'cartEntity': cartEntity.toJson(),
         'total': cartEntity.clcTotal(),
         'shippingAddress': shippingAddress!.toJson(),
@@ -32,6 +32,16 @@ class OrderEntity {
     }
   }
 
+  void tragglePayWithCash(bool value) {
+    payWithCash = value;
+   
+  }
+
+  void updateShippingAddressEntity(ShippingAddressEntity newShippingAddressEntity)
+  {
+    shippingAddress = newShippingAddressEntity;
+    
+  }
   double clcShippingDiscount() {
     return 0;
   }

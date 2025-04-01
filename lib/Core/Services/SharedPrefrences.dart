@@ -11,10 +11,13 @@ class SharedPreferencesHelper {
   }
 
   static Future getValue(String key) async {
-    return await _preferences.get(key);
+    return _preferences.get(key);
   }
 
   static Future setString(String key, dynamic value) async {
     await _preferences.setString(key, value);
+  }
+  static Future setMap(String key , Map<dynamic , dynamic> value) async {
+    await _preferences.setString(key, value.toString());
   }
 }

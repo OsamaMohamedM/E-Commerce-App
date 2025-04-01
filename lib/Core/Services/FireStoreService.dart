@@ -24,6 +24,7 @@ class FirestoreService extends DataBaseService {
   @override
   Future<List<Map<String, dynamic>>> getData(String path) async {
     var data = await firebaseFirestore.collection(path).get();
+    
     return data.docs.map((e) => e.data()).toList();
   }
 

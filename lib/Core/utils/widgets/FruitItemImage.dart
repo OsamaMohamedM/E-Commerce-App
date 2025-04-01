@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class FruitItemImage extends StatelessWidget {
@@ -6,6 +8,7 @@ class FruitItemImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("+++++++++++"+image);
     return Image.network(
       image,
       fit: BoxFit.fill,

@@ -34,7 +34,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CartCubit(CartEntity()),
+      create: (context) => CartCubit(CartEntity(cartItemEntityList: [])),
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: currentIndex,

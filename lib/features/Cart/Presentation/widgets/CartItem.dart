@@ -28,13 +28,9 @@ class CartItem extends StatelessWidget {
                 QuantityAndPrice(
                   product: cartItemEntity,
                   counter: cartItemEntity.count,
-                  onIncrement: () => context
-                      .watch<CartCubit>()
-                      .addToCart(cartItemEntity.product),
+                  onIncrement: () => BlocProvider.of<CartCubit>(context).addToCart(cartItemEntity.product),
                   onDecrement: () {
-                    context
-                        .watch<CartCubit>()
-                        .decreaseFromCart(cartItemEntity.product);
+                   BlocProvider.of<CartCubit>(context).decreaseFromCart(cartItemEntity.product);
                   },
                 ),
               ],

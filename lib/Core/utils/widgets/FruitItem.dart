@@ -1,3 +1,4 @@
+
 import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +24,9 @@ class FruitItem extends StatelessWidget {
           ),
           Column(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               FruitItemImage(image: product.image!),
               const SizedBox(
                 height: 24,

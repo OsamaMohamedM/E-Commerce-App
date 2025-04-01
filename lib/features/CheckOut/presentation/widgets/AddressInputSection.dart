@@ -20,83 +20,86 @@ class _AddressInputSectionState extends State<AddressInputSection>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+   final order =  context.read<OrderEntity>();
     return ValueListenableBuilder<AutovalidateMode>(
       valueListenable: widget.autovalidateModeNotifier,
       builder: (context, value, child) => Form(
         key: widget.formKey,
-        child: Column(
-          children: [
-            CustomTextFormFiledItem(
-              onSaved: (String? val) {
-                context.read<OrderEntity>().shippingAddress!.name = val;
-              },
-              onPressed: () {},
-              isObscure: false,
-              isPassword: false,
-              title: "اسم المستخدم",
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CustomTextFormFiledItem(
-              onSaved: (String? val) {
-                context.read<OrderEntity>().shippingAddress!.email = val;
-              },
-              onPressed: () {},
-              isObscure: false,
-              isPassword: false,
-              title: "البريد الالكتروني",
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CustomTextFormFiledItem(
-              onSaved: (String? val) {
-                context.read<OrderEntity>().shippingAddress!.address = val;
-              },
-              onPressed: () {},
-              isObscure: false,
-              isPassword: false,
-              title: "العنوان",
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CustomTextFormFiledItem(
-              onPressed: () {},
-              isObscure: false,
-              isPassword: false,
-              title: "المدينة",
-              onSaved: (String? val) {
-                context.read<OrderEntity>().shippingAddress!.city = val;
-              },
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CustomTextFormFiledItem(
-              onPressed: () {},
-              isObscure: false,
-              isPassword: false,
-              title: 'رقم الطابق - رقم الشقة',
-              onSaved: (String? val) {
-                context.read<OrderEntity>().shippingAddress!.addressDetails =
-                    val;
-              },
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CustomTextFormFiledItem(
-              onPressed: () {},
-              isObscure: false,
-              isPassword: false,
-              title: "رقم الهاتف",
-              onSaved: (String? val) {
-                context.read<OrderEntity>().shippingAddress!.phone = val;
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextFormFiledItem(
+                onSaved: (String? val) {
+                  context.read<OrderEntity>().shippingAddress!.name = val;
+                },
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                title: "اسم المستخدم",
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onSaved: (String? val) {
+                  order.shippingAddress!.email = val;
+                },
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                title: "البريد الالكتروني",
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onSaved: (String? val) {
+                  context.read<OrderEntity>().shippingAddress!.address = val;
+                },
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                title: "العنوان",
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                title: "المدينة",
+                onSaved: (String? val) {
+                  context.read<OrderEntity>().shippingAddress!.city = val;
+                },
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                title: 'رقم الطابق - رقم الشقة',
+                onSaved: (String? val) {
+                  context.read<OrderEntity>().shippingAddress!.addressDetails =
+                      val;
+                },
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                title: "رقم الهاتف",
+                onSaved: (String? val) {
+                  context.read<OrderEntity>().shippingAddress!.phone = val;
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

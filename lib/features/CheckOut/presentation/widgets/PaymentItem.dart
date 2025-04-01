@@ -17,6 +17,7 @@ class PaymentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final order  = context.read<OrderEntity>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,7 +42,7 @@ class PaymentItem extends StatelessWidget {
           height: 8,
         ),
         AddressDetails(
-          address: context.read<OrderEntity>().shippingAddress!.toString(),
+          address: order.shippingAddress!.toString(),
           onPressed: () {
             pageController.jumpToPage(pageController.page!.toInt() - 1);
           },

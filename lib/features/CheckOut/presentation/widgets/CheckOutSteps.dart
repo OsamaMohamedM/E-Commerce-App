@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../Data/models/Order.dart';
 import 'StepItem.dart';
 
 class CheckOutSteps extends StatelessWidget {

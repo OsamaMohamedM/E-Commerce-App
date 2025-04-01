@@ -2,9 +2,9 @@ import '../../../../Core/Data/Model/ProductEntity.dart';
 import 'CartItem.dart';
 
 class CartEntity {
-  List<CartItemEntity> cartItemEntityList;
+  List<CartItemEntity> cartItemEntityList ;
 
-  CartEntity({this.cartItemEntityList = const []});
+  CartEntity({required this.cartItemEntityList });
 
   void addItem(ProductEntity product) {
     int index = findProduct(product);

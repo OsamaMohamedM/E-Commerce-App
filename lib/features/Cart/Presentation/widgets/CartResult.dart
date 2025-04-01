@@ -14,7 +14,7 @@ class CartResult extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Center(
         child: Text(
-          'لديك ${num} منتجات في السلة',
+          'لديك $num منتجات في السلة',
           style: TextStyles.regular13,
         ),
       ),

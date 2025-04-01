@@ -15,6 +15,7 @@ class PaymentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   final order  = (context.read<OrderEntity>());
     return PaymentItem(
         title: 'ملخص الطلب : ',
         pageController: pageController,
@@ -51,7 +52,8 @@ class PaymentSection extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '${context.read<OrderEntity>().payWithCash! ? 0.00 : 20.00} جنيه',
+                  
+                 '${order.payWithCash! ? 0.00 : 20.00} جنيه',
                   style: TextStyles.regular13
                       .copyWith(color: AppColors.darkGrayColor),
                   textAlign: TextAlign.right,

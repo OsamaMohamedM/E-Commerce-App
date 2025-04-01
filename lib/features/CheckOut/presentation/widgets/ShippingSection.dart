@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,6 +35,7 @@ class _ShippingSectionState extends State<ShippingSection>
             setState(() {
               selectedIndex = 0;
             });
+            log(context.read<OrderEntity>().payWithCash.toString());
           },
         ),
         const SizedBox(
@@ -48,6 +51,7 @@ class _ShippingSectionState extends State<ShippingSection>
             setState(() {
               selectedIndex = 1;
             });
+            log(context.read<OrderEntity>().payWithCash.toString());
           },
         ),
       ],

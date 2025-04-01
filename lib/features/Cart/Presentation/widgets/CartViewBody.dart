@@ -61,8 +61,6 @@ class CartViewBody extends StatelessWidget {
             right: 0,
             child: ElevatedButton(
               onPressed: () {
-                GoRouter.of(context).push(AppRoutes.checkOutView,
-                    extra: context.read<CartCubit>().cartEntity);
                 if (context.read<CartCubit>().getNumberOfItems() > 0) {
                   GoRouter.of(context).push(AppRoutes.checkOutView,
                       extra: context.read<CartCubit>().cartEntity);
