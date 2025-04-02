@@ -3,7 +3,6 @@ import '../../../Home/Presentation/widgets/QuantityItem.dart';
 import '../../Data/models/CartItem.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
-import '../../../../Core/utils/widgets/AddToCartButton.dart';
 
 class QuantityAndPrice extends StatelessWidget {
   final CartItemEntity product;

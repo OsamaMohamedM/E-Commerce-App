@@ -5,7 +5,7 @@ class ProductEntity {
   final String name;
   final String description;
   final double price;
-
+  final int calories;
   final bool isFeatured;
   final String? image;
   final int expirationMonths;
@@ -19,6 +19,7 @@ class ProductEntity {
     this.avgRating = 0,
     this.ratingCount = 0,
     required this.code,
+    required this.calories,
     required this.isFeatured,
     required this.expirationMonths,
     required this.isOrganic,
@@ -32,6 +33,7 @@ class ProductEntity {
   });
   factory ProductEntity.fromMap(Map<String, dynamic> map) {
     return ProductEntity(
+      calories: map['calories'],
       numSelling: map['numSelling'],
       code: map['code'],
       name: map['name'],
@@ -60,7 +62,9 @@ class ProductEntity {
         'ratingCount': ratingCount,
         'unitAmount': unitAmount,
         'reviews': reviews.map((e) => e.toMap()).toList(),
-        'numSelling': numSelling
+        'numSelling': numSelling,
+        'code': code,
+        'calories': calories
       };
 
   @override

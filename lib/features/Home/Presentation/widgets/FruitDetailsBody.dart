@@ -13,18 +13,8 @@ import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../Cart/view_model/cubit/cart_cubit.dart';
 
 class FruitDetailsBody extends StatelessWidget {
-  static ProductEntity product = ProductEntity(
-      name: 'بطيخ',
-      price: 20,
-      image: Assets.assetsImagesWaterMellonTest,
-      code: '',
-      isFeatured: true,
-      expirationMonths: 6,
-      isOrganic: true,
-      unitAmount: 1,
-      description:
-          'ينتمي إلى الفصيلة القرعية ولثمرته لُب حلو المذاق وقابل للأكل، وبحسب علم النبات فهي تعتبر ثمار لبيّة، تستعمل لفظة البطيخ للإشارة إلى النبات نفسه أو إلى الثمرة تحديداً');
-  const FruitDetailsBody({super.key});
+  final ProductEntity product;
+  const FruitDetailsBody({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +30,8 @@ class FruitDetailsBody extends StatelessWidget {
               ),
             ),
             child: Center(
-              child: Image.asset(
-                Assets.assetsImagesTest,
+              child: Image.network(
+                product.image!,
                 fit: BoxFit.fill,
               ),
             ),
@@ -101,25 +91,24 @@ class _CustomFruitDetailsState extends State<CustomFruitDetails> {
             ],
           ),
           const SizedBox(height: 8),
-          RatingAndReview(),
+          RatingAndReview(product: widget.product),
           const SizedBox(height: 8),
           Text(
             widget.product.description,
             style: TextStyles.regular13.copyWith(color: Color(0xFF9796A1)),
           ),
           const SizedBox(height: 16),
-          InfoCardGrid(),
+          InfoCardGrid(product: widget.product,),
           const SizedBox(height: 24),
           CustomButton(
               onPressed: () {
-                if(counter>0) {
-                  BlocProvider.of<CartCubit>(context).addToCart(widget.product  , counter :counter);
-                } else
-                {
+                if (counter > 0) {
+                  BlocProvider.of<CartCubit>(context)
+                      .addToCart(widget.product, counter: counter);
+                } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('يرجى اختيار كمية'),
-                      
                     ),
                   );
                 }
@@ -132,7 +121,45 @@ class _CustomFruitDetailsState extends State<CustomFruitDetails> {
   }
 }
 
+class RatingAndReview extends StatelessWidget {
+  final ProductEntity product;
+  const RatingAndReview({
+    super.key,
+    required this.product,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          Icons.star,
+          color: Colors.amber,
+        ),
+        const SizedBox(width: 9),
+        Text(
+          '${product.avgRating}',
+          style: TextStyles.semiBold13,
+        ),
+        const SizedBox(width: 9),
+        Text(
+          '${product.ratingCount}',
+          style: TextStyles.regular13.copyWith(color: Color(0xFF9796A1)),
+        ),
+        const SizedBox(width: 9),
+        Text('المراجعه',
+            style: TextStyles.bold13.copyWith(
+                color: AppColors.darkPrimaryColor,
+                decoration: TextDecoration.underline)),
+      ],
+    );
+  }
+}
+
 class InfoCardGrid extends StatelessWidget {
+  final ProductEntity product;
+
+  const InfoCardGrid({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -144,11 +171,11 @@ class InfoCardGrid extends StatelessWidget {
         mainAxisSpacing: 10.0,
         childAspectRatio: 1.6,
         children: [
-          _buildCard(Icons.calendar_today, "عام", "الصلاحية",
+          _buildCard(Icons.calendar_today, product.expirationMonths.toString(), "الصلاحية",
               Icon(Icons.calendar_today)),
-          _buildCard(Icons.eco, "100%", "أوجانيك",
+          _buildCard(Icons.eco, product.isOrganic ? "نعم" : "لا", "أوجانيك",
               SvgPicture.asset(Assets.assetsImagesLotus, fit: BoxFit.fill)),
-          _buildCard(Icons.local_fire_department, "80 كالوري", "100 جرام",
+          _buildCard(Icons.local_fire_department, product.calories.toString(), "100 جرام",
               SvgPicture.asset(Assets.assetsImagesCalories, fit: BoxFit.fill)),
           _buildCard(
               Icons.star,
@@ -194,39 +221,6 @@ class InfoCardGrid extends StatelessWidget {
           child,
         ],
       ),
-    );
-  }
-}
-
-class RatingAndReview extends StatelessWidget {
-  const RatingAndReview({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          Icons.star,
-          color: Colors.amber,
-        ),
-        const SizedBox(width: 9),
-        Text(
-          '4.5',
-          style: TextStyles.semiBold13,
-        ),
-        const SizedBox(width: 9),
-        Text(
-          '(+30)',
-          style: TextStyles.regular13.copyWith(color: Color(0xFF9796A1)),
-        ),
-        const SizedBox(width: 9),
-        Text('المراجعه',
-            style: TextStyles.bold13.copyWith(
-                color: AppColors.darkPrimaryColor,
-                decoration: TextDecoration.underline)),
-      ],
     );
   }
 }
