@@ -7,9 +7,9 @@ import '../../view_model/cubit/cart_cubit.dart';
 import 'ProductInfo.dart';
 import 'QuantityAndPrice.dart';
 
-class CartItem extends StatelessWidget {
+class CustomCartItem extends StatelessWidget {
   final CartItemEntity cartItemEntity;
-  const CartItem({super.key, required this.cartItemEntity});
+  const CustomCartItem({super.key, required this.cartItemEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +17,7 @@ class CartItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FruitItemImage(image: cartItemEntity.product.image!),
+        const SizedBox(width: 16),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
@@ -28,9 +29,11 @@ class CartItem extends StatelessWidget {
                 QuantityAndPrice(
                   product: cartItemEntity,
                   counter: cartItemEntity.count,
-                  onIncrement: () => BlocProvider.of<CartCubit>(context).addToCart(cartItemEntity.product),
+                  onIncrement: () => BlocProvider.of<CartCubit>(context)
+                      .addToCart(cartItemEntity.product),
                   onDecrement: () {
-                   BlocProvider.of<CartCubit>(context).decreaseFromCart(cartItemEntity.product);
+                    BlocProvider.of<CartCubit>(context)
+                        .decreaseFromCart(cartItemEntity.product);
                   },
                 ),
               ],

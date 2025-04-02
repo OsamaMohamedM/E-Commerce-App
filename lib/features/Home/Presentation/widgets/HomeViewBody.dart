@@ -1,5 +1,5 @@
 import 'package:e_commerce/features/Home/Presentation/widgets/CustomSearchFiled.dart';
-import 'package:e_commerce/features/Home/Presentation/widgets/TopSellingGridView.dart';
+import 'package:e_commerce/features/Home/Presentation/widgets/ProductsGridView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -33,7 +33,12 @@ class HomeViewBody extends StatelessWidget {
               const SizedBox(
                 height: 26,
               ),
-              CustomSearchFiled(),
+              GestureDetector(
+                onTap:(){
+
+                },
+                child: CustomSearchFiled()
+                ),
               SizedBox(
                   height: 200, child: ListFeaturedItem(itemWidth: itemWidth)),
               const SizedBox(

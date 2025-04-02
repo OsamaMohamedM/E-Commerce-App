@@ -1,5 +1,6 @@
-import 'dart:developer';
 
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class FruitItemImage extends StatelessWidget {
@@ -8,10 +9,16 @@ class FruitItemImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("+++++++++++"+image);
-    return Image.network(
-      image,
-      fit: BoxFit.fill,
+    return SizedBox(
+      width: 120,
+      child: Center(
+        child: CachedNetworkImage(
+          imageUrl: image,
+          fit: BoxFit.cover,
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+      ),
     );
   }
 }

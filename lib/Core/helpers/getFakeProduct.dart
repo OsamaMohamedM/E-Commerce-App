@@ -2,6 +2,7 @@ import 'package:e_commerce/Core/Data/Model/ProductEntity.dart';
 
 ProductEntity getProduct() {
   return ProductEntity(
+    calories: 20,
     name: 'Apple',
     price: 10,
     image:

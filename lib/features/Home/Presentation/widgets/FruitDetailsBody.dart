@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../Core/Data/Model/ProductEntity.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
+import '../../../../Core/utils/widgets/CustomAppBar.dart';
 import '../../../Cart/view_model/cubit/cart_cubit.dart';
 
 class FruitDetailsBody extends StatelessWidget {
@@ -19,28 +20,40 @@ class FruitDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            height: 300,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(Assets.assetsImagesCurveDetails),
-                fit: BoxFit.fill,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom:14.0),
+        child: Column(
+          children: [
+            Container(
+              height: 340,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(Assets.assetsImagesCurveDetails),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Column(
+                children: [
+                  CustomAppBar(
+                    tittle: "",
+                    visibleLeading: true,
+                    visibleTrailing: false,
+                  ),
+                  Center(
+                    child: Image.network(
+                      product.image!,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: Center(
-              child: Image.network(
-                product.image!,
-                fit: BoxFit.fill,
-              ),
+            const SizedBox(
+              height: 24,
             ),
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          CustomFruitDetails(product: product),
-        ],
+            CustomFruitDetails(product: product),
+          ],
+        ),
       ),
     );
   }
@@ -98,7 +111,9 @@ class _CustomFruitDetailsState extends State<CustomFruitDetails> {
             style: TextStyles.regular13.copyWith(color: Color(0xFF9796A1)),
           ),
           const SizedBox(height: 16),
-          InfoCardGrid(product: widget.product,),
+          InfoCardGrid(
+            product: widget.product,
+          ),
           const SizedBox(height: 24),
           CustomButton(
               onPressed: () {
@@ -171,11 +186,14 @@ class InfoCardGrid extends StatelessWidget {
         mainAxisSpacing: 10.0,
         childAspectRatio: 1.6,
         children: [
-          _buildCard(Icons.calendar_today, product.expirationMonths.toString(), "الصلاحية",
-              Icon(Icons.calendar_today)),
+          _buildCard(Icons.calendar_today, product.expirationMonths.toString(),
+              "الصلاحية", Icon(Icons.calendar_today)),
           _buildCard(Icons.eco, product.isOrganic ? "نعم" : "لا", "أوجانيك",
               SvgPicture.asset(Assets.assetsImagesLotus, fit: BoxFit.fill)),
-          _buildCard(Icons.local_fire_department, product.calories.toString(), "100 جرام",
+          _buildCard(
+              Icons.local_fire_department,
+              product.calories.toString(),
+              "100 جرام",
               SvgPicture.asset(Assets.assetsImagesCalories, fit: BoxFit.fill)),
           _buildCard(
               Icons.star,

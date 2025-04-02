@@ -5,7 +5,7 @@ import '../../../../Core/helpers/getFakeProduct.dart';
 import '../../../../Core/utils/widgets/CustomAppBar.dart';
 import '../../../../Core/utils/widgets/CustomErrorWidget.dart';
 import '../../../Home/Presentation/widgets/CustomSearchFiled.dart';
-import '../../../Home/Presentation/widgets/TopSellingGridView.dart';
+import '../../../Home/Presentation/widgets/ProductsGridView.dart';
 import '../../../Home/views_model/productCubit/bloc/ProductCubit.dart';
 import 'ProductHeader.dart';
 

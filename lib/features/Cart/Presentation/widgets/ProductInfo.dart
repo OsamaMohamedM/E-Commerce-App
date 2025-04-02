@@ -21,7 +21,7 @@ class ProductInfo extends StatelessWidget {
           children: [
             Text(product.product.name, style: TextStyles.bold13),
             Text(
-              product.clcWeight().toString(),
+              product.clcWeight().toString() + ' كيلو',
               style:
                   TextStyles.regular13.copyWith(color: AppColors.myAmberColor),
             ),

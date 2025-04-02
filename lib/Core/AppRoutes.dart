@@ -1,6 +1,4 @@
-
 import 'package:e_commerce/Core/Services/get_it.dart';
-import 'package:e_commerce/Core/utils/widgets/FruitItemDetails.dart';
 import 'package:e_commerce/features/Auth/Presentation/views/SignUp.dart';
 import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:e_commerce/features/Home/Presentation/views/MainView.dart';
@@ -11,6 +9,8 @@ import 'package:go_router/go_router.dart';
 import '../features/Cart/Data/models/CartEntity.dart';
 import '../features/CheckOut/presentation/view/CheckOutView.dart';
 import '../features/Home/Presentation/views/FruitDeatils.dart';
+import '../features/Search/Presentation/views/SearchView.dart';
+import 'Data/Model/ProductEntity.dart';
 import 'Services/AuthService.dart';
 
 class AppRoutes {
@@ -21,10 +21,12 @@ class AppRoutes {
   static const String cartView = '/CartView';
   static const String signUpView = '/signUpView';
   static const String homeView = '/homeView';
+  static const String fruitDetails = '/fruitDetails';
+  static const String searchView = '/searchView';
 
   static final GoRouter router = GoRouter(
     routes: [
-      GoRoute(path: splash, builder: (context, state) => const FruitDetails()),
+      GoRoute(path: splash, builder: (context, state) => const SplashView()),
       GoRoute(
           path: onBoardingView,
           builder: (context, state) => const OnBoardingView()),
@@ -35,9 +37,23 @@ class AppRoutes {
       GoRoute(
           path: checkOutView,
           builder: (context, state) {
-            return CheckOutView(
-                order: state.extra as CartEntity);
+            return CheckOutView(order: state.extra as CartEntity);
           }),
+      GoRoute(
+          path: searchView,
+          builder: (context, state) {
+            return SearchView(productEntityList: state.extra as List<ProductEntity>);
+          }),
+      GoRoute(
+        path: fruitDetails,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return FruitDetails(
+            product: extra['product'],
+            cartCubit: extra['cartCubit'],
+          );
+        },
+      ),
     ],
     redirect: (context, state) {
       if (state.fullPath == loginView ||

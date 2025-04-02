@@ -41,7 +41,7 @@ class CartViewBody extends StatelessWidget {
                     SizedBox(
                         width: double.infinity,
                         height: 150,
-                        child: CartItem(
+                        child: CustomCartItem(
                             cartItemEntity:
                                 cartEntity.cartItemEntityList[index])),
                     Divider(

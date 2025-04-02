@@ -1,6 +1,7 @@
 import 'package:e_commerce/Core/utils/constants/assetsImages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../styles/textStyles.dart';
 
@@ -37,9 +38,15 @@ class CustomAppBar extends StatelessWidget {
       ),
       leading: Visibility(
           visible: visibleLeading,
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {},
+          child: CircleAvatar(
+            
+            backgroundColor: Colors.white,
+            child: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+            ),
           )),
     );
   }

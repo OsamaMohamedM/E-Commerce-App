@@ -15,13 +15,13 @@ class ProductsGridView extends StatelessWidget {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 163 / 214,
+        childAspectRatio: 132 / 214,
         crossAxisSpacing: 8,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) => Padding(
           padding: const EdgeInsets.all(8.0),
-        child: FruitItem(
+          child: FruitGridViewItem(
               key: ValueKey(products[index].code), product: products[index]),
         ),
         childCount: products.length,
