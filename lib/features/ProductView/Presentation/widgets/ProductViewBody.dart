@@ -33,8 +33,8 @@ class ProductViewBody extends StatelessWidget {
                 height: 12,
               ),
               ProductViewHeader(
-                productLength:
-                    BlocProvider.of<ProductCubit>(context).productLength,
+                productLength: BlocProvider.of<ProductCubit>(context)
+                    .BestSellingProductLength,
               ),
               const SizedBox(
                 height: 12,
@@ -44,7 +44,10 @@ class ProductViewBody extends StatelessWidget {
           BlocBuilder<ProductCubit, ProductCubitState>(
             builder: (context, state) {
               if (state is ProductCubitFailure) {
-                return  SliverToBoxAdapter(child: CustomErrorWidget(message: state.message,));
+                return SliverToBoxAdapter(
+                    child: CustomErrorWidget(
+                  message: state.message,
+                ));
               } else if (state is ProductCubitSuccess) {
                 return ProductsGridView(
                   products: state.products,

@@ -1,9 +1,12 @@
+import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:e_commerce/features/Home/Presentation/widgets/CustomSearchFiled.dart';
 import 'package:e_commerce/features/Home/Presentation/widgets/ProductsGridView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../Core/AppRoutes.dart';
 import '../../../../Core/helpers/getFakeProduct.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
 import '../../../../Core/utils/widgets/CustomErrorWidget.dart';
@@ -34,11 +37,13 @@ class HomeViewBody extends StatelessWidget {
                 height: 26,
               ),
               GestureDetector(
-                onTap:(){
-
-                },
-                child: CustomSearchFiled()
-                ),
+                  onTap: () {
+                    GoRouter.of(context).push(AppRoutes.searchView, extra: {
+                      "product": context.read<ProductCubit>().products,
+                      "cartCubit": context.read<CartCubit>(),
+                    });
+                  },
+                  child: CustomSearchFiled()),
               SizedBox(
                   height: 200, child: ListFeaturedItem(itemWidth: itemWidth)),
               const SizedBox(
@@ -53,7 +58,8 @@ class HomeViewBody extends StatelessWidget {
           BlocBuilder<ProductCubit, ProductCubitState>(
             builder: (context, state) {
               if (state is ProductCubitFailure) {
-                return SliverToBoxAdapter(child: CustomErrorWidget(message : state.message));
+                return SliverToBoxAdapter(
+                    child: CustomErrorWidget(message: state.message));
               } else if (state is ProductCubitSuccess) {
                 return state.products.isEmpty
                     ? SliverToBoxAdapter(

@@ -1,7 +1,11 @@
 import 'package:e_commerce/Core/utils/widgets/FruitItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../Core/AppRoutes.dart';
+import '../../../Cart/view_model/cubit/cart_cubit.dart';
+import '../../../Home/views_model/productCubit/bloc/ProductCubit.dart';
 import '../../cubits/cubit/search_cubit.dart';
 import '../../cubits/cubit/search_state.dart';
 import 'RecentSearches.dart';
@@ -23,8 +27,14 @@ class SearchResults extends StatelessWidget {
               crossAxisSpacing: 8,
             ),
             itemCount: state.results.length,
-            itemBuilder: (context, index) => FruitGridViewItem(
-              product: state.results[index],
+            itemBuilder: (context, index) => GestureDetector(
+                  onTap: () =>GoRouter.of(context).push(AppRoutes.fruitDetails , extra: {
+                    "product": state.results[index],
+                    "cartCubit":context.read<CartCubit>()
+                  }),
+              child: FruitGridViewItem(
+                product: state.results[index],
+              ),
             ),
           );
         } else if (state is SearchErrorState) {

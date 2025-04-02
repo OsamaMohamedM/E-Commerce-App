@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Core/Data/Model/ProductEntity.dart';
@@ -18,7 +20,7 @@ class SearchCubit extends Cubit<SearchState> {
     Future.delayed(Duration(milliseconds: 500), () {
       List<ProductEntity> results =
           allProducts.where((product) => product.name.contains(query)).toList();
-
+     
       if (results.isNotEmpty) {
         if (!recentSearches.contains(query)) {
           recentSearches.add(query);

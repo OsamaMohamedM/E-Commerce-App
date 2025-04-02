@@ -10,7 +10,6 @@ import '../features/Cart/Data/models/CartEntity.dart';
 import '../features/CheckOut/presentation/view/CheckOutView.dart';
 import '../features/Home/Presentation/views/FruitDeatils.dart';
 import '../features/Search/Presentation/views/SearchView.dart';
-import 'Data/Model/ProductEntity.dart';
 import 'Services/AuthService.dart';
 
 class AppRoutes {
@@ -42,7 +41,11 @@ class AppRoutes {
       GoRoute(
           path: searchView,
           builder: (context, state) {
-            return SearchView(productEntityList: state.extra as List<ProductEntity>);
+            final extra = state.extra as Map<String, dynamic>;
+            return SearchView(
+              cartCubit: extra['cartCubit'],
+              productEntityList: extra['product'],
+            );
           }),
       GoRoute(
         path: fruitDetails,

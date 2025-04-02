@@ -21,4 +21,5 @@ void setupGetIt() {
   getIt.registerSingleton<ProductRepo>(
       ProductRepoImp(db: getIt<DataBaseService>()));
   getIt.registerSingleton<OrderRepo>(OrderRepoImp(getIt<DataBaseService>()));
+  
 }

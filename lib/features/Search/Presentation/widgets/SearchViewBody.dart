@@ -22,7 +22,7 @@ class SearchViewBody extends StatelessWidget {
             CustomAppBar(
                 tittle: 'البحث', visibleLeading: true, visibleTrailing: false),
             const SizedBox(height: 16),
-            CustomSearchFiled(),
+            CustomSearchFiled(enable: true,),
             const SizedBox(height: 16),
             Expanded(child: SearchResults()),
           ],
