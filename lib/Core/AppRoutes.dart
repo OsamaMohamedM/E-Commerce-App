@@ -1,5 +1,6 @@
 
 import 'package:e_commerce/Core/Services/get_it.dart';
+import 'package:e_commerce/Core/utils/widgets/FruitItemDetails.dart';
 import 'package:e_commerce/features/Auth/Presentation/views/SignUp.dart';
 import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:e_commerce/features/Home/Presentation/views/MainView.dart';
@@ -9,6 +10,7 @@ import 'package:e_commerce/features/onBoarding/presentation/views/onBoardingView
 import 'package:go_router/go_router.dart';
 import '../features/Cart/Data/models/CartEntity.dart';
 import '../features/CheckOut/presentation/view/CheckOutView.dart';
+import '../features/Home/Presentation/views/FruitDeatils.dart';
 import 'Services/AuthService.dart';
 
 class AppRoutes {
@@ -22,7 +24,7 @@ class AppRoutes {
 
   static final GoRouter router = GoRouter(
     routes: [
-      GoRoute(path: splash, builder: (context, state) => const SplashView()),
+      GoRoute(path: splash, builder: (context, state) => const FruitDetails()),
       GoRoute(
           path: onBoardingView,
           builder: (context, state) => const OnBoardingView()),

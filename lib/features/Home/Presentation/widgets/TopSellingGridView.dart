@@ -21,7 +21,7 @@ class ProductsGridView extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) => Padding(
           padding: const EdgeInsets.all(8.0),
-          child: FruitItem(
+        child: FruitItem(
               key: ValueKey(products[index].code), product: products[index]),
         ),
         childCount: products.length,

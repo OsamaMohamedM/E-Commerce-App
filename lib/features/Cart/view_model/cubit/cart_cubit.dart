@@ -8,8 +8,9 @@ class CartCubit extends Cubit<CartState> {
   CartEntity cartEntity;
   CartCubit(this.cartEntity) : super(CartInitial());
 
-  void addToCart(ProductEntity cartProductItem) {
-    cartEntity.addItem(cartProductItem);
+  void addToCart(ProductEntity cartProductItem , {int? counter}) {
+    cartEntity.addItem(cartProductItem , counter : counter );
+
     emit(CartItemAdded());
   }
 

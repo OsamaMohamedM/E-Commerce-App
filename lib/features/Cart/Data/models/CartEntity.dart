@@ -6,11 +6,11 @@ class CartEntity {
 
   CartEntity({required this.cartItemEntityList });
 
-  void addItem(ProductEntity product) {
+  void addItem(ProductEntity product , {int? counter}) {
     int index = findProduct(product);
     if (index == -1) {
       CartItemEntity cartItemEntity =
-          CartItemEntity(product: product, count: 1);
+          CartItemEntity(product: product, count: counter ?? 1);
       cartItemEntityList.add(cartItemEntity);
     } else {
       cartItemEntityList[index].count++;
