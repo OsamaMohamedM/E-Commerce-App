@@ -1,4 +1,4 @@
-import 'package:e_commerce/Core/Services/get_it.dart';
+
 import 'package:e_commerce/features/Auth/Presentation/views/SignUp.dart';
 import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:e_commerce/features/Home/Presentation/views/MainView.dart';
@@ -10,7 +10,6 @@ import '../features/Cart/Data/models/CartEntity.dart';
 import '../features/CheckOut/presentation/view/CheckOutView.dart';
 import '../features/Home/Presentation/views/FruitDeatils.dart';
 import '../features/Search/Presentation/views/SearchView.dart';
-import 'Services/AuthService.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -58,19 +57,19 @@ class AppRoutes {
         },
       ),
     ],
-    redirect: (context, state) {
-      if (state.fullPath == loginView ||
-          state.fullPath == signUpView ||
-          state.fullPath == onBoardingView) {
-        final bool isLoggedIn = getIt.get<AuthService>().isLogin();
-        if (isLoggedIn) {
-          return homeView;
-        } else {
-          return loginView;
-        }
-      } else {
-        return state.name;
-      }
-    },
+    // redirect: (context, state) {
+    //   if (state.fullPath == loginView ||
+    //       state.fullPath == signUpView ||
+    //       state.fullPath == onBoardingView) {
+    //     final bool isLoggedIn = getIt.get<AuthService>().isLogin();
+    //     if (isLoggedIn) {
+    //       return homeView;
+    //     } else {
+    //       return loginView;
+    //     }
+    //   } else {
+    //     return state.name;
+    //   }
+    //},
   );
 }

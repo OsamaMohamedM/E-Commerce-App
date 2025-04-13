@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../Core/AppRoutes.dart';
 import '../../../Cart/view_model/cubit/cart_cubit.dart';
-import '../../../Home/views_model/productCubit/bloc/ProductCubit.dart';
+
 import '../../cubits/cubit/search_cubit.dart';
 import '../../cubits/cubit/search_state.dart';
 import 'RecentSearches.dart';
