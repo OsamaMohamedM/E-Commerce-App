@@ -1,11 +1,12 @@
 import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
 import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
+import 'package:e_commerce/features/Profile/presentation/views/EditProfileDataView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/utils/widgets/CustomBottomNavigationBar.dart';
 import '../../../ProductView/Presentation/view/ProductView.dart';
-import '../../../Profile/presentation/views/profile.dart';
+import '../../../Profile/presentation/views/Profile.dart';
 import 'HomView.dart';
 
 class MainView extends StatefulWidget {
@@ -17,22 +18,23 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   int currentIndex = 0;
-
-  final List<Widget> pages = [
-    HomeView(),
-    ProductView(),
-    CartView(),
-    ProfileView(),
-  ];
-
   void onTabChange(int index) {
     setState(() {
       currentIndex = index;
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+  final List<Widget> pages = [
+    HomeView(),
+    ProductView(),
+    CartView(),
+    ProfileView(onTabChange :onTabChange),
+    EditProfileDataView(onTabChange :onTabChange),
+  ];
     return BlocProvider(
       create: (context) => CartCubit(CartEntity(cartItemEntityList: [])),
       child: Scaffold(

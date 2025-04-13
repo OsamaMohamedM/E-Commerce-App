@@ -9,11 +9,13 @@ class CustomAppBar extends StatelessWidget {
   final String tittle;
   final bool visibleLeading;
   final bool visibleTrailing;
+  final void Function()? onPressed;
   const CustomAppBar({
     required this.tittle,
     this.visibleLeading = true,
     this.visibleTrailing = true,
     super.key,
+    this.onPressed,
   });
 
   @override
@@ -43,9 +45,7 @@ class CustomAppBar extends StatelessWidget {
             backgroundColor: Colors.white,
             child: IconButton(
               icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                GoRouter.of(context).pop();
-              },
+              onPressed: onPressed ?? () => GoRouter.of(context).pop(),
             ),
           )),
     );

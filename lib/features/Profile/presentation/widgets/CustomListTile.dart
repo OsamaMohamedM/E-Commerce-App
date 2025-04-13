@@ -6,12 +6,17 @@ import '../../../../Core/utils/styles/textStyles.dart';
 class CustomListTile extends StatelessWidget {
   final String title;
   final Widget leading;
+  final Widget trialing;
   final Function() onTap;
   const CustomListTile({
     super.key,
     required this.title,
     required this.leading,
     required this.onTap,
+    this.trialing = const Icon(
+        Icons.arrow_forward_ios_rounded,
+        color: AppColors.darkPrimaryColor,
+      )
   });
 
   @override
@@ -23,10 +28,7 @@ class CustomListTile extends StatelessWidget {
         title,
         style: TextStyles.semiBold13,
       ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios_rounded,
-        color: AppColors.darkPrimaryColor,
-      ),
+      trailing: trialing,
     );
   }
 }

@@ -9,15 +9,16 @@ class CustomTextFormFiledItem extends StatelessWidget {
     required this.title,
     this.isObscure = false,
     this.isPassword = false,
-    required this.onPressed,
+     this.onPressed,
     this.onSaved,
   });
 
   final String title;
   final bool isObscure;
   final bool isPassword;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final void Function(String?)? onSaved;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(

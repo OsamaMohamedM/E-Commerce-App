@@ -9,7 +9,8 @@ import 'CustomListTile.dart';
 import 'UserProfileInformationView.dart';
 
 class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({super.key});
+  final void Function(int index) onTabChange;
+  const ProfileViewBody({super.key , required this.onTabChange});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,9 @@ class ProfileViewBody extends StatelessWidget {
           CustomListTile(
             title: 'الملف الشخصي',
             leading: Icon(Icons.person, color: AppColors.darkPrimaryColor),
-            onTap: () {},
+            onTap: () {
+              onTabChange(4);
+            },
           ),
           const SizedBox(
             height: 5,
@@ -78,6 +81,10 @@ class ProfileViewBody extends StatelessWidget {
           CustomListTile(
             title: 'الوضع',
             leading: Icon(Icons.dark_mode, color: AppColors.darkPrimaryColor),
+            trialing: Switch(
+              value: true,
+              onChanged: (value) {},            
+            ),
             onTap: () {},
           ),
           const SizedBox(
