@@ -112,29 +112,34 @@ class ProfileViewBody extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color(0xffEBF9F1),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Center(
-                  child: Text(
-                    'تسجيل الخروج',
-                    style: TextStyles.semiBold13,
+          GestureDetector(
+            onTap: () {
+              
+            },
+            child: Container(
+              height: 40,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Color(0xffEBF9F1),
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      'تسجيل الخروج',
+                      style: TextStyles.semiBold13,
+                    ),
                   ),
-                ),
-                Positioned(
-                  left: 30,
-                  child: Icon(
-                    Icons.logout,
-                    color: AppColors.darkPrimaryColor,
+                  Positioned(
+                    left: 30,
+                    child: Icon(
+                      Icons.logout,
+                      color: AppColors.darkPrimaryColor,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           )
         ],
