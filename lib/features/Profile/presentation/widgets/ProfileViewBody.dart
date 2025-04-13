@@ -10,7 +10,7 @@ import 'UserProfileInformationView.dart';
 
 class ProfileViewBody extends StatelessWidget {
   final void Function(int index) onTabChange;
-  const ProfileViewBody({super.key , required this.onTabChange});
+  const ProfileViewBody({super.key, required this.onTabChange});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,8 @@ class ProfileViewBody extends StatelessWidget {
             height: 16,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
             child: UserProfileInformationView(),
           ),
           const SizedBox(
@@ -56,7 +57,9 @@ class ProfileViewBody extends StatelessWidget {
           CustomListTile(
             title: 'طلباتي',
             leading: SvgPicture.asset(Assets.assetsImagesBox),
-            onTap: () {},
+            onTap: () {
+              onTabChange(5);
+            },
           ),
           const SizedBox(
             height: 5,
@@ -83,7 +86,7 @@ class ProfileViewBody extends StatelessWidget {
             leading: Icon(Icons.dark_mode, color: AppColors.darkPrimaryColor),
             trialing: Switch(
               value: true,
-              onChanged: (value) {},            
+              onChanged: (value) {},
             ),
             onTap: () {},
           ),
@@ -91,7 +94,7 @@ class ProfileViewBody extends StatelessWidget {
             height: 22,
           ),
           Padding(
-            padding:const EdgeInsets.symmetric(horizontal: 14.0),
+            padding: const EdgeInsets.symmetric(horizontal: 14.0),
             child: Text(
               'المساعدة',
               style: TextStyles.semiBold13,
@@ -102,7 +105,8 @@ class ProfileViewBody extends StatelessWidget {
           ),
           CustomListTile(
             title: 'من نحن',
-            leading: Icon(Icons.info_outline, color: AppColors.darkPrimaryColor),
+            leading:
+                Icon(Icons.info_outline, color: AppColors.darkPrimaryColor),
             onTap: () {},
           ),
           const SizedBox(
@@ -138,4 +142,3 @@ class ProfileViewBody extends StatelessWidget {
     );
   }
 }
-

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/utils/widgets/CustomBottomNavigationBar.dart';
 import '../../../ProductView/Presentation/view/ProductView.dart';
+import '../../../Profile/presentation/views/OrderHistory.dart';
 import '../../../Profile/presentation/views/Profile.dart';
 import 'HomView.dart';
 
@@ -34,6 +35,7 @@ class _MainViewState extends State<MainView> {
     CartView(),
     ProfileView(onTabChange :onTabChange),
     EditProfileDataView(onTabChange :onTabChange),
+    OrderHistory(onTabChange :onTabChange),
   ];
     return BlocProvider(
       create: (context) => CartCubit(CartEntity(cartItemEntityList: [])),
