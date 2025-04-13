@@ -3,9 +3,9 @@ import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../Core/utils/widgets/CustomBottomNavigationBar.dart';
 import '../../../ProductView/Presentation/view/ProductView.dart';
+import '../../../Profile/presentation/views/profile.dart';
 import 'HomView.dart';
 
 class MainView extends StatefulWidget {
@@ -22,7 +22,7 @@ class _MainViewState extends State<MainView> {
     HomeView(),
     ProductView(),
     CartView(),
-    Center(child: Text("الحساب")),
+    ProfileView(),
   ];
 
   void onTabChange(int index) {

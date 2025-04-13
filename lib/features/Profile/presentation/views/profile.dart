@@ -8,7 +8,7 @@ const ProfileView({ super.key });
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body: ProfileViewBody(),
+      body: SafeArea(child: ProfileViewBody()),
     );
   }
 }
