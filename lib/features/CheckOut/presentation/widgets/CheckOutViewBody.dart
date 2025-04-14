@@ -112,7 +112,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
                           content: Text('تم اضافة الطلب بنجاح'),
                         ),
                       );
-                      GoRouter.of(context).push(AppRoutes.homeView);
+                      GoRouter.of(context).push(AppRoutes.mainView);
                     }
                     else
                     {

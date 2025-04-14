@@ -1,11 +1,11 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../data/models/CustomerOrder.dart';
 import 'TrackingStatusTile.dart';
 import 'package:intl/intl.dart';
 
-
-class OrderCard extends StatelessWidget {
+class OrderCard extends StatefulWidget {
   final CustomerOrder order;
   final bool isExpanded;
   final VoidCallback onTap;
@@ -18,24 +18,35 @@ class OrderCard extends StatelessWidget {
   });
 
   @override
+  State<OrderCard> createState() => _OrderCardState();
+}
+
+class _OrderCardState extends State<OrderCard> {
+  @override
   Widget build(BuildContext context) {
+    log(widget.isExpanded.toString());
     return Column(
       children: [
         ListTile(
-          onTap: onTap,
+          onTap: widget.onTap,
           leading: Icon(
-            isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+            widget.isExpanded
+                ? Icons.keyboard_arrow_up
+                : Icons.keyboard_arrow_down,
           ),
-          title: Text("طلب رقم: ${order.id}"),
+          title: Text("طلب رقم: ${widget.order.id}"),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "تم الطلب: ${DateFormat('d MMMM، yyyy', 'ar').format(order.date)}",
-                   
+                "تم الطلب: ${DateFormat('d MMMM، yyyy', 'ar').format(widget.order.date)}",
               ),
-              Text("عدد الطلبات: ${order.itemCount}",   ),
-              Text("${order.total} جنيه",     ),
+              Text(
+                "عدد الطلبات: ${widget.order.itemCount}",
+              ),
+              Text(
+                "${widget.order.total} جنيه",
+              ),
             ],
           ),
           trailing: Container(
@@ -48,11 +59,13 @@ class OrderCard extends StatelessWidget {
             child: Icon(Icons.inventory_2_outlined),
           ),
         ),
-        if (isExpanded)
+        if (widget.isExpanded)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
-              children: order.status.map((status) => TrackingStatusTile(status: status)).toList(),
+              children: widget.order.status
+                  .map((status) => TrackingStatusTile(status: status))
+                  .toList(),
             ),
           ),
         Divider(),

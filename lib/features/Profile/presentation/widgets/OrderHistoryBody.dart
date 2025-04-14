@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/utils/widgets/CustomAppBar.dart';
@@ -49,11 +51,13 @@ class _OrderHistoryBodyState extends State<OrderHistoryBody> {
             child: BlocBuilder<OrderManagementCubit, OrderState>(
               builder: (context, state) {
                 if (state is OrderLoading) {
+                  log("orders length");
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is OrderLoaded) {
                   final orders = state.orders;
-                  expanded = List.generate(orders.length, (_) => false);
-
+                  if (expanded.length != orders.length) {
+                    expanded = List.generate(orders.length, (_) => false);
+                  }
                   return ListView.builder(
                     itemCount: orders.length,
                     itemBuilder: (context, index) {

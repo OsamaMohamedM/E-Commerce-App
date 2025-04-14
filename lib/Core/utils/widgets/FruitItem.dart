@@ -19,7 +19,7 @@ class FruitGridViewItem extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(AppRoutes.fruitDetails, extra: {
           "product": product,
-          "cartCubit":context.read<CartCubit>()
+          "cartCubit": context.read<CartCubit>()
         });
       },
       child: Container(
@@ -28,9 +28,9 @@ class FruitGridViewItem extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              top: 10,
-              right: 0,
-              child: FavoriteButton(),
+              top: 0,
+              right: -5,
+              child: FavoriteButton(productId: product.code),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 14.0),

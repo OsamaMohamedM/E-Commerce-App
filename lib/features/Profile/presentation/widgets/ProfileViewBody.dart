@@ -72,7 +72,9 @@ class ProfileViewBody extends StatelessWidget {
             title: 'المفضلة',
             leading: Icon(Icons.favorite_border_outlined,
                 color: AppColors.darkPrimaryColor),
-            onTap: () {},
+            onTap: () {
+               onTabChange(6);
+            },
           ),
           const SizedBox(
             height: 5,
@@ -84,18 +86,6 @@ class ProfileViewBody extends StatelessWidget {
           ),
           const SizedBox(
             height: 5,
-          ),
-          CustomListTile(
-            title: 'الوضع',
-            leading: Icon(Icons.dark_mode, color: AppColors.darkPrimaryColor),
-            trialing: Switch(
-              value: true,
-              onChanged: (value) {},
-            ),
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 22,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14.0),

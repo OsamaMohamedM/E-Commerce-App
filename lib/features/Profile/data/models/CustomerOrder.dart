@@ -3,8 +3,8 @@ import 'TrackingStatus.dart';
 class CustomerOrder {
   final String id;
   final DateTime date;
-  final int itemCount;
-  final double total;
+  final num itemCount;
+  final num total;
   final List<TrackingStatus> status;
   final String PayWithCash;
 

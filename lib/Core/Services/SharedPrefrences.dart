@@ -23,4 +23,11 @@ class SharedPreferencesHelper {
   static Future<void> remove(String key) async {
     await _preferences.remove(key);
   }
+
+  static Future<void> setStringList(String key, List<String> value) async {
+    await _preferences.setStringList(key, value);
+  }
+  static List<String>? getStringList(String key) {
+    return _preferences.getStringList(key);
+  }
 }

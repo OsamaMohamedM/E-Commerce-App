@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
+import 'package:flutter/material.dart';
 import 'ShippingAddress.dart';
 
 class OrderEntity  {
@@ -15,11 +16,32 @@ class OrderEntity  {
   }) : shippingAddress = shippingAddress ?? ShippingAddressEntity();
 
   toMap() => {
-        'id': uid,
-        'itemCount': cartEntity.clcTotal(),
+        'id': UniqueKey().toString(),
+        'itemCount': cartEntity.ClcCount(),
         'payMethood': (payWithCash == true ? 'Cash' : 'payPal'),
         'uid': uid,
-        'status': 'pending',
+        'status': [
+          {
+            'tittle': 'تتبع الطلب',
+            'status': true,
+            'date': DateTime.now().toString(),
+          },
+          {
+            'tittle': 'قبول الطلب',
+            'status': false,
+            'date': DateTime.now().toString(),
+          },
+          {
+            'tittle': 'تم شحن الطلب',
+            'status': false,
+            'date': DateTime.now().toString(),
+          },
+          {
+            'tittle': 'تم تسليم',
+            'status': false,
+            'date': DateTime.now().toString(),
+          },
+        ],
         'date': DateTime.now().toString(),
         'cartEntity': cartEntity.toJson(),
         'total': cartEntity.clcTotal(),

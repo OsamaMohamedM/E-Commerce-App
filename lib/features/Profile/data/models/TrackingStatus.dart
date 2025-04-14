@@ -10,9 +10,9 @@ class TrackingStatus {
   });
   factory TrackingStatus.fromMap(Map<String, dynamic> map) {
     return TrackingStatus(
-      title: map['title'] ?? '',
+      title: map['tittle'] ?? '',
       date: map['date'] ?? '',
-      isCompleted: map['isCompleted'] ?? false,
+      isCompleted: map['status'] ?? false,
     );
   }
 }
