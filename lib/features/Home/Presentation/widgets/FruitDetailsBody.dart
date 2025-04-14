@@ -28,7 +28,7 @@ class FruitDetailsBody extends StatelessWidget {
               height: 340,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(Assets.assetsImagesCurveDetails),
+                  image: AssetImage(Assets.assetsImagesCurveDetails ),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -43,6 +43,8 @@ class FruitDetailsBody extends StatelessWidget {
                     child: Image.network(
                       product.image!,
                       fit: BoxFit.fill,
+                      height: 200,
+                      width: 200,
                     ),
                   ),
                 ],

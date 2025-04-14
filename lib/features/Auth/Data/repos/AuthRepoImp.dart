@@ -73,7 +73,10 @@ class AuthRepoImp extends AuthRepo {
 
       return await result.fold(
         (user) async {
-          return left(await db.getUserData(path: BackEndEndPoints.users, uid: user.uid));
+          final userEntity =
+              await db.getUserData(path: BackEndEndPoints.users, uid: user.uid);
+          await saveLocalData(userData: userEntity);
+         return  left(userEntity);
         },
         (exception) => right(Serverfailure(exception.message)),
       );

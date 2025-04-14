@@ -4,16 +4,16 @@ class ProductEntity {
   final String code;
   final String name;
   final String description;
-  final double price;
-  final int calories;
+  final num price;
+  final num calories;
   final bool isFeatured;
   final String? image;
-  final int expirationMonths;
+  final num expirationMonths;
   final bool isOrganic;
   final num avgRating;
   final num ratingCount;
-  final int unitAmount;
-  final int numSelling;
+  final num unitAmount;
+  final num numSelling;
   final List<Review> reviews;
   ProductEntity({
     this.avgRating = 0,
