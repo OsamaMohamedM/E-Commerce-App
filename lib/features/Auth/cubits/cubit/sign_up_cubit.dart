@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/features/Auth/Data/entity/User.dart';
 import 'package:e_commerce/features/Auth/Data/repos/authRepo.dart';
@@ -12,6 +14,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       required String password,
       required String name}) async {
     emit(SignUpLoading());
+    log("============ ${name}");
     final result = await _authRepo.createUserWithEmailPassword(
         email: email, password: password, name: name);
     result.fold((user) => emit(SignUpSuccess(user)),

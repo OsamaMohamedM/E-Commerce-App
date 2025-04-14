@@ -20,4 +20,7 @@ class SharedPreferencesHelper {
   static Future setMap(String key , String value) async {
     await _preferences.setString(key, value);
   }
+  static Future<void> remove(String key) async {
+    await _preferences.remove(key);
+  }
 }

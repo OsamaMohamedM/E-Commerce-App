@@ -33,7 +33,11 @@ class AuthRepoImp extends AuthRepo {
       return await result.fold(
         (user) async {
           UserData userData = UserData(
-              name: name, password: password, email: email, id: user.uid);
+              isFromSocial: false,
+              name: name,
+              password: password,
+              email: email,
+              id: user.uid);
           return await _handleUserCreation(userData);
         },
         (failure) => right(Serverfailure(failure.message)),
@@ -69,9 +73,7 @@ class AuthRepoImp extends AuthRepo {
 
       return await result.fold(
         (user) async {
-          UserData userData = UserData(
-              id: user.uid, email: email, password: password, name: "");
-          return await _handleUserLogin(userData);
+          return left(await db.getUserData(path: BackEndEndPoints.users, uid: user.uid));
         },
         (exception) => right(Serverfailure(exception.message)),
       );
@@ -89,10 +91,12 @@ class AuthRepoImp extends AuthRepo {
       return await result.fold(
         (user) async {
           UserData userData = UserData(
-              id: user.uid,
-              email: user.email!,
-              password: "",
-              name: user.displayName ?? "");
+            id: user.uid,
+            email: user.email!,
+            password: "",
+            name: user.displayName ?? "",
+            isFromSocial: true,
+          );
           return await _handleUserLogin(userData);
         },
         (exception) => right(Serverfailure(exception.message)),
@@ -111,10 +115,12 @@ class AuthRepoImp extends AuthRepo {
       return await result.fold(
         (user) async {
           UserData userData = UserData(
-              id: user.uid,
-              email: user.email!,
-              password: "",
-              name: user.displayName ?? "");
+            id: user.uid,
+            email: user.email!,
+            password: "",
+            name: user.displayName ?? "",
+            isFromSocial: true,
+          );
           return await _handleUserLogin(userData);
         },
         (exception) => right(Serverfailure(exception.message)),
@@ -133,6 +139,7 @@ class AuthRepoImp extends AuthRepo {
       return await result.fold(
         (user) async {
           UserData userData = UserData(
+              isFromSocial: true,
               id: user.uid,
               email: user.email!,
               password: "",
@@ -150,7 +157,7 @@ class AuthRepoImp extends AuthRepo {
   Future<Either<UserData, Failure>> _handleUserLogin(UserData user) async {
     try {
       await addUser(data: user.toMap());
-       await saveLocalData(userData: user);
+      await saveLocalData(userData: user);
       return left(user);
     } catch (dbError) {
       log('Error adding user to DB after login: ${dbError.toString()}');
@@ -162,7 +169,7 @@ class AuthRepoImp extends AuthRepo {
   Future<void> addUser({required Map<String, dynamic> data}) async {
     if (data.isEmpty) return;
     try {
-      await db.addData(BackEndEndPoints.users, data);
+      await db.addData(BackEndEndPoints.users, data, id: data['id']);
       log('User added to database successfully.');
     } catch (e) {
       log('Error in addUser: ${e.toString()}');
@@ -171,6 +178,7 @@ class AuthRepoImp extends AuthRepo {
   }
 
   Future saveLocalData({required UserData userData}) async {
-    await SharedPreferencesHelper.setMap(userPref, jsonEncode(userData.toMap()));
+    await SharedPreferencesHelper.setMap(
+        userPref, jsonEncode(userData.toMap()));
   }
 }

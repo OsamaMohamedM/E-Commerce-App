@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/utils/widgets/CustomAppBar.dart';
-import '../../data/models/CustomerOrder.dart';
-import '../../data/models/TrackingStatus.dart';
+
+import '../../cubits/OrderHistoryCubit/order_history_cubit.dart';
+import '../../cubits/OrderHistoryCubit/order_history_state.dart';
 import 'OrderCard.dart';
 
 class OrderHistoryBody extends StatefulWidget {
   final void Function(int index) onTabChange;
-  const OrderHistoryBody({super.key, required this.onTabChange});
+  final String uid;
+
+  const OrderHistoryBody({
+    super.key,
+    required this.onTabChange,
+    required this.uid,
+  });
 
   @override
-  _OrderHistoryBodyState createState() => _OrderHistoryBodyState();
+  State<OrderHistoryBody> createState() => _OrderHistoryBodyState();
 }
 
 class _OrderHistoryBodyState extends State<OrderHistoryBody> {
-  List<bool> expanded = [false];
+  List<bool> expanded = [];
 
-  List<CustomerOrder> orders = [
-    CustomerOrder(
-      id: '#1234567',
-      date: DateTime(2024, 3, 22),
-      itemCount: 10,
-      total: 250,
-      status: [
-        TrackingStatus(
-            title: 'تتبع الطلب', date: '22 مارس، 2024', isCompleted: true),
-        TrackingStatus(
-            title: 'قبول الطلب', date: '22 مارس، 2024', isCompleted: true),
-        TrackingStatus(
-            title: 'تم شحن الطلب', date: '22 مارس، 2024', isCompleted: true),
-        TrackingStatus(title: 'خرج للتوصيل', date: '', isCompleted: false),
-        TrackingStatus(title: 'تم التسليم', date: '', isCompleted: false),
-      ],
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<OrderManagementCubit>().getOrders(widget.uid);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +46,33 @@ class _OrderHistoryBodyState extends State<OrderHistoryBody> {
           ),
           const SizedBox(height: 16),
           Expanded(
-            child: ListView.builder(
-              itemCount: orders.length,
-              itemBuilder: (context, index) {
-                return OrderCard(
-                  order: orders[index],
-                  isExpanded: expanded[index],
-                  onTap: () {
-                    setState(() {
-                      expanded[index] = !expanded[index];
-                    });
-                  },
-                );
+            child: BlocBuilder<OrderManagementCubit, OrderState>(
+              builder: (context, state) {
+                if (state is OrderLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is OrderLoaded) {
+                  final orders = state.orders;
+                  expanded = List.generate(orders.length, (_) => false);
+
+                  return ListView.builder(
+                    itemCount: orders.length,
+                    itemBuilder: (context, index) {
+                      return OrderCard(
+                        order: orders[index],
+                        isExpanded: expanded[index],
+                        onTap: () {
+                          setState(() {
+                            expanded[index] = !expanded[index];
+                          });
+                        },
+                      );
+                    },
+                  );
+                } else if (state is OrderError) {
+                  return Center(child: Text(state.message));
+                } else {
+                  return const SizedBox();
+                }
               },
             ),
           ),

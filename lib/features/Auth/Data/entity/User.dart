@@ -6,12 +6,15 @@ class UserData {
   final String email;
   final String id;
   final String? image;
+  final bool isFromSocial;
   UserData(
       {required this.name,
       this.image,
       required this.password,
       required this.email,
-      required this.id});
+      required this.id,
+      this.isFromSocial = true
+      });
 
   factory UserData.fromFirebase(User user) {
     return UserData(
@@ -23,17 +26,17 @@ class UserData {
   }
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-        image: json['image']??'',
-        name: json['name']??'',
-        password: json['password']??'',
-        email: json['email']?? '',
-        id: json['id']??'',
+        image: json['image'] ?? '',
+        name: json['name'] ?? '',
+        password: json['password'] ?? '',
+        email: json['email'] ?? '',
+        id: json['id'] ?? '',
       );
-  toMap() => {'name': name, 'email': email, 'id': id};
+  toMap() => {'name': name, 'email': email, 'id': id , 'image': image , 'password': password , 'isFromSocial': isFromSocial};
 
   UserData copyWith({
     UserData? userData,
-  }){
+  }) {
     return UserData(
       name: userData?.name ?? name,
       password: userData?.password ?? password,
@@ -42,6 +45,7 @@ class UserData {
       image: userData?.image ?? image,
     );
   }
+
   get getName => name;
   get getPassword => password;
   get getEmail => email;

@@ -19,5 +19,6 @@ abstract class AuthService {
     String? currentPassword,
   });
   Future deleteUser();
+  Future<void> signOut();
   bool isLogin();
 }

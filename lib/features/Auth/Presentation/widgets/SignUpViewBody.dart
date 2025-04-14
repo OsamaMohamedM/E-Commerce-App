@@ -19,9 +19,8 @@ class SignUpViewBody extends StatefulWidget {
 }
 
 class _SignUpViewBodyState extends State<SignUpViewBody> {
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  
+  String name = '', email = '', password = '';
   bool isPasswordObscure = true;
   late bool checkboxValue = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -33,13 +32,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
     });
   }
 
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +39,18 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         child: Form(
+          key: formKey,
           child: Column(
             children: [
               CustomAppBarAuth(title: "حساب جديد", onPress: () {}),
               const SizedBox(height: 24),
               CustomTextFormFiledItem(
+                onChanged: (value) => name = value ?? '',
                   hint: 'اسم المستخدم', onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTextFormField(
+                onChanged: (value) => email = value ?? '',
+                onChanged2: (value) => password = value ?? '',
                   isPasswordObscure: isPasswordObscure, onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTermsAndConditionsRow(onChanged: (value) {
@@ -65,13 +61,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 title: "إنشاء حساب جديد",
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-
+                   
                     if (checkboxValue) {
                       context.read<SignUpCubit>().createUserWithEmailPassword(
-                          name: nameController.text,
-                          email: emailController.text,
-                          password: passwordController.text);
+                          name: name,
+                          email: email,
+                          password: password);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

@@ -21,6 +21,7 @@ class AppRoutes {
   static const String cartView = '/CartView';
   static const String signUpView = '/signUpView';
   static const String homeView = '/homeView';
+  static const String mainView = '/mainView';
   static const String fruitDetails = '/fruitDetails';
   static const String searchView = '/searchView';
   static const String search = '/search';
@@ -35,7 +36,7 @@ class AppRoutes {
           builder: (context, state) => const OnBoardingView()),
       GoRoute(path: loginView, builder: (context, state) => const LoginView()),
       GoRoute(path: signUpView, builder: (context, state) => const SignUp()),
-      GoRoute(path: homeView, builder: (context, state) => const MainView()),
+      GoRoute(path: mainView, builder: (context, state) => const MainView()),
       GoRoute(path: cartView, builder: (context, state) => const CartView()),
       GoRoute(
           path: checkOutView,

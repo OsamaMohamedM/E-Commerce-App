@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/Core/Services/DataBaseService.dart';
+import 'package:e_commerce/Core/Services/SharedPrefrences.dart';
 import 'package:e_commerce/Core/errors/AuthError.dart';
 import 'package:e_commerce/Core/errors/Exceptions.dart';
 import 'package:e_commerce/Core/utils/constants/BackEndEndPoints.dart';
+import 'package:e_commerce/Core/utils/constants/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -24,6 +26,7 @@ class FireBaseAuthService extends AuthService {
   Future<Either<User, CustomException>> createUserWithEmailPassword(
       {required String email, required String password}) async {
     try {
+      log(email + password);
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -118,8 +121,6 @@ class FireBaseAuthService extends AuthService {
   @override
   Future<Either<User, CustomException>> signInWithApple() async {
     try {
-      // Implement Apple sign-in logic here
-      // For example, using `sign_in_with_apple` package
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -214,26 +215,28 @@ class FireBaseAuthService extends AuthService {
       if ((newEmail != null || newPassword != null) &&
           currentPassword != null) {
         final cred = EmailAuthProvider.credential(
-          email: user.email!,
+          email: 'ososomo242@gmail.com',
           password: currentPassword,
         );
-
+        log(currentPassword.toString());
+        log(user.email.toString());
         await user.reauthenticateWithCredential(cred);
       }
 
+
       if (newEmail != null) {
-        await user.updateEmail(newEmail);
+
+        await user.verifyBeforeUpdateEmail(newEmail);
       }
 
-      if (newPassword != null) {
+      if (newPassword!.isNotEmpty) {
         await user.updatePassword(newPassword);
       }
       await db.updateData(
         BackEndEndPoints.users,
         user.uid,
         {
-          'email': newEmail ?? user.email,
-          'displayName': displayName ?? user.displayName,
+          'name': displayName ?? user.displayName,
           'photoUrl': user.photoURL,
         },
       );
@@ -247,4 +250,11 @@ class FireBaseAuthService extends AuthService {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    await SharedPreferencesHelper.remove(userPref);
+    await FirebaseAuth.instance.signOut();
+  }
+  
 }

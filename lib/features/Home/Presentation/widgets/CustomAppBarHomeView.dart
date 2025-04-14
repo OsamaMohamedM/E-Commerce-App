@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +15,10 @@ class CustomAppBarHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("${context.read<CartCubit>().userData?.image ?? "osmaa"}");
+    final imageUrl = context.read<CartCubit>().userData?.image;
     return ListTile(
-      leading: context.read<CartCubit>().userData?.image != null
+      leading:  imageUrl!= null && imageUrl.isNotEmpty
           ? ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
@@ -30,7 +34,7 @@ class CustomAppBarHomeView extends StatelessWidget {
               fit: BoxFit.cover,
             ),
       title: Text(
-       fetchAppBarData(),
+        fetchAppBarData(),
         style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
         textAlign: TextAlign.start,
       ),

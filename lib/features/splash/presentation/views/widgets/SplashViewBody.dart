@@ -28,12 +28,12 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void _navigateToOnBoarding()async {
     final user =
-       await SharedPreferencesHelper.getValue(userPref); //as Map<String, dynamic>?;    
+       await SharedPreferencesHelper.getValue(userPref);     
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         if (user != null) {
           context.read<CartCubit>().userData  = UserData.fromJson(jsonDecode(user));
-          GoRouter.of(context).go(AppRoutes.homeView);
+          GoRouter.of(context).go(AppRoutes.mainView);
         } else {
          GoRouter.of(context).go(AppRoutes.loginView);
         }

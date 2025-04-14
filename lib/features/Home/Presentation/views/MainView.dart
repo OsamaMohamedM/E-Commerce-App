@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/Cart/Data/models/CartEntity.dart';
+
 import 'package:e_commerce/features/Cart/Presentation/views/CartView.dart';
 import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:e_commerce/features/Profile/presentation/views/EditProfileDataView.dart';

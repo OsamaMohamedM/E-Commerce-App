@@ -1,5 +1,6 @@
 import 'package:e_commerce/features/Auth/Presentation/widgets/SocialLoginOptionsSection.dart';
 import 'package:e_commerce/features/Auth/cubits/signInCubit/cubit/sign_in_cubit.dart';
+import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/features/Auth/Presentation/widgets/LoginFormSection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,8 @@ class LoginViewBody extends StatelessWidget {
             content: Text(state.message),
           ));
         } else if (state is SignInSuccess) {
-           GoRouter.of(context).go(AppRoutes.homeView);
+          context.read<CartCubit>().userData = state.user;
+           GoRouter.of(context).go(AppRoutes.mainView);
         }
       }, builder: (context, state) {
         return ModalProgressHUD(

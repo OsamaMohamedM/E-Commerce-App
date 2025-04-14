@@ -15,6 +15,8 @@ class OrderEntity  {
   }) : shippingAddress = shippingAddress ?? ShippingAddressEntity();
 
   toMap() => {
+        'id': uid,
+        'itemCount': cartEntity.clcTotal(),
         'payMethood': (payWithCash == true ? 'Cash' : 'payPal'),
         'uid': uid,
         'status': 'pending',

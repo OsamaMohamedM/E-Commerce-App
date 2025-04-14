@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +20,9 @@ class UserProfileInformationView extends StatelessWidget {
       children: [
         Stack(
           children: [
-             CircleAvatar(
+            CircleAvatar(
               radius: 50,
-              backgroundImage: user!.image != null
+              backgroundImage: user!.image != null&& user.image!.isNotEmpty
                   ? CachedNetworkImageProvider(user.image!)
                   : const AssetImage(Assets.assetsImagesProfileTest),
             ),
@@ -53,7 +54,7 @@ class UserProfileInformationView extends StatelessWidget {
               height: 8,
             ),
             Text(
-              user.email,
+             FirebaseAuth.instance.currentUser!.email!,
               style: TextStyles.bold13,
             )
           ],

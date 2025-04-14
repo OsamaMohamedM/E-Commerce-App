@@ -4,23 +4,26 @@ import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
 
 class CustomTextFormFiledItem extends StatefulWidget {
-   const CustomTextFormFiledItem({
+  const CustomTextFormFiledItem({
     super.key,
     required this.hint,
     this.isObscure = false,
     this.isPassword = false,
     this.onPressed,
     this.onChanged,
+    this.enable = true,
   });
 
   final String hint;
+  final bool enable;
   final bool isObscure;
   final bool isPassword;
   final VoidCallback? onPressed;
   final void Function(String?)? onChanged;
 
   @override
-  State<CustomTextFormFiledItem> createState() => _CustomTextFormFiledItemState();
+  State<CustomTextFormFiledItem> createState() =>
+      _CustomTextFormFiledItemState();
 }
 
 class _CustomTextFormFiledItemState extends State<CustomTextFormFiledItem> {
@@ -32,6 +35,7 @@ class _CustomTextFormFiledItemState extends State<CustomTextFormFiledItem> {
           value == null || value.isEmpty ? 'الحقل مطلوب' : null,
       obscureText: widget.isObscure,
       decoration: InputDecoration(
+          enabled: widget.enable,
           suffixIcon: widget.isPassword
               ? IconButton(
                   icon: widget.isObscure
@@ -40,7 +44,6 @@ class _CustomTextFormFiledItemState extends State<CustomTextFormFiledItem> {
                   onPressed: widget.onPressed,
                 )
               : null,
-              
           hintText: widget.hint,
           hintStyle: TextStyles.bold13.copyWith(color: const Color(0xff949D9E)),
           enabledBorder: buildBorder(),

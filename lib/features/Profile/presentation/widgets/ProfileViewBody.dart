@@ -1,10 +1,14 @@
+import 'package:e_commerce/Core/AppRoutes.dart';
+import 'package:e_commerce/Core/Services/AuthService.dart';
 import 'package:e_commerce/Core/utils/styles/app_colors.dart';
 import 'package:e_commerce/Core/utils/widgets/CustomAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../../Core/Services/get_it.dart';
 import '../../../../Core/utils/assetsImages.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
+import 'ConfirmationDialog.dart';
 import 'CustomListTile.dart';
 import 'UserProfileInformationView.dart';
 
@@ -114,7 +118,16 @@ class ProfileViewBody extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              
+             showDialog(context: context, builder: (context)=>
+              ConfirmationDialog(
+                message: 'هل انت متأكد من تسجيل الخروج؟',
+                confirmText: 'نعم',
+                cancelText: 'لا',
+                onConfirm: () {
+                  getIt<AuthService>().signOut();
+                  GoRouter.of(context).go(AppRoutes.loginView);
+                },
+              ));
             },
             child: Container(
               height: 40,

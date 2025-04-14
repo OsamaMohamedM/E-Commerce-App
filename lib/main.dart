@@ -1,4 +1,5 @@
 import 'package:e_commerce/Core/AppRoutes.dart';
+import 'package:e_commerce/Core/Services/AuthService.dart';
 import 'package:e_commerce/Core/Services/SharedPrefrences.dart';
 import 'package:e_commerce/Core/helpers/BlocObserver.dart';
 import 'package:e_commerce/Core/utils/styles/app_colors.dart';
@@ -17,9 +18,9 @@ void main() async {
   setupGetIt();
   Bloc.observer = CustomBlocObserver();
   await SharedPreferencesHelper.init();
-
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:(context) => CartCubit(CartEntity(cartItemEntityList: [] , )),
+      create: (context) => CartCubit(CartEntity(
+        cartItemEntityList: [],
+      )),
       child: MaterialApp.router(
         theme: ThemeData(
             fontFamily: 'Cairo',

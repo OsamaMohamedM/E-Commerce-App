@@ -1,3 +1,5 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/Core/utils/widgets/CustomAppBar.dart';
 import 'package:e_commerce/Core/utils/widgets/CustomButton.dart';
@@ -17,12 +19,16 @@ class EditProfileDataViewBody extends StatefulWidget {
 }
 
 class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
-  @override
   bool isObscure1 = true;
   bool isObscure2 = true;
-  String name = '', email= '', password = '', newPassword=  '', confirmNewPassword= '';
+  String name = '',
+      email = '',
+      password = '',
+      newPassword = '',
+      confirmNewPassword = '';
   final GlobalKey<FormFieldState> _formKey = GlobalKey<FormFieldState>();
   Widget build(BuildContext context) {
+    final user = context.read<CartCubit>().userData;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -49,18 +55,19 @@ class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
                 height: 16,
               ),
               CustomTextFormFiledItem(
+                enable: user!.isFromSocial,
                 hint: context.watch<CartCubit>().userData!.name,
                 onPressed: () {},
-                onChanged: (value)=> name = value??'', 
-                
+                onChanged: (value) => name = value ?? '',
               ),
               const SizedBox(
                 height: 14,
               ),
               CustomTextFormFiledItem(
-                hint: context.watch<CartCubit>().userData!.email,
+                enable: user.isFromSocial,
+                hint: FirebaseAuth.instance.currentUser!.email!,
                 onPressed: () {},
-                onChanged: (value)=> email = value??'', 
+                onChanged: (value) => email = value ?? '',
               ),
               const SizedBox(
                 height: 14,
@@ -73,7 +80,8 @@ class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
                 height: 16,
               ),
               CustomTextFormFiledItem(
-                onChanged: (value)=> password = value??'', 
+                enable: user.isFromSocial,
+                onChanged: (value) => password = value ?? '',
                 hint: 'كلمة المرور القديمة',
                 isPassword: true,
                 isObscure: isObscure1,
@@ -87,6 +95,7 @@ class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
                 height: 14,
               ),
               CustomTextFormFiledItem(
+                enable: user.isFromSocial,
                 hint: 'كلمة المرور الجديدة',
                 isPassword: true,
                 isObscure: isObscure2,
@@ -95,12 +104,13 @@ class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
                     isObscure2 = !isObscure2;
                   });
                 },
-                onChanged: (value)=> newPassword = value??'', 
+                onChanged: (value) => newPassword = value ?? '',
               ),
               const SizedBox(
                 height: 14,
               ),
               CustomTextFormFiledItem(
+                enable: user!.isFromSocial,
                 hint: 'تأكيد كلمة المرور',
                 isPassword: true,
                 isObscure: isObscure2,
@@ -109,15 +119,24 @@ class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
                     isObscure2 = !isObscure2;
                   });
                 },
-                onChanged: (value)=> confirmNewPassword = value??'', 
+                onChanged: (value) => confirmNewPassword = value ?? '',
               ),
               const SizedBox(
                 height: 74,
               ),
               CustomButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate())
-                    {
+                    if (!user.isFromSocial) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'لا يمكن تعديل الملف الشخصي من حساب جوجل او فيسبوك'),
+                        ),
+                      );
+                      return;
+                    }
+                    //if (_formKey.currentState.validate())
+                     {
                       if (newPassword != confirmNewPassword) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -126,12 +145,12 @@ class _EditProfileDataViewBodyState extends State<EditProfileDataViewBody> {
                         );
                         return;
                       }
-                    context.read<EditProfileDataCubit>().updateProfile(
-                          displayName: name.trim(),
-                          newEmail: email.trim(),
-                          currentPassword: password.trim(),
-                          newPassword: newPassword.trim(),
-                        );
+                      context.read<EditProfileDataCubit>().updateProfile(
+                            displayName: name.trim(),
+                            newEmail: email.trim(),
+                            currentPassword: password.trim(),
+                            newPassword: newPassword.trim(),
+                          );
                     }
                   },
                   buttonName: 'حفظ التغييرات'),

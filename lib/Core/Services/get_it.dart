@@ -6,6 +6,7 @@ import 'package:e_commerce/Core/Services/FireStoreService.dart';
 import 'package:e_commerce/features/Auth/Data/repos/AuthRepoImp.dart';
 import 'package:e_commerce/features/CheckOut/Data/Repo/OrderRepo.dart';
 import 'package:e_commerce/features/CheckOut/Data/Repo/OrderRepoImp.dart';
+import 'package:e_commerce/features/Profile/data/Repo/OrderHistoryRepo.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/Auth/Data/repos/authRepo.dart';
@@ -15,6 +16,7 @@ GetIt getIt = GetIt.instance;
 
 void setupGetIt() {
   getIt.registerSingleton<DataBaseService>(FirestoreService());
+  getIt.registerSingleton<OrderHistoryRepo>(OrderHistoryRepo( dataBaseService:getIt.get<DataBaseService>()));
   getIt.registerSingleton<AuthService>(FireBaseAuthService(
       db: getIt<DataBaseService>(),
   ));

@@ -14,8 +14,7 @@ class SignUpViewBodyBlocConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpState>(
-      listener: (context, state) {},
-      builder: (context, state) {
+      listener: (context2, state) {
         if (state is SignUpSuccess) {
           GoRouter.of(context).pop();
         }
@@ -23,6 +22,8 @@ class SignUpViewBodyBlocConsumer extends StatelessWidget {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));
         }
+      },
+      builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is SignUpLoading,
           child: const SignUpViewBody(),
