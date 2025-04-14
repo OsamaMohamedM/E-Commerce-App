@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:e_commerce/Core/AppRoutes.dart';
+import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../Core/Services/SharedPrefrences.dart';
 import '../../../../../Core/utils/constants/assetsImages.dart';
 import '../../../../../Core/utils/constants/strings.dart';
+import '../../../../Auth/Data/entity/User.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -21,15 +26,16 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     _navigateToOnBoarding();
   }
 
-  void _navigateToOnBoarding() {
-    final isOnBoardingViewSeen =
-        SharedPreferencesHelper.getValue(kisOnBoardingViewSeen);
+  void _navigateToOnBoarding()async {
+    final user =
+       await SharedPreferencesHelper.getValue(userPref); //as Map<String, dynamic>?;    
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        if (isOnBoardingViewSeen == true) {
-          GoRouter.of(context).pushReplacement(AppRoutes.loginView);
+        if (user != null) {
+          context.read<CartCubit>().userData  = UserData.fromJson(jsonDecode(user));
+          GoRouter.of(context).go(AppRoutes.homeView);
         } else {
-          GoRouter.of(context).pushReplacement(AppRoutes.onBoardingView);
+         GoRouter.of(context).go(AppRoutes.loginView);
         }
       }
     });

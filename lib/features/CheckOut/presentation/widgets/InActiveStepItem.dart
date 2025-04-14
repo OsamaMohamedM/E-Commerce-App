@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 
 class InActiveStepItem extends StatelessWidget {
-  const InActiveStepItem({super.key});
+  final String title;
+  final String number;
+  const InActiveStepItem({super.key, required this.title , required this.number});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,9 @@ class InActiveStepItem extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 10,
-          backgroundColor: AppColors.darkPrimaryColor,
-          child: const Text(
-            '2',
+          backgroundColor: AppColors.grayTextColor,
+          child:  Text(
+            number,
             style: TextStyles.semiBold13,
           ),
         ),
@@ -22,7 +24,7 @@ class InActiveStepItem extends StatelessWidget {
           width: 4,
         ),
         Text(
-          'الشحن',
+          title,
           style: TextStyles.semiBold13.copyWith(color: Color(0xffAAAAAA)),
         )
       ],

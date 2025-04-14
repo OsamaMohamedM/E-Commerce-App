@@ -10,9 +10,12 @@ class FirestoreService extends DataBaseService {
       await firebaseFirestore.collection(path).add(data);
 
   @override
-  Future<void> updateData(String path, String id, Map<String, dynamic> data) {
-    // TODO: implement updateData
-    throw UnimplementedError();
+  Future<void> updateData(String path, String id, Map<String, dynamic> data)async {
+   await firebaseFirestore.collection(path).doc(id).update(data).then((value) {
+      print('Data updated successfully');
+    }).catchError((error) {
+      print('Failed to update data: $error');
+    });
   }
 
   @override

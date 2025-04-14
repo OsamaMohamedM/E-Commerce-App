@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Core/utils/assetsImages.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
+import '../../../Cart/view_model/cubit/cart_cubit.dart';
 
 class UserProfileInformationView extends StatelessWidget {
   const UserProfileInformationView({
@@ -11,13 +14,16 @@ class UserProfileInformationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user  = context.read<CartCubit>().userData;
     return Row(
       children: [
         Stack(
           children: [
-            const CircleAvatar(
+             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage(Assets.assetsImagesProfileTest),
+              backgroundImage: user!.image != null
+                  ? CachedNetworkImageProvider(user.image!)
+                  : const AssetImage(Assets.assetsImagesProfileTest),
             ),
             Transform.translate(
                 offset: const Offset(-25, 80),
@@ -40,14 +46,14 @@ class UserProfileInformationView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "محمد علي",
+              user.name,
               style: TextStyles.bold13,
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
-              "wHbZP@example.com",
+              user.email,
               style: TextStyles.bold13,
             )
           ],

@@ -3,14 +3,21 @@ import 'package:e_commerce/features/CheckOut/presentation/widgets/InActiveStepIt
 import 'package:flutter/material.dart';
 
 class StepItem extends StatelessWidget {
-  const StepItem({super.key, required this.isActive});
+  final String title;
+  final String number;
+  const StepItem({super.key, required this.isActive, required this.title ,required this.number});
   final bool isActive;
   @override
   Widget build(BuildContext context) {
     return AnimatedCrossFade(
       duration: const Duration(milliseconds: 300),
-      firstChild: ActiveStepItem(),
-      secondChild: InActiveStepItem(),
+      firstChild: ActiveStepItem(
+        text: title,
+      ),
+      secondChild: InActiveStepItem(
+        title: title,
+        number: number,
+      ),
       crossFadeState:
           (isActive ? CrossFadeState.showFirst : CrossFadeState.showSecond),
     );

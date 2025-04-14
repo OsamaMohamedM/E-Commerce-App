@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Core/Services/get_it.dart';
+import 'features/Cart/Data/models/CartEntity.dart';
+import 'features/Cart/view_model/cubit/cart_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,22 +26,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-          fontFamily: 'Cairo',
-          scaffoldBackgroundColor: Colors.white,
-          colorScheme:
-              ColorScheme.fromSeed(seedColor: AppColors.darkPrimaryColor)),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale('ar'),
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRoutes.router,
+    return BlocProvider(
+      create:(context) => CartCubit(CartEntity(cartItemEntityList: [] , )),
+      child: MaterialApp.router(
+        theme: ThemeData(
+            fontFamily: 'Cairo',
+            scaffoldBackgroundColor: Colors.white,
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: AppColors.darkPrimaryColor)),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: const Locale('ar'),
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRoutes.router,
+      ),
     );
   }
 }

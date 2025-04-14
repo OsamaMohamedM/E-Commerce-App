@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
             onPressed: onPressed,
             isObscure: isPasswordObscure,
             isPassword: false,
-            title: "البريد الالكتروني"),
+            hint: "البريد الالكتروني"),
         const SizedBox(
           height: 16,
         ),
@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
             onPressed: onPressed,
             isObscure: isPasswordObscure,
             isPassword: true,
-            title: "كلمة المرور"),
+            hint: "كلمة المرور"),
       ],
     );
   }

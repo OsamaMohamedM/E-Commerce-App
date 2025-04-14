@@ -3,39 +3,45 @@ import 'package:flutter/material.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 import '../../../../Core/utils/styles/textStyles.dart';
 
-class CustomTextFormFiledItem extends StatelessWidget {
-  const CustomTextFormFiledItem({
+class CustomTextFormFiledItem extends StatefulWidget {
+   const CustomTextFormFiledItem({
     super.key,
-    required this.title,
+    required this.hint,
     this.isObscure = false,
     this.isPassword = false,
-     this.onPressed,
-    this.onSaved,
+    this.onPressed,
+    this.onChanged,
   });
 
-  final String title;
+  final String hint;
   final bool isObscure;
   final bool isPassword;
   final VoidCallback? onPressed;
-  final void Function(String?)? onSaved;
+  final void Function(String?)? onChanged;
 
+  @override
+  State<CustomTextFormFiledItem> createState() => _CustomTextFormFiledItemState();
+}
+
+class _CustomTextFormFiledItemState extends State<CustomTextFormFiledItem> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onSaved: onSaved,
+      onChanged: widget.onChanged,
       validator: (value) =>
           value == null || value.isEmpty ? 'الحقل مطلوب' : null,
-      obscureText: isObscure,
+      obscureText: widget.isObscure,
       decoration: InputDecoration(
-          suffixIcon: isPassword
+          suffixIcon: widget.isPassword
               ? IconButton(
-                  icon: isObscure
+                  icon: widget.isObscure
                       ? const Icon(Icons.remove_red_eye)
                       : const Icon(Icons.visibility_off),
-                  onPressed: onPressed,
+                  onPressed: widget.onPressed,
                 )
               : null,
-          hintText: title,
+              
+          hintText: widget.hint,
           hintStyle: TextStyles.bold13.copyWith(color: const Color(0xff949D9E)),
           enabledBorder: buildBorder(),
           focusedBorder: buildBorder()),

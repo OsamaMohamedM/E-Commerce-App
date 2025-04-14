@@ -52,7 +52,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               CustomAppBarAuth(title: "حساب جديد", onPress: () {}),
               const SizedBox(height: 24),
               CustomTextFormFiledItem(
-                  title: 'اسم المستخدم', onPressed: onPressed),
+                  hint: 'اسم المستخدم', onPressed: onPressed),
               const SizedBox(height: 16),
               CustomTextFormField(
                   isPasswordObscure: isPasswordObscure, onPressed: onPressed),

@@ -1,7 +1,6 @@
 import 'package:e_commerce/Core/utils/styles/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/models/TrackingStatus';
+import '../../data/models/TrackingStatus.dart';
 
 class TrackingStatusTile extends StatelessWidget {
   final TrackingStatus status;

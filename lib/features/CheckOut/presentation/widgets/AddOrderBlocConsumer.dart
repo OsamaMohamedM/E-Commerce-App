@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../cubits/cubit/add_order_cubit.dart';
-import '../../cubits/cubit/add_order_state.dart';
+import '../../cubits/AddOrderCubit/add_order_cubit.dart';
+import '../../cubits/AddOrderCubit/add_order_state.dart';
 
 class AddOrderBlocConsumer extends StatelessWidget {
+  
   const AddOrderBlocConsumer({
+    
     super.key,
   });
 

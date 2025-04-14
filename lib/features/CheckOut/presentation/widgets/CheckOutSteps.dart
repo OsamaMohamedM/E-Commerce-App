@@ -20,15 +20,15 @@ class CheckOutSteps extends StatelessWidget {
               onTap: () {
                 onTap(index);
               },
-              child: StepItem(isActive: currentIndex >= 0)));
+              child: StepItem( number: (index+1).toString() ,  title: getSteps()[index], isActive: currentIndex >= index)));
     }));
   }
 }
 
 getSteps() {
   return [
-    '',
-    '',
-    '',
+    'الشحن',
+    'العنوان',
+    'الدفع',
   ];
 }

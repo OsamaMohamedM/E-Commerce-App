@@ -1,11 +1,9 @@
 import 'dart:developer';
 
+import 'package:e_commerce/features/CheckOut/cubits/checkOutCubit/cubit/check_out_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../Data/models/Order.dart';
 import 'ShippingItem.dart';
-
 class ShippingSection extends StatefulWidget {
   const ShippingSection({super.key});
 
@@ -26,32 +24,32 @@ class _ShippingSectionState extends State<ShippingSection>
         ),
         ShippingItem(
           price:
-              "${context.read<OrderEntity>().cartEntity.clcTotal() + 40}جنيه",
+              "${context.read<CheckOutCubitCubit>().orderEntity.cartEntity.clcTotal() + 40}جنيه",
           subTitle: 'التسليم في المكان',
           title: 'الدفع عند الاستلام',
           isSelected: selectedIndex == 0,
           onTap: () {
-            context.read<OrderEntity>().payWithCash = true;
+            context.read<CheckOutCubitCubit>().addPaywithCash(true);
             setState(() {
               selectedIndex = 0;
             });
-            log(context.read<OrderEntity>().payWithCash.toString());
           },
         ),
         const SizedBox(
           height: 16,
         ),
         ShippingItem(
-          price: "${context.read<OrderEntity>().cartEntity.clcTotal()} جنيه",
+          price:
+              "${context.read<CheckOutCubitCubit>().orderEntity.cartEntity.clcTotal()} جنيه",
           subTitle: 'يرجي تحديد طريقه الدفع',
           title: 'الدفع اونلاين',
           isSelected: selectedIndex == 1,
           onTap: () {
-            context.read<OrderEntity>().payWithCash = false;
+               context.read<CheckOutCubitCubit>().addPaywithCash(false);
             setState(() {
               selectedIndex = 1;
             });
-            log(context.read<OrderEntity>().payWithCash.toString());
+            log(context.read<CheckOutCubitCubit>().orderEntity.payWithCash.toString());
           },
         ),
       ],

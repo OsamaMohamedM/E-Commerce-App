@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../Core/utils/widgets/CustomAppBar.dart';
-import '../../data/models/TrackingStatus';
 import '../../data/models/CustomerOrder.dart';
+import '../../data/models/TrackingStatus.dart';
 import 'OrderCard.dart';
 
 class OrderHistoryBody extends StatefulWidget {

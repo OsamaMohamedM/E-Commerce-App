@@ -1,4 +1,4 @@
-import 'TrackingStatus';
+import 'TrackingStatus.dart';
 
 class CustomerOrder {
   final String id;

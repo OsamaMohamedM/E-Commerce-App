@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../../Core/utils/styles/app_colors.dart';
 
 class ActiveStepItem extends StatelessWidget {
-  const ActiveStepItem({super.key});
+  final String text;
+  const ActiveStepItem({super.key ,required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ActiveStepItem extends StatelessWidget {
           width: 4,
         ),
         Text(
-          'الشحن',
+        text,
           style: TextStyles.bold13.copyWith(color: AppColors.darkPrimaryColor),
         )
       ],

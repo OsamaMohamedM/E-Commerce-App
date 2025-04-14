@@ -1,9 +1,8 @@
-import 'package:e_commerce/features/CheckOut/cubits/cubit/add_order_cubit.dart';
+import 'package:e_commerce/features/CheckOut/cubits/AddOrderCubit/add_order_cubit.dart';
+import 'package:e_commerce/features/CheckOut/cubits/checkOutCubit/cubit/check_out_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-
 import '../../../../Core/Services/get_it.dart';
 import '../../../Cart/Data/models/CartEntity.dart';
 import '../../Data/Repo/OrderRepo.dart';
@@ -19,24 +18,30 @@ class CheckOutView extends StatefulWidget {
 }
 
 class _CheckOutViewState extends State<CheckOutView> {
- late OrderEntity orderEntity;
+  late OrderEntity orderEntity;
   @override
   void initState() {
-  orderEntity =   OrderEntity(
+    orderEntity = OrderEntity(
         cartEntity: widget.order, uid: FirebaseAuth.instance.currentUser!.uid);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddOrderCubit(
-        getIt.get<OrderRepo>(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AddOrderCubit(
+            getIt.get<OrderRepo>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => CheckOutCubitCubit(orderEntity),
+        ),
+      ],
       child: SafeArea(
         child: Scaffold(
-          body: Provider.value(
-              value:orderEntity , child: AddOrderBlocConsumer()),
+          body: AddOrderBlocConsumer(),
         ),
       ),
     );

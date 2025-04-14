@@ -1,4 +1,6 @@
+import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../Core/utils/constants/assetsImages.dart';
@@ -12,19 +14,28 @@ class CustomAppBarHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: SvgPicture.asset(
-        Assets.assetsImagesUserPhoto,
-        width: 40,
-        height: 40,
-        fit: BoxFit.cover,
-      ),
+      leading: context.read<CartCubit>().userData?.image != null
+          ? ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                context.read<CartCubit>().userData!.image!,
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+              ))
+          : SvgPicture.asset(
+              Assets.assetsImagesUserPhoto,
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+            ),
       title: Text(
-        'صباح الخير',
+       fetchAppBarData(),
         style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
         textAlign: TextAlign.start,
       ),
       subtitle: Text(
-        'اسامه محمد',
+        context.read<CartCubit>().userData?.name ?? 'اسم المستخدم',
         style: TextStyles.bold16,
       ),
       trailing: Container(
@@ -37,5 +48,13 @@ class CustomAppBarHomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  fetchAppBarData() {
+    final now = DateTime.now();
+    if (now.hour >= 0 && now.hour < 12) {
+      return 'صباح الخير 🌞';
+    } else
+      return 'مساء الخير🌙';
   }
 }

@@ -39,15 +39,12 @@ class _MainViewState extends State<MainView> {
     OrderHistory(onTabChange :onTabChange),
     FavoriteItemsView(onTabChange: onTabChange,),
   ];
-    return BlocProvider(
-      create: (context) => CartCubit(CartEntity(cartItemEntityList: [])),
-      child: Scaffold(
-        bottomNavigationBar: CustomBottomNavigationBar(
-          currentIndex: currentIndex,
-          onTabChange: onTabChange,
-        ),
-        body: MainViewBloc(currentIndex: currentIndex, pages: pages),
+    return Scaffold(
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: currentIndex,
+        onTabChange: onTabChange,
       ),
+      body: MainViewBloc(currentIndex: currentIndex, pages: pages),
     );
   }
 }

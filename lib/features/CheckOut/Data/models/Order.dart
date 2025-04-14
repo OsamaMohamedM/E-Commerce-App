@@ -24,11 +24,11 @@ class OrderEntity  {
         'shippingAddress': shippingAddress!.toJson(),
       };
 
-  clcShippingCost() {
+   clcShippingCost() {
     if (payWithCash == true) {
-      return 20;
+      return 20.0;
     } else {
-      return 0;
+      return 0.0;
     }
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../Core/utils/styles/textStyles.dart';
-import '../../Data/models/Order.dart';
+import '../../cubits/checkOutCubit/cubit/check_out_cubit.dart';
 import 'AddressDetails.dart';
 
 class PaymentItem extends StatelessWidget {
@@ -17,7 +17,7 @@ class PaymentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final order  = context.read<OrderEntity>();
+    final order  = context.read<CheckOutCubitCubit>().orderEntity;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

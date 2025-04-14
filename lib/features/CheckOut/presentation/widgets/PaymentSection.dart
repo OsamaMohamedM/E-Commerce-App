@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Core/utils/styles/textStyles.dart';
-import '../../Data/models/Order.dart';
+import '../../cubits/checkOutCubit/cubit/check_out_cubit.dart';
 import 'PaymentItem.dart';
 
 class PaymentSection extends StatelessWidget {
@@ -15,7 +15,7 @@ class PaymentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final order  = (context.read<OrderEntity>());
+
     return PaymentItem(
         title: 'ملخص الطلب : ',
         pageController: pageController,
@@ -34,7 +34,7 @@ class PaymentSection extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '${context.read<OrderEntity>().cartEntity.clcTotal()} جنيه',
+                  '${context.read<CheckOutCubitCubit>().orderEntity.cartEntity.clcTotal()} جنيه',
                   style: TextStyles.semiBold16,
                   textAlign: TextAlign.right,
                 ),
@@ -53,7 +53,7 @@ class PaymentSection extends StatelessWidget {
                 const Spacer(),
                 Text(
                   
-                 '${order.payWithCash! ? 0.00 : 20.00} جنيه',
+                 '${context.read<CheckOutCubitCubit>().orderEntity.payWithCash! ? 0.00 : 20.00} جنيه',
                   style: TextStyles.regular13
                       .copyWith(color: AppColors.darkGrayColor),
                   textAlign: TextAlign.right,
@@ -79,7 +79,7 @@ class PaymentSection extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '${context.read<OrderEntity>().cartEntity.clcTotal() + 20} جنيه',
+                  '${context.read<CheckOutCubitCubit>().orderEntity.cartEntity.clcTotal() + 20} جنيه',
                   style: TextStyles.bold16
                       .copyWith(color: AppColors.darkGrayColor),
                   textAlign: TextAlign.right,

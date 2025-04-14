@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce/Core/Services/DataBaseService.dart';
+import 'package:e_commerce/Core/errors/AuthError.dart';
 import 'package:e_commerce/Core/errors/Exceptions.dart';
+import 'package:e_commerce/Core/utils/constants/BackEndEndPoints.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -10,6 +13,8 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'AuthService.dart';
 
 class FireBaseAuthService extends AuthService {
+  final DataBaseService db;
+  FireBaseAuthService({required this.db});
   @override
   Future deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
@@ -190,5 +195,56 @@ class FireBaseAuthService extends AuthService {
   @override
   bool isLogin() {
     return FirebaseAuth.instance.currentUser != null;
+  }
+
+  @override
+  Future<Either<AuthFailure, void>> updateProfile({
+    String? displayName,
+    String? newEmail,
+    String? newPassword,
+    String? currentPassword,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        return left(NotAuthenticated());
+      }
+
+      if ((newEmail != null || newPassword != null) &&
+          currentPassword != null) {
+        final cred = EmailAuthProvider.credential(
+          email: user.email!,
+          password: currentPassword,
+        );
+
+        await user.reauthenticateWithCredential(cred);
+      }
+
+      if (newEmail != null) {
+        await user.updateEmail(newEmail);
+      }
+
+      if (newPassword != null) {
+        await user.updatePassword(newPassword);
+      }
+      await db.updateData(
+        BackEndEndPoints.users,
+        user.uid,
+        {
+          'email': newEmail ?? user.email,
+          'displayName': displayName ?? user.displayName,
+          'photoUrl': user.photoURL,
+        },
+      );
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'محتاج إعادة المصادقة') {
+        return left(ReauthRequired());
+      }
+      return left(ServerFailure(e.message ?? 'حدث خطا ما'));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

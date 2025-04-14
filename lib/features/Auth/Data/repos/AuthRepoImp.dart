@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -170,6 +171,6 @@ class AuthRepoImp extends AuthRepo {
   }
 
   Future saveLocalData({required UserData userData}) async {
-    await SharedPreferencesHelper.setMap(userPref, userData.toMap());
+    await SharedPreferencesHelper.setMap(userPref, jsonEncode(userData.toMap()));
   }
 }

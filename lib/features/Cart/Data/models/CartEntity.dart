@@ -4,6 +4,7 @@ import 'CartItem.dart';
 class CartEntity {
   List<CartItemEntity> cartItemEntityList ;
 
+
   CartEntity({required this.cartItemEntityList });
 
   void addItem(ProductEntity product , {int? counter}) {
@@ -56,5 +57,11 @@ class CartEntity {
       'cartItemEntityList':
           cartItemEntityList.map((item) => item.toJson()).toList(),
     };
+  }
+
+  void clear()
+  {
+    cartItemEntityList.clear();
+    
   }
 }

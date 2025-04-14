@@ -26,5 +26,5 @@ class CartItemEntity {
     return false;
   }
 
-  toJson() => {'product': OrderProductModel.fromEntity(this), 'count': count};
+  toJson() => {'product': OrderProductModel.fromEntity(this).toJson(), 'count': count};
 }

@@ -1,12 +1,14 @@
-import 'dart:developer';
-
+import 'package:e_commerce/Core/AppRoutes.dart';
 import 'package:e_commerce/Core/utils/widgets/CustomAppBar.dart';
+import 'package:e_commerce/features/Cart/view_model/cubit/cart_cubit.dart';
+import 'package:e_commerce/features/CheckOut/cubits/checkOutCubit/cubit/check_out_cubit.dart';
 import 'package:e_commerce/features/CheckOut/presentation/widgets/CheckOutSteps.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../Core/Services/Payment.dart';
 import '../../../../Core/utils/widgets/CustomButton.dart';
-import '../../Data/models/Order.dart';
+import '../../cubits/AddOrderCubit/add_order_cubit.dart';
 import 'CustomPageView.dart';
 
 class CheckOutViewBody extends StatefulWidget {
@@ -46,7 +48,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
       child: Column(
         children: [
-          CustomAppBar(tittle: 'الشحن'),
+          CustomAppBar(tittle: getAppBarName()),
           const SizedBox(
             height: 16,
           ),
@@ -57,8 +59,11 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.fastLinearToSlowEaseIn);
               } else if (index == 1) {
-                var ordderEntity = context.read<OrderEntity>();
-                if (ordderEntity.payWithCash != null) {
+                if (context
+                        .read<CheckOutCubitCubit>()
+                        .orderEntity
+                        .payWithCash !=
+                    null) {
                   pageController.animateToPage(index,
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.fastLinearToSlowEaseIn);
@@ -88,14 +93,48 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
           CustomButton(
               buttonName: getNextButtonText(),
               onPressed: () {
-                log(context.read<OrderEntity>().payWithCash.toString());
                 if (currentIndex == 0) {
                   ShippingSectionValidate(context);
                 } else if (currentIndex == 1) {
                   AddressFormValidate(context);
                 } else {
-                  final order = context.read<OrderEntity>();
-                  Payment(orderEntity: order).handlePayment(context);
+                  if (!context
+                      .read<CheckOutCubitCubit>()
+                      .orderEntity
+                      .payWithCash!) {
+                    final order =
+                        context.read<CheckOutCubitCubit>().orderEntity;
+                   bool isSuccess = Payment(orderEntity: order).handlePayment(context);
+                    if (isSuccess) {
+                      context.read<CartCubit>().clearCart();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('تم اضافة الطلب بنجاح'),
+                        ),
+                      );
+                      GoRouter.of(context).push(AppRoutes.homeView);
+                    }
+                    else
+                    {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('حدث خطأ في الدفع'),
+                        ),
+                      );
+                    }
+                  } else {
+                    final order =
+                        context.read<CheckOutCubitCubit>().orderEntity;
+                    context.read<AddOrderCubit>().addOrder(order);
+                    context.read<CartCubit>().clearCart();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('تم اضافة الطلب بنجاح'),
+                      ),
+                    );
+                    GoRouter.of(context).push(AppRoutes.homeView); 
+                   
+                  }
                 }
               })
         ],
@@ -105,6 +144,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
 
   void AddressFormValidate(BuildContext context) {
     if (formKey.currentState!.validate()) {
+      context.read<CheckOutCubitCubit>().addAddressShipping();
       pageController.animateToPage(currentIndex + 1,
           duration: const Duration(milliseconds: 300),
           curve: Curves.fastLinearToSlowEaseIn);
@@ -115,7 +155,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   }
 
   void ShippingSectionValidate(BuildContext context) {
-    if (context.read<OrderEntity>().payWithCash != null) {
+    if (context.read<CheckOutCubitCubit>().orderEntity.payWithCash != null) {
       pageController.animateToPage(currentIndex + 1,
           duration: const Duration(milliseconds: 300),
           curve: Curves.fastLinearToSlowEaseIn);
@@ -136,7 +176,24 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
       case 1:
         return 'التالي';
       case 2:
-        return 'الدفع عبر PayPal';
+        if (context.read<CheckOutCubitCubit>().orderEntity.payWithCash!) {
+          return 'الدفع عند الاستلام';
+        } else {
+          return 'الدفع عبر PayPal';
+        }
+      default:
+        return 'التالي';
+    }
+  }
+
+  String getAppBarName() {
+    switch (currentIndex) {
+      case 0:
+        return 'الشحن';
+      case 1:
+        return 'العنوان';
+      case 2:
+        return 'الدفع';
       default:
         return 'التالي';
     }

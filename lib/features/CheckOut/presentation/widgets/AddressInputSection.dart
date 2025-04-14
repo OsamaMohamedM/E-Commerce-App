@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Auth/Presentation/widgets/CustomTextFormFiledItem.dart';
-import '../../Data/models/Order.dart';
+import '../../cubits/checkOutCubit/cubit/check_out_cubit.dart';
 
 class AddressInputSection extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final ValueNotifier<AutovalidateMode> autovalidateModeNotifier;
-  const AddressInputSection(
-      {super.key,
-      required this.formKey,
-      required this.autovalidateModeNotifier});
+
+  AddressInputSection({
+    super.key,
+    required this.formKey,
+    required this.autovalidateModeNotifier,
+  });
 
   @override
   State<AddressInputSection> createState() => _AddressInputSectionState();
@@ -20,7 +22,6 @@ class _AddressInputSectionState extends State<AddressInputSection>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-   final order =  context.read<OrderEntity>();
     return ValueListenableBuilder<AutovalidateMode>(
       valueListenable: widget.autovalidateModeNotifier,
       builder: (context, value, child) => Form(
@@ -29,62 +30,46 @@ class _AddressInputSectionState extends State<AddressInputSection>
           child: Column(
             children: [
               CustomTextFormFiledItem(
-                onSaved: (String? val) {
-                  context.read<OrderEntity>().shippingAddress!.name = val;
+                onChanged: (String? val) {
+                  context
+                      .read<CheckOutCubitCubit>()
+                      .shippingAddressEntity
+                      .name = val;
                 },
                 onPressed: () {},
                 isObscure: false,
                 isPassword: false,
-                title: "اسم المستخدم",
+                hint: "اسم المستخدم",
               ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextFormFiledItem(
-                onSaved: (String? val) {
-                  order.shippingAddress!.email = val;
+                onChanged: (String? val) {
+                  context
+                      .read<CheckOutCubitCubit>()
+                      .shippingAddressEntity
+                      .email = val;
                 },
                 onPressed: () {},
                 isObscure: false,
                 isPassword: false,
-                title: "البريد الالكتروني",
+                hint: "البريد الالكتروني",
               ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextFormFiledItem(
-                onSaved: (String? val) {
-                  context.read<OrderEntity>().shippingAddress!.address = val;
+                onChanged: (String? val) {
+                  context
+                      .read<CheckOutCubitCubit>()
+                      .shippingAddressEntity
+                      .address = val;
                 },
                 onPressed: () {},
                 isObscure: false,
                 isPassword: false,
-                title: "العنوان",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormFiledItem(
-                onPressed: () {},
-                isObscure: false,
-                isPassword: false,
-                title: "المدينة",
-                onSaved: (String? val) {
-                  context.read<OrderEntity>().shippingAddress!.city = val;
-                },
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormFiledItem(
-                onPressed: () {},
-                isObscure: false,
-                isPassword: false,
-                title: 'رقم الطابق - رقم الشقة',
-                onSaved: (String? val) {
-                  context.read<OrderEntity>().shippingAddress!.addressDetails =
-                      val;
-                },
+                hint: "العنوان",
               ),
               const SizedBox(
                 height: 8,
@@ -93,9 +78,42 @@ class _AddressInputSectionState extends State<AddressInputSection>
                 onPressed: () {},
                 isObscure: false,
                 isPassword: false,
-                title: "رقم الهاتف",
-                onSaved: (String? val) {
-                  context.read<OrderEntity>().shippingAddress!.phone = val;
+                hint: "المدينة",
+                onChanged: (String? val) {
+                  context
+                      .read<CheckOutCubitCubit>()
+                      .shippingAddressEntity
+                      .city = val;
+                },
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                hint: 'رقم الطابق - رقم الشقة',
+                onChanged: (String? val) {
+                  context
+                      .read<CheckOutCubitCubit>()
+                      .shippingAddressEntity
+                      .addressDetails = val;
+                },
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextFormFiledItem(
+                onPressed: () {},
+                isObscure: false,
+                isPassword: false,
+                hint: "رقم الهاتف",
+                onChanged: (String? val) {
+                  context
+                      .read<CheckOutCubitCubit>()
+                      .shippingAddressEntity
+                      .phone = val;
                 },
               ),
             ],
